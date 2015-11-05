@@ -2,14 +2,14 @@
 set -e
 cd "`dirname \"$0\"`/.."
 
-YAML_URL="https://raw.githubusercontent.com/expectedbehavior/docraptor-swagger/master/docraptor.yaml"
+YAML_URL="https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/docraptor.yaml"
 curl --fail --silent --show-error $YAML_URL > docraptor.yaml
 
-SWAGGER_COMMAND="https://raw.githubusercontent.com/expectedbehavior/docraptor-swagger/master/script/swagger"
+SWAGGER_COMMAND="https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/script/swagger"
 curl --fail --silent --show-error $SWAGGER_COMMAND > script/swagger
 chmod +x script/swagger
 script/swagger # download repo, etc.
 
-GENERATE_LANGUAGE_COMMAND="https://raw.githubusercontent.com/expectedbehavior/docraptor-swagger/master/script/generate_language"
+GENERATE_LANGUAGE_COMMAND="https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/script/generate_language"
 curl --fail --silent --show-error $GENERATE_LANGUAGE_COMMAND > script/generate_language
 chmod +x script/generate_language
