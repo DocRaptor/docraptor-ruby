@@ -20,4 +20,3 @@ end
 
 puts doc_api.download_id_get(status_response.download_id)
 
-puts "SHITS DONE!"
