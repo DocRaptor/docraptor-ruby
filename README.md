@@ -18,7 +18,7 @@ Then run `bundle install`.
 
 ```ruby
 DocRaptor.configure do |dr|
-  dr.username = "YOUR_API_KEY_HERE"
+  dr.username = "YOUR_API_KEY_HERE" # This key works for test documents
 end
 
 doc_api = DocRaptor::ClientApi.new
