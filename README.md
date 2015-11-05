@@ -37,10 +37,20 @@ response = doc_api.docs_post(
 )
 ```
 
+If your document will take longer than 60 seconds to render to PDF you will need to use our async api which can take up to 10 minutes, check out the [example](example/async.rb).
+
+
 We have guides for doing some of the common things:
-* [Headers and Footers]()
-* [CSS Media Selector]() to make the page look exactly as it does in your browser.
-* [Protected Content]() to secure your URLs so only DocRaptor can access them.
+* [Headers and Footers]() including page skipping
+* [CSS Media Selector]() to make the page look exactly as it does in your browser
+* [Protected Content]() to secure your URLs so only DocRaptor can access them
+
+## More Help
+
+DocRaptor has a lot of more [styling](https://docraptor.com/documentation#styling) and [implementation options](https://docraptor.com/documentation#api_url).
+
+Stuck? We're experts at using DocRaptor so please [email us](mailto:support@docraptor.com) if you run into trouble.
+
 
 ## Development
 
