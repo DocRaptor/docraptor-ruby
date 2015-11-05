@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+cd "`dirname \"$0\"`/.."
+
+if [ ! -d "swagger-codegen" ]; then
+  git clone https://github.com/swagger-api/swagger-codegen
+fi
+
+cd swagger-codegen
+
+SWAGGER_CODGEN_REVISION="c00f4ba8056d4261a195619d03ce82bc46aa6465" # v2.1.4
+if [[ `cat .git/HEAD` != "$SWAGGER_CODGEN_REVISION" ]]; then
+  git fetch
+  git checkout $SWAGGER_CODGEN_REVISION
+  mvn clean package
+fi
+cd ..
+
+executable="./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar"
+
+if [ ! -f "$executable" ]; then
+  mvn clean package
+fi
+
+export JAVA_OPTS="${JAVA_OPTS} -Xmx1024M -DloggerPath=conf/log4j.properties"
+java $JAVA_OPTS -jar $executable $*

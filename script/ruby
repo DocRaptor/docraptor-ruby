@@ -1,0 +1,16 @@
+#!/bin/sh
+set -e
+cd "`dirname \"$0\"`/.."
+
+./script/generate_language ruby
+
+cd test/
+bundle install
+
+if [ "$1" == "" ]; then
+  for test in $(ls *.rb); do
+    ruby $test
+  done
+else
+  ruby $1.rb
+fi

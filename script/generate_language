@@ -1,0 +1,22 @@
+#!/bin/sh
+set -e
+cd "`dirname \"$0\"`/.."
+
+LANGUAGE="$1"
+CONFIG_FILE="swagger-config.json"
+CLIENT_DIRECTORY="client"
+
+rm -rf $CLIENT_DIRECTORY
+mkdir -p $CLIENT_DIRECTORY
+
+if [ ! -f "$CONFIG_FILE" ]; then
+  echo "Could not find $CONFIG_FILE"
+  ./script/swagger config-help -l $LANGUAGE
+  exit 1
+fi
+
+./script/swagger generate \
+  -i docraptor.yaml \
+  -l $LANGUAGE \
+  -c $CONFIG_FILE \
+  -o $CLIENT_DIRECTORY

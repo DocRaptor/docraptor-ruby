@@ -1,0 +1,331 @@
+swagger: '2.0'
+
+info:
+  version: "0.0.1"
+  title: DocRaptor v1
+
+host: localhost:3000
+basePath: /
+schemes: [http]
+securityDefinitions:
+ basicAuth:
+  type: basic
+  description: HTTP Basic Authentication. Works over `HTTP` and `HTTPS`
+produces:
+  - application/json
+  - application/xml
+  - application/pdf
+  - application/vnd.ms-excel
+  - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+
+paths:
+  /docs:
+    post:
+      tags: [Client]
+      description: |
+        Creates a document synchronously.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: doc
+          in: body
+          description: The document to be created.
+          required: true
+          schema:
+            $ref: '#/definitions/Doc'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: file
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Server Error
+  /async_docs:
+    post:
+      tags: [Client]
+      description: |
+        Creates a document asynchronously.
+        You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: doc
+          in: body
+          description: The document to be created.
+          required: true
+          schema:
+            $ref: '#/definitions/Doc'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/AsyncDoc'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Server Error
+
+  /status/{id}:
+    get:
+      tags: [Client]
+      description: |
+        Check on the status of an asynchronously created document.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The status_id returned when creating an asynchronous document.
+          required: true
+          schema:
+            $ref: '#/definitions/AsyncDocStatus'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/AsyncDocStatus'
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        500:
+          description: Server Error
+
+
+  /download/{id}:
+    get:
+      tags: [Client]
+      description: |
+        Downloads a document.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The download_id returned from status request or a callback.
+          required: true
+      responses:
+        200:
+          description: Successful response
+          schema:
+            type: file
+        400:
+          description: Bad Request
+        403:
+          description: Forbidden
+        500:
+          description: Server Error
+
+definitions:
+  Doc:
+    type: object
+    required:
+      - name
+      - document_type
+      - document_content
+    properties:
+      name:
+        type: string
+        description: A name for identifying your document.
+      document_type:
+        type: string
+        description: The type of document being created.
+        enum:
+          - pdf
+          - xls
+          - xlsx
+      document_content:
+        type: string
+        description: |
+          The HTML data to be transformed into a document.
+          You must supply content using document_content or document_url.
+      document_url:
+        type: string
+        description: |
+          The URL to fetch the HTML data to be transformed into a document.
+          You must supply content using document_content or document_url.
+      test:
+        type: boolean
+        description: Enable test mode for this document. Test documents are not charged for but include a watermark.
+        default: true
+      strict:
+        type: string
+        description: Force strict HTML validation.
+        default: none
+        enum:
+          - none
+          - true
+      tag:
+        type: string
+        description: A field for storing a small amount of metadata with this document.
+      help:
+        type: boolean
+        description: Request support help with this request if it succeeds.
+        default: false
+      javascript:
+        type: boolean
+        description: Enable DocRaptor JavaScript parsing. PrinceXML JavaScript parsing is also available elsewhere.
+        default: false
+      referrer:
+        type: string
+        description: Set HTTP referrer when generating this document.
+      callback_url:
+        type: string
+        description: |
+          A URL that will receive a POST request after successfully completing an asynchronous document.
+          The POST data will include download_url and download_id similar to status api responses.
+          WARNING: this only works on asynchronous documents.
+      prince_options:
+        $ref: '#/definitions/PrinceOptions'
+
+  PrinceOptions:
+    type: object
+    properties:
+      baseurl:
+        type: string
+        description: Set the baseurl for assets.
+      no_xinclude:
+        type: boolean
+        description: Disable XML inclusion.
+      no_network:
+        type: boolean
+        description: Disable network access.
+      http_user:
+        type: string
+        description: Set the user for HTTP authentication.
+      http_password:
+        type: string
+        description: Set the password for HTTP authentication.
+      http_proxy:
+        type: string
+        description: Set the HTTP proxy server.
+      http_timeout:
+        type: integer
+        description: Set the HTTP request timeout.
+        # default: 10
+      insecure:
+        type: boolean
+        description: Disable SSL verification.
+        # default: false
+      media:
+        type: string
+        description: Specify the CSS media type. Defaults to "print" but you may want to use "screen" for web styles.
+        default: print
+      no_author_style:
+        type: boolean
+        description: Ignore author stylesheets.
+      no_default_style:
+        type: boolean
+        description: Ignore default stylesheets.
+      no_embed_fonts:
+        type: boolean
+        description: Disable font embedding in PDFs.
+      no_subset_fonts:
+        type: boolean
+        description: Disable font subsetting in PDFs.
+      no_compress:
+        type: boolean
+        description: Disable PDF compression.
+      encrypt:
+        type: boolean
+        description: Encrypt PDF output.
+      key_bits:
+        type: integer
+        description: Set encryption key size.
+        enum:
+          - 40
+          - 128
+      user_password:
+        type: string
+        description: Set the PDF user password.
+      owner_password:
+        type: string
+        description: Set the PDF owner password.
+      disallow_print:
+        type: boolean
+        description: Disallow printing of this PDF.
+      disallow_copy:
+        type: boolean
+        description: Disallow copying of this PDF.
+      disallow_annotate:
+        type: boolean
+        description: Disallow annotation of this PDF.
+      disallow_modify:
+        type: boolean
+        description: Disallow modification of this PDF.
+      input:
+        type: string
+        description: Specify the input format.
+        default: html
+        enum:
+          - html
+          - xml
+          - auto
+      version:
+        type: string
+        description: Specify a specific verison of PrinceXML to use.
+        # default: 10
+        # disabled because Java will try to make an enum as 7_1 which fails
+        # enum:
+        #   - 7.1
+        #   - 8.1
+        #   - 9.0
+        #   - 10
+      javascript:
+        type: boolean
+        description: Enable PrinceXML JavaScript. DocRaptor JavaScript parsing is also available elsewhere.
+      css_dpi:
+        type: integer
+        description: Set the DPI when rendering CSS. Defaults to 96 but can be set with Prince 9.0 and up.
+        # default: 96
+      profile:
+        type: string
+        description: In Prince 9.0 and up you can set the PDF profile.
+        # disabled because Java will try to make an enum with PDF/A-1b which fails
+        # enum:
+        #   - PDF/A-1b
+        #   - PDF/X-3:2003
+        #   - PDF/X-4
+
+  AsyncDoc:
+    type: object
+    properties:
+      status_id:
+        type: string
+        description: The identifier used to get the status of the document using the status api.
+
+  AsyncDocStatus:
+    type: object
+    properties:
+      status:
+        type: string
+        description: The present status of the document. Can be queued, working, completed, and failed.
+      download_url:
+        type: string
+        description: The URL where the document can be retrieved. This URL may only be used a few times.
+      download_id:
+        type: string
+        description: The identifier for downloading the document with the download api.
+      message:
+        type: string
+        description: Additional information.
+      number_of_pages:
+        type: integer
+        description: Number of PDF pages in document.
+      validation_errors:
+        type: string
+        description: Error information.
