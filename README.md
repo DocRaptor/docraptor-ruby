@@ -25,12 +25,22 @@ doc_api = DocRaptor::ClientApi.new
 
 response = doc_api.docs_post(
   test:             true,                                         # test documents are free but watermarked
-  document_content: "<html><body>Hello World</body></html>",      # supply content directly or
-  # document_url:   "http://docraptor.com/examples/invoice.html", # use a url
+  document_content: "<html><body>Hello World</body></html>",      # supply content directly
+  # document_url:   "http://docraptor.com/examples/invoice.html", # or use a url
   name:             "swagger-ruby.pdf",                           # help you find a document later
-  document_type:    "pdf"                                         # pdf or xls or xlsx
+  document_type:    "pdf",                                        # pdf or xls or xlsx
+  # javascript:       true,                                       # enable JavaScript processing
+  # prince_options: {
+  #   media: "screen",                                            # defaults to print
+  #   baseurl: "http://hello.com",                                # pretend URL when using document_content
+  # },
 )
 ```
+
+We have guides for doing some of the common things:
+* [Headers and Footers]()
+* [CSS Media Selector]() to make the page look exactly as it does in your browser.
+* [Protected Content]() to secure your URLs so only DocRaptor can access them.
 
 ## Development
 
