@@ -41,8 +41,8 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 1. Merge code and run tests
 2. Increment version in code.
 3. Update [CHANGELOG.md](CHANGELOG.md)
-2. Push to GitHub
-3. `rake release`
+4. Push to GitHub
+5. `rake release`
 
 ## Version Policy
 
