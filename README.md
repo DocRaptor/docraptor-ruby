@@ -18,7 +18,7 @@ Then run `bundle install`.
 
 ```ruby
 DocRaptor.configure do |dr|
-  dr.username = "YOUR_API_KEY_HERE" # This key works for test documents
+  dr.username = "YOUR_API_KEY_HERE" # this key works for test documents
 end
 
 doc_api = DocRaptor::ClientApi.new
@@ -31,7 +31,7 @@ response = doc_api.docs_post(
   document_type:    "pdf",                                        # pdf or xls or xlsx
   # javascript:       true,                                       # enable JavaScript processing
   # prince_options: {
-  #   media: "screen",                                            # defaults to print
+  #   media: "screen",                                            # use screen styles instead of print styles
   #   baseurl: "http://hello.com",                                # pretend URL when using document_content
   # },
 )
