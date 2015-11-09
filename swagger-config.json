@@ -1,4 +1,5 @@
 {
 	"gemName": "docraptor",
-	"moduleName": "DocRaptor"
+	"moduleName": "DocRaptor",
+  "gemVersion": "0.0.1"
 }
