@@ -54,7 +54,7 @@ Stuck? We're experts at using DocRaptor so please [email us](mailto:support@docr
 
 ## Development
 
-The majority of the code in this repo is generated using swagger-codegen on [docraptor.yaml](docraptor.yaml). You can modify this file and regenerate the client using `./generate_language ruby`.
+The majority of the code in this repo is generated using swagger-codegen on [docraptor.yaml](docraptor.yaml). You can modify this file and regenerate the client using `script/generate_language ruby`.
 
 ## Release Process
 
