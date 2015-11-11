@@ -6,12 +6,12 @@ Gem::Specification.new do |s|
   s.name        = "docraptor"
   s.version     = DocRaptor::VERSION
   s.platform    = Gem::Platform::RUBY
-  s.authors     = ["Zeke Sikelianos", "Tony Tam"]
-  s.email       = ["zeke@wordnik.com", "fehguy@gmail.com"]
-  s.homepage    = "http://swagger.io"
-  s.summary     = %q{A ruby wrapper for the swagger APIs}
-  s.description = %q{This gem maps to a swagger API}
-  s.license     = "Apache-2.0"
+  s.authors     = ["Elijah Miller", "Matthew Gordon"]
+  s.email       = ["elijah@expectedbehavior.com", "matt@expectedbehavior.com"]
+  s.homepage    = "https://docraptor.com"
+  s.summary     = %q{A wrapper for the DocRaptor HTML to PDF/XLS service.}
+  s.description = %q{A native client library for the DocRaptor HTML to PDF/XLS service.}
+  s.license     = "MIT"
 
   s.add_runtime_dependency 'typhoeus', '~> 0.2', '>= 0.2.1'
   s.add_runtime_dependency 'json', '~> 1.4', '>= 1.4.6'
