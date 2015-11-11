@@ -16,6 +16,7 @@ Gem::Specification.new do |s|
   s.add_runtime_dependency 'typhoeus', '~> 0.2', '>= 0.2.1'
   s.add_runtime_dependency 'json', '~> 1.4', '>= 1.4.6'
 
+  s.add_development_dependency 'rake', '~> 10.4', '>= 10.4.2'
   s.add_development_dependency 'rspec', '~> 3.2', '>= 3.2.0'
   s.add_development_dependency 'vcr', '~> 2.9', '>= 2.9.3'
   s.add_development_dependency 'webmock', '~> 1.6', '>= 1.6.2'
