@@ -103,8 +103,8 @@ module DocRaptor
     end
 
     def initialize
-      @scheme = 'http'
-      @host = 'localhost:3000'
+      @scheme = 'https'
+      @host = 'docraptor.com'
       @base_path = '/'
       @api_key = {}
       @api_key_prefix = {}
