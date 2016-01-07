@@ -1,14 +1,7 @@
 require 'uri'
-require 'singleton'
 
 module DocRaptor
   class Configuration
-
-    include Singleton
-
-    # Default api client
-    attr_accessor :api_client
-
     # Defines url scheme
     attr_accessor :scheme
 
@@ -44,6 +37,9 @@ module DocRaptor
     # @return [String]
     attr_accessor :password
 
+    # Defines the access token (Bearer) used with OAuth2.
+    attr_accessor :access_token
+
     # Set this to enable/disable debugging. When enabled (set to true), HTTP request/response
     # details will be logged with `logger.debug` (see the `logger` attribute).
     # Default to false.
@@ -63,6 +59,10 @@ module DocRaptor
     #
     # @return [String]
     attr_accessor :temp_folder_path
+
+    # The time limit for HTTP request in seconds.
+    # Default to 0 (never times out).
+    attr_accessor :timeout
 
     ### TLS/SSL
     # Set this to false to skip verifying SSL certificate when calling API from https server.
@@ -91,23 +91,13 @@ module DocRaptor
 
     attr_accessor :force_ending_format
 
-    class << self
-      def method_missing(method_name, *args, &block)
-        config = Configuration.instance
-        if config.respond_to?(method_name)
-          config.send(method_name, *args, &block)
-        else
-          super
-        end
-      end
-    end
-
     def initialize
       @scheme = 'https'
       @host = 'docraptor.com'
       @base_path = '/'
       @api_key = {}
       @api_key_prefix = {}
+      @timeout = 0
       @verify_ssl = true
       @cert_file = nil
       @key_file = nil
@@ -115,10 +105,17 @@ module DocRaptor
       @inject_format = false
       @force_ending_format = false
       @logger = defined?(Rails) ? Rails.logger : Logger.new(STDOUT)
+
+      yield(self) if block_given?
     end
 
-    def api_client
-      @api_client ||= ApiClient.new
+    # The default Configuration object.
+    def self.default
+      @@default ||= Configuration.new
+    end
+
+    def configure
+      yield(self) if block_given?
     end
 
     def scheme=(scheme)
