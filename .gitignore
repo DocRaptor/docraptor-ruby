@@ -2,4 +2,4 @@
 Thumbs.db
 swagger-codegen
 /client/pkg
-/test/Gemfile.lock
+Gemfile.lock
