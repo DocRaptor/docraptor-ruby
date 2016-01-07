@@ -169,6 +169,10 @@ definitions:
         enum:
           - none
           - true
+      ignore_resource_errors:
+        type: boolean
+        description: Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
+        default: true
       tag:
         type: string
         description: A field for storing a small amount of metadata with this document.

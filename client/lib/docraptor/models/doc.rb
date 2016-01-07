@@ -20,6 +20,9 @@ module DocRaptor
     # Force strict HTML validation.
     attr_accessor :strict
 
+    # Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
+    attr_accessor :ignore_resource_errors
+
     # A field for storing a small amount of metadata with this document.
     attr_accessor :tag
 
@@ -53,6 +56,8 @@ module DocRaptor
         
         :'strict' => :'strict',
         
+        :'ignore_resource_errors' => :'ignore_resource_errors',
+        
         :'tag' => :'tag',
         
         :'help' => :'help',
@@ -77,6 +82,7 @@ module DocRaptor
         :'document_url' => :'String',
         :'test' => :'BOOLEAN',
         :'strict' => :'String',
+        :'ignore_resource_errors' => :'BOOLEAN',
         :'tag' => :'String',
         :'help' => :'BOOLEAN',
         :'javascript' => :'BOOLEAN',
@@ -120,6 +126,12 @@ module DocRaptor
         self.strict = attributes[:'strict']
       else
         self.strict = "none"
+      end
+      
+      if attributes[:'ignore_resource_errors']
+        self.ignore_resource_errors = attributes[:'ignore_resource_errors']
+      else
+        self.ignore_resource_errors = true
       end
       
       if attributes[:'tag']
@@ -180,6 +192,7 @@ module DocRaptor
           document_url == o.document_url &&
           test == o.test &&
           strict == o.strict &&
+          ignore_resource_errors == o.ignore_resource_errors &&
           tag == o.tag &&
           help == o.help &&
           javascript == o.javascript &&
@@ -195,7 +208,7 @@ module DocRaptor
 
     # Calculate hash code according to all attributes.
     def hash
-      [name, document_type, document_content, document_url, test, strict, tag, help, javascript, referrer, callback_url, prince_options].hash
+      [name, document_type, document_content, document_url, test, strict, ignore_resource_errors, tag, help, javascript, referrer, callback_url, prince_options].hash
     end
 
     # build the object from hash
