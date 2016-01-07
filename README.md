@@ -21,9 +21,9 @@ DocRaptor.configure do |dr|
   dr.username = "YOUR_API_KEY_HERE" # this key works for test documents
 end
 
-doc_api = DocRaptor::ClientApi.new
+$docraptor = DocRaptor::ClientApi.new
 
-response = doc_api.docs_post(
+response = $docraptor.docs_post(
   test:             true,                                         # test documents are free but watermarked
   document_content: "<html><body>Hello World</body></html>",      # supply content directly
   # document_url:   "http://docraptor.com/examples/invoice.html", # or use a url
@@ -37,17 +37,17 @@ response = doc_api.docs_post(
 )
 ```
 
-If your document will take longer than 60 seconds to render to PDF you will need to use our async api which can take up to 10 minutes, check out the [example](example/async.rb).
+If your document will take longer than 60 seconds to render to PDF you will need to use our async api which allows up to 10 minutes, check out the [example](example/async.rb).
 
 
 We have guides for doing some of the common things:
-* [Headers and Footers]() including page skipping
-* [CSS Media Selector]() to make the page look exactly as it does in your browser
-* [Protected Content]() to secure your URLs so only DocRaptor can access them
+* [Headers and Footers](https://docraptor.com/documentation/style#pdf-headers-footers) including page skipping
+* [CSS Media Selector](https://docraptor.com/documentation/api#api_basic_pdf) to make the page look exactly as it does in your browser
+* [Protected Content](https://docraptor.com/documentation/api#api_advanced_pdf) to secure your URLs so only DocRaptor can access them
 
 ## More Help
 
-DocRaptor has a lot of more [styling](https://docraptor.com/documentation#styling) and [implementation options](https://docraptor.com/documentation#api_url).
+DocRaptor has a lot of more [styling](https://docraptor.com/documentation/style) and [implementation options](https://docraptor.com/documentation/api).
 
 Stuck? We're experts at using DocRaptor so please [email us](mailto:support@docraptor.com) if you run into trouble.
 
@@ -59,10 +59,10 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 ## Release Process
 
 1. Merge code and run tests
-2. Increment version in code.
+2. Increment version in code
 3. Update [CHANGELOG.md](CHANGELOG.md)
 4. Push to GitHub
-5. `rake release`
+5. within `client/` run `rake release`
 
 ## Version Policy
 
