@@ -2,8 +2,6 @@
 set -e
 cd "`dirname \"$0\"`/.."
 
-./script/generate_language ruby
-
 cd test/
 bundle install
 
