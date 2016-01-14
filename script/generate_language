@@ -11,7 +11,7 @@ if [ ! -f "$CONFIG_FILE" ]; then
   exit 1
 fi
 
-rm -rf src/ lib/
+./script/clean
 
 ./script/swagger generate \
   -i docraptor.yaml \
