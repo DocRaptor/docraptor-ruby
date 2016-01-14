@@ -1,5 +1,5 @@
 .DS_Store
 Thumbs.db
 swagger-codegen
-/client/pkg
+/pkg
 Gemfile.lock
