@@ -63,7 +63,7 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 2. Increment version in code
 3. Update [CHANGELOG.md](CHANGELOG.md)
 4. Push to GitHub
-5. within `client/` run `rake release`
+5. `rake release`
 
 ## Version Policy
 
