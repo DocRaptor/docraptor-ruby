@@ -2,6 +2,10 @@
 set -e
 cd "`dirname \"$0\"`/.."
 
+# check dependencies
+which ruby > /dev/null    || (echo "ruby must be installed"; exit 1)
+which bundler > /dev/null || (echo "bundler must be installed"; exit 1)
+
 cd test
 bundle install
 
