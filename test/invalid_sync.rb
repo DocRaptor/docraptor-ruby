@@ -11,7 +11,7 @@ doc_api = DocRaptor::ClientApi.new
 
 
 begin
-  response = doc_api.docs_post(test: true, name: "s" * 201, document_type: "pdf")
+  response = doc_api.create_doc(test: true, name: "s" * 201, document_type: "pdf")
 rescue DocRaptor::ApiError
   exit
 end

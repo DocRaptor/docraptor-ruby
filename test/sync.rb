@@ -9,4 +9,4 @@ end
 
 doc_api = DocRaptor::ClientApi.new
 
-response = doc_api.docs_post(test: true, document_content: "<html><body>Swagger Ruby</body></html>", name: "swagger-ruby.pdf", document_type: "pdf")
+response = doc_api.create_doc(test: true, document_content: "<html><body>Swagger Ruby</body></html>", name: "swagger-ruby.pdf", document_type: "pdf")

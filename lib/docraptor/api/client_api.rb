@@ -13,8 +13,8 @@ module DocRaptor
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
-    def async_docs_post(doc, opts = {})
-      data, status_code, headers = async_docs_post_with_http_info(doc, opts)
+    def create_async_doc(doc, opts = {})
+      data, status_code, headers = create_async_doc_with_http_info(doc, opts)
       return data
     end
 
@@ -23,13 +23,13 @@ module DocRaptor
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
-    def async_docs_post_with_http_info(doc, opts = {})
+    def create_async_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#async_docs_post ..."
+        @api_client.config.logger.debug "Calling API: ClientApi#create_async_doc ..."
       end
       
       # verify the required parameter 'doc' is set
-      fail "Missing the required parameter 'doc' when calling async_docs_post" if doc.nil?
+      fail "Missing the required parameter 'doc' when calling create_async_doc" if doc.nil?
       
       # resource path
       path = "/async_docs".sub('{format}','json')
@@ -64,7 +64,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'AsyncDoc')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#async_docs_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ClientApi#create_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -74,8 +74,8 @@ module DocRaptor
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def docs_post(doc, opts = {})
-      data, status_code, headers = docs_post_with_http_info(doc, opts)
+    def create_doc(doc, opts = {})
+      data, status_code, headers = create_doc_with_http_info(doc, opts)
       return data
     end
 
@@ -84,13 +84,13 @@ module DocRaptor
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def docs_post_with_http_info(doc, opts = {})
+    def create_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#docs_post ..."
+        @api_client.config.logger.debug "Calling API: ClientApi#create_doc ..."
       end
       
       # verify the required parameter 'doc' is set
-      fail "Missing the required parameter 'doc' when calling docs_post" if doc.nil?
+      fail "Missing the required parameter 'doc' when calling create_doc" if doc.nil?
       
       # resource path
       path = "/docs".sub('{format}','json')
@@ -125,7 +125,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'File')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#docs_post\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ClientApi#create_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -135,8 +135,8 @@ module DocRaptor
     # @param id The download_id returned from status request or a callback.
     # @param [Hash] opts the optional parameters
     # @return [File]
-    def download_id_get(id, opts = {})
-      data, status_code, headers = download_id_get_with_http_info(id, opts)
+    def get_async_doc(id, opts = {})
+      data, status_code, headers = get_async_doc_with_http_info(id, opts)
       return data
     end
 
@@ -145,13 +145,13 @@ module DocRaptor
     # @param id The download_id returned from status request or a callback.
     # @param [Hash] opts the optional parameters
     # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
-    def download_id_get_with_http_info(id, opts = {})
+    def get_async_doc_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#download_id_get ..."
+        @api_client.config.logger.debug "Calling API: ClientApi#get_async_doc ..."
       end
       
       # verify the required parameter 'id' is set
-      fail "Missing the required parameter 'id' when calling download_id_get" if id.nil?
+      fail "Missing the required parameter 'id' when calling get_async_doc" if id.nil?
       
       # resource path
       path = "/download/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
@@ -186,7 +186,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'File')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#download_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ClientApi#get_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -196,8 +196,8 @@ module DocRaptor
     # @param id The status_id returned when creating an asynchronous document.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDocStatus]
-    def status_id_get(id, opts = {})
-      data, status_code, headers = status_id_get_with_http_info(id, opts)
+    def get_async_doc_status(id, opts = {})
+      data, status_code, headers = get_async_doc_status_with_http_info(id, opts)
       return data
     end
 
@@ -206,13 +206,13 @@ module DocRaptor
     # @param id The status_id returned when creating an asynchronous document.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDocStatus, Fixnum, Hash)>] AsyncDocStatus data, response status code and response headers
-    def status_id_get_with_http_info(id, opts = {})
+    def get_async_doc_status_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#status_id_get ..."
+        @api_client.config.logger.debug "Calling API: ClientApi#get_async_doc_status ..."
       end
       
       # verify the required parameter 'id' is set
-      fail "Missing the required parameter 'id' when calling status_id_get" if id.nil?
+      fail "Missing the required parameter 'id' when calling get_async_doc_status" if id.nil?
       
       # resource path
       path = "/status/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
@@ -247,7 +247,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'AsyncDocStatus')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#status_id_get\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: ClientApi#get_async_doc_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
