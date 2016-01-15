@@ -2,17 +2,22 @@ require "bundler/setup"
 Bundler.require
 
 DocRaptor.configure do |dr|
-  dr.username = "YOUR_API_KEY_HERE"
+  dr.username  = "YOUR_API_KEY_HERE"
   dr.debugging = true
 end
 
-doc_api = DocRaptor::ClientApi.new
+$docraptor = DocRaptor::ClientApi.new
 
-response = doc_api.create_async_doc(test: true, document_content: "<html><body>Swagger Ruby</body></html>", name: "s" * 201, document_type: "pdf")
+response = $docraptor.create_async_doc(
+  test:             true,
+  document_content: "<html><body>Hello from Ruby</body></html>",
+  name:             "s" * 201, # limit is 200 characters
+  document_type:    "pdf",
+)
 
 status_response = nil
 30.times do
-  status_response = doc_api.get_async_doc_status(response.status_id)
+  status_response = $docraptor.get_async_doc_status(response.status_id)
   exit if status_response.status == "failed"
   sleep 1
 end

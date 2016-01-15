@@ -2,10 +2,15 @@ require "bundler/setup"
 Bundler.require
 
 DocRaptor.configure do |dr|
-  dr.username = "YOUR_API_KEY_HERE"
+  dr.username  = "YOUR_API_KEY_HERE"
   dr.debugging = true
 end
 
-doc_api = DocRaptor::ClientApi.new
+$docraptor = DocRaptor::ClientApi.new
 
-response = doc_api.create_doc(test: true, document_content: "<html><body>Swagger Ruby</body></html>", name: "swagger-ruby.pdf", document_type: "pdf")
+response = $docraptor.create_doc(
+  test:             true,
+  document_content: "<html><body>Hello from Ruby</body></html>",
+  name:             "ruby-sync.pdf",
+  document_type:    "pdf",
+)
