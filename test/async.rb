@@ -13,7 +13,7 @@ response = doc_api.create_async_doc(test: true, document_content: "<html><body>S
 
 status_response = nil
 loop do
-  status_response = doc_api.get_async_status(response.status_id)
+  status_response = doc_api.get_async_doc_status(response.status_id)
   break if status_response.status == "completed"
   sleep 1
 end
