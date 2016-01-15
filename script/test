@@ -6,8 +6,9 @@ cd "`dirname \"$0\"`/.."
 which ruby > /dev/null    || (echo "ruby must be installed"; exit 1)
 which bundler > /dev/null || (echo "bundler must be installed"; exit 1)
 
-cd test
 bundle install
+
+cd test
 
 # runs a test file with PASS/FAIL message
 run_test() {
