@@ -3,7 +3,7 @@ Bundler.require
 
 DocRaptor.configure do |dr|
   dr.username  = "YOUR_API_KEY_HERE"
-  dr.debugging = true
+  # dr.debugging = true
 end
 
 $docraptor = DocRaptor::ClientApi.new
