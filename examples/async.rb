@@ -44,11 +44,11 @@ begin
       doc_response = $docraptor.get_async_doc(status_response.download_id)
       FileUtils.cp(doc_response.path, "/tmp/docraptor-ruby.pdf")
       puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
-      exit
+      break
     when "failed"
       puts "FAILED"
       puts status_response
-      abort
+      break
     else
       sleep 1
     end
