@@ -59,11 +59,12 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 
 ## Release Process
 
-1. Merge code and run tests
-2. Increment version in code
+1. `script/test`
+2. Increment version in code:
+  - `swagger-config.json`
+  - `docraptor.gemspec`
 3. Update [CHANGELOG.md](CHANGELOG.md)
-4. Push to GitHub
-5. `rake release`
+4. `rake release`
 
 ## Version Policy
 
