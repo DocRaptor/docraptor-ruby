@@ -8,7 +8,7 @@ Gem::Specification.new do |s|
   s.platform    = Gem::Platform::RUBY
   s.authors     = ["Elijah Miller", "Matthew Gordon"]
   s.email       = ["elijah@expectedbehavior.com", "matt@expectedbehavior.com"]
-  s.homepage    = "https://docraptor.com"
+  s.homepage    = "https://github.com/docraptor/docraptor-ruby"
   s.summary     = %q{A wrapper for the DocRaptor HTML to PDF/XLS service.}
   s.description = %q{A native client library for the DocRaptor HTML to PDF/XLS service.}
   s.license     = "Apache-2.0"
