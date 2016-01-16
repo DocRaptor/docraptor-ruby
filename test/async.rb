@@ -8,7 +8,7 @@ end
 
 $docraptor = DocRaptor::ClientApi.new
 
-response = $docraptor.create_async_doc(
+create_response = $docraptor.create_async_doc(
   test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             "ruby-async.pdf",
@@ -17,7 +17,7 @@ response = $docraptor.create_async_doc(
 
 status_response = nil
 30.times do
-  status_response = $docraptor.get_async_doc_status(response.status_id)
+  status_response = $docraptor.get_async_doc_status(create_response.status_id)
   break if status_response.status == "completed"
   sleep 1
 end

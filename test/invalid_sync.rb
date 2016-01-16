@@ -9,7 +9,7 @@ end
 $docraptor = DocRaptor::ClientApi.new
 
 begin
-  response = $docraptor.create_doc(
+  $docraptor.create_doc(
     test:          true,
     name:          "s" * 201, # limit is 200 characters
     document_type: "pdf",

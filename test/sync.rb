@@ -8,7 +8,7 @@ end
 
 $docraptor = DocRaptor::ClientApi.new
 
-response = $docraptor.create_doc(
+$docraptor.create_doc(
   test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             "ruby-sync.pdf",
