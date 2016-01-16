@@ -16,6 +16,8 @@ Then run `bundle install`.
 
 ## Usage
 
+See [examples](examples/) for runnable examples with file output, error handling, etc.
+
 ```ruby
 DocRaptor.configure do |dr|
   dr.username = "YOUR_API_KEY_HERE" # this key works for test documents
@@ -24,11 +26,11 @@ end
 
 $docraptor = DocRaptor::ClientApi.new
 
-response = $docraptor.docs_post(
+response = $docraptor.create_doc(
   test:             true,                                         # test documents are free but watermarked
   document_content: "<html><body>Hello World</body></html>",      # supply content directly
   # document_url:   "http://docraptor.com/examples/invoice.html", # or use a url
-  name:             "swagger-ruby.pdf",                           # help you find a document later
+  name:             "docraptor-ruby.pdf",                         # help you find a document later
   document_type:    "pdf",                                        # pdf or xls or xlsx
   # javascript:       true,                                       # enable JavaScript processing
   # prince_options: {
@@ -38,7 +40,7 @@ response = $docraptor.docs_post(
 )
 ```
 
-If your document will take longer than 60 seconds to render to PDF you will need to use our async api which allows up to 10 minutes, check out the [example](example/async.rb).
+Docs created like this are limited to 60 seconds to render, check out the [async example](examples/async.rb) which allows 10 minutes.
 
 
 We have guides for doing some of the common things:
