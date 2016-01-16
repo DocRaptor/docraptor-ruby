@@ -1,3 +1,16 @@
+# This example demonstrates creating a PDF using common options and saving it
+# to a place on the filesystem.
+#
+# It is created synchronously, which means DocRaptor will render it for up to
+# 60 seconds. It is slightly simpler than making documents using the async
+# interface but making many documents in parallel or very large documents with
+# lots of assets will require the async api.
+#
+# DocRaptor supports many options for output customization, the full list is
+# https://docraptor.com/documentation/api#api_general
+#
+# You can run this example with: ruby sync.rb
+
 require "bundler/setup"
 Bundler.require
 

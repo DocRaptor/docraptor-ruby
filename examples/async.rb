@@ -1,3 +1,15 @@
+# This example demonstrates creating a PDF using common options and saving it
+# to a place on the filesystem.
+#
+# It is created asynchronously, which means DocRaptor will render it for up to
+# 10 minutes. This is useful when creating many documents in parallel, or very
+# large documents with lots of assets.
+#
+# DocRaptor supports many options for output customization, the full list is
+# https://docraptor.com/documentation/api#api_general
+#
+# You can run this example with: ruby async.rb
+
 require "bundler/setup"
 Bundler.require
 
@@ -24,18 +36,23 @@ begin
     # },
   )
 
-  status_response = nil
-  30.times do
+  loop do
     status_response = $docraptor.get_async_doc_status(create_response.status_id)
     puts "doc status: #{status_response.status}"
-    break if status_response.status == "completed"
-    sleep 1
+    case status_response.status
+    when "completed"
+      doc_response = $docraptor.get_async_doc(status_response.download_id)
+      FileUtils.cp(doc_response.path, "/tmp/docraptor-sync.pdf")
+      puts "Wrote PDF to /tmp/docraptor-sync.pdf"
+      exit
+    when "failed"
+      puts "FAILED"
+      puts status_response
+      abort
+    else
+      sleep 1
+    end
   end
-
-  doc_response = $docraptor.get_async_doc(status_response.download_id)
-
-  FileUtils.cp(doc_response.path, "/tmp/docraptor-sync.pdf")
-  puts "Wrote PDF to /tmp/docraptor-sync.pdf"
 
 rescue DocRaptor::ApiError => error
   puts "#{error.class}: #{error.message}"
