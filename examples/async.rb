@@ -42,8 +42,8 @@ begin
     case status_response.status
     when "completed"
       doc_response = $docraptor.get_async_doc(status_response.download_id)
-      FileUtils.cp(doc_response.path, "/tmp/docraptor-sync.pdf")
-      puts "Wrote PDF to /tmp/docraptor-sync.pdf"
+      FileUtils.cp(doc_response.path, "/tmp/docraptor-ruby.pdf")
+      puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
       exit
     when "failed"
       puts "FAILED"

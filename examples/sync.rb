@@ -37,8 +37,8 @@ begin
     # },
   )
 
-  FileUtils.cp(create_response.path, "/tmp/docraptor-sync.pdf")
-  puts "Wrote PDF to /tmp/docraptor-sync.pdf"
+  FileUtils.cp(create_response.path, "/tmp/docraptor-ruby.pdf")
+  puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
 
 rescue DocRaptor::ApiError => error
   puts "#{error.class}: #{error.message}"
