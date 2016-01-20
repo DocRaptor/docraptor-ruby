@@ -1,4 +1,4 @@
-### 0.0.3 [January 15, 1016]
+### 0.0.3 [January 15, 2016]
 * Use better API command names: create_doc, create_async_doc, get_async_doc_status, get_async_doc
 * Fix file encoding issues when used in Rails
 
