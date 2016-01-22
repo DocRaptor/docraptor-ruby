@@ -8,9 +8,9 @@ host: docraptor.com
 basePath: /
 schemes: [https]
 securityDefinitions:
- basicAuth:
-  type: basic
-  description: HTTP Basic Authentication. Works over `HTTP` and `HTTPS`
+  basicAuth:
+    type: basic
+    description: HTTP Basic Authentication. Works over `HTTP` and `HTTPS`
 produces:
   - application/json
   - application/xml
