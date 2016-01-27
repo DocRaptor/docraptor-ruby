@@ -1,3 +1,6 @@
+### 0.1.0 [January 27, 2016]
+* **BREAKING CHANGE**: create_doc and get_async_doc responses are now binary strings instead of Tempfiles
+
 ### 0.0.3 [January 15, 2016]
 * Use better API command names: create_doc, create_async_doc, get_async_doc_status, get_async_doc
 * Fix file encoding issues when used in Rails
