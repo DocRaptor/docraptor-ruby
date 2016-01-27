@@ -26,7 +26,7 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.11'
 
-  s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }
+  s.files         = `git ls-files`.split("\n").uniq.sort.select{|f| !f.empty? }
   s.executables   = []
   s.require_paths = ["lib"]
 end
