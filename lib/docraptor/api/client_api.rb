@@ -73,7 +73,7 @@ module DocRaptor
     # Creates a document synchronously.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
-    # @return [File]
+    # @return [String]
     def create_doc(doc, opts = {})
       data, status_code, headers = create_doc_with_http_info(doc, opts)
       return data
@@ -83,7 +83,7 @@ module DocRaptor
     # Creates a document synchronously.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
+    # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def create_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ClientApi#create_doc ..."
@@ -123,7 +123,7 @@ module DocRaptor
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'File')
+        :return_type => 'String')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ClientApi#create_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -134,7 +134,7 @@ module DocRaptor
     # Downloads a document.
     # @param id The download_id returned from status request or a callback.
     # @param [Hash] opts the optional parameters
-    # @return [File]
+    # @return [String]
     def get_async_doc(id, opts = {})
       data, status_code, headers = get_async_doc_with_http_info(id, opts)
       return data
@@ -144,7 +144,7 @@ module DocRaptor
     # Downloads a document.
     # @param id The download_id returned from status request or a callback.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(File, Fixnum, Hash)>] File data, response status code and response headers
+    # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def get_async_doc_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug "Calling API: ClientApi#get_async_doc ..."
@@ -184,7 +184,7 @@ module DocRaptor
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'File')
+        :return_type => 'String')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: ClientApi#get_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end

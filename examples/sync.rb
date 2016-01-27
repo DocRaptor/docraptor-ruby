@@ -36,8 +36,9 @@ begin
     #   baseurl: "http://hello.com",                                # pretend URL when using document_content
     # },
   )
-
-  FileUtils.cp(create_response.path, "/tmp/docraptor-ruby.pdf")
+  File.open("/tmp/docraptor-ruby.pdf", "wb") do |file|
+    file.write(create_response)
+  end
   puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
 
 rescue DocRaptor::ApiError => error
