@@ -1,8 +1,7 @@
 # DocRaptor Ruby Native Client Library
 
-**WARNING: This code is not production ready, you should use [doc_raptor_gem](https://github.com/expectedbehavior/doc_raptor_gem).**
-
 This is a Ruby gem for using [DocRaptor API](http://docraptor.com/documentation) to convert HTML to PDF and XLSX.
+
 
 ## Installation
 
@@ -12,7 +11,12 @@ Add the following to your `Gemfile`.
 gem "docraptor"
 ```
 
-Then run `bundle install`.
+Then run:
+
+```bash
+bundle install
+```
+
 
 ## Usage
 
@@ -42,11 +46,12 @@ response = $docraptor.create_doc(
 
 Docs created like this are limited to 60 seconds to render, check out the [async example](examples/async.rb) which allows 10 minutes.
 
-
 We have guides for doing some of the common things:
+
 * [Headers and Footers](https://docraptor.com/documentation/style#pdf-headers-footers) including page skipping
 * [CSS Media Selector](https://docraptor.com/documentation/api#api_basic_pdf) to make the page look exactly as it does in your browser
 * [Protected Content](https://docraptor.com/documentation/api#api_advanced_pdf) to secure your URLs so only DocRaptor can access them
+
 
 ## More Help
 
@@ -72,6 +77,8 @@ The generated client needed a few fixes
   - `lib/docraptor/version.rb`
 3. Update [CHANGELOG.md](CHANGELOG.md)
 4. `rake release`
+5. Update documentation on docraptor.com
+
 
 ## Version Policy
 
