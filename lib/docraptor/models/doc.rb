@@ -8,10 +8,10 @@ module DocRaptor
     # The type of document being created.
     attr_accessor :document_type
 
-    # The HTML data to be transformed into a document.\nYou must supply content using document_content or document_url.
+    # The HTML data to be transformed into a document. You must supply content using document_content or document_url.
     attr_accessor :document_content
 
-    # The URL to fetch the HTML data to be transformed into a document.\nYou must supply content using document_content or document_url.
+    # The URL to fetch the HTML data to be transformed into a document. You must supply content using document_content or document_url.
     attr_accessor :document_url
 
     # Enable test mode for this document. Test documents are not charged for but include a watermark.
@@ -35,7 +35,7 @@ module DocRaptor
     # Set HTTP referrer when generating this document.
     attr_accessor :referrer
 
-    # A URL that will receive a POST request after successfully completing an asynchronous document.\nThe POST data will include download_url and download_id similar to status api responses.\nWARNING: this only works on asynchronous documents.
+    # A URL that will receive a POST request after successfully completing an asynchronous document. The POST data will include download_url and download_id similar to status api responses. WARNING: this only works on asynchronous documents.
     attr_accessor :callback_url
 
     attr_accessor :prince_options

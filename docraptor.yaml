@@ -23,9 +23,10 @@ paths:
     post:
       operationId: createDoc
       tags: [Client]
-      description: |
+      description: >
         Creates a document synchronously.
       security:
+
         - basicAuth: []
       parameters:
         - name: doc
@@ -54,9 +55,10 @@ paths:
     post:
       operationId: createAsyncDoc
       tags: [Client]
-      description: |
+      description: >
         Creates a document asynchronously.
-        You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+        You must use a callback url or the the returned status id and the status api to find out when it completes.
+        Then use the download api to get the document.
       security:
         - basicAuth: []
       parameters:
@@ -86,9 +88,10 @@ paths:
     get:
       operationId: getAsyncDocStatus
       tags: [Client]
-      description: |
+      description: >
         Check on the status of an asynchronously created document.
       security:
+
         - basicAuth: []
       parameters:
         - name: id
@@ -114,9 +117,10 @@ paths:
     get:
       operationId: getAsyncDoc
       tags: [Client]
-      description: |
+      description:
         Downloads a document.
       security:
+
         - basicAuth: []
       parameters:
         - name: id
@@ -156,12 +160,12 @@ definitions:
           - xlsx
       document_content:
         type: string
-        description: |
+        description: >
           The HTML data to be transformed into a document.
           You must supply content using document_content or document_url.
       document_url:
         type: string
-        description: |
+        description: >
           The URL to fetch the HTML data to be transformed into a document.
           You must supply content using document_content or document_url.
       test:
@@ -195,7 +199,7 @@ definitions:
         description: Set HTTP referrer when generating this document.
       callback_url:
         type: string
-        description: |
+        description: >
           A URL that will receive a POST request after successfully completing an asynchronous document.
           The POST data will include download_url and download_id similar to status api responses.
           WARNING: this only works on asynchronous documents.

@@ -9,7 +9,7 @@ module DocRaptor
     end
 
     # 
-    # Creates a document asynchronously.\nYou must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
@@ -19,7 +19,7 @@ module DocRaptor
     end
 
     # 
-    # Creates a document asynchronously.\nYou must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
