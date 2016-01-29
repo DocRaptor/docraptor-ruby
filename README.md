@@ -69,6 +69,7 @@ The generated client needed a few fixes
 2. Increment version in code:
   - `swagger-config.json`
   - `docraptor.gemspec`
+  - `lib/docraptor/version.rb`
 3. Update [CHANGELOG.md](CHANGELOG.md)
 4. `rake release`
 
