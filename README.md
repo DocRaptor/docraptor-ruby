@@ -70,7 +70,6 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 1. `script/test`
 2. Increment version in code:
   - `swagger-config.json`
-  - `docraptor.gemspec`
   - `lib/docraptor/version.rb`
 3. Update [CHANGELOG.md](CHANGELOG.md)
 4. `rake release`
