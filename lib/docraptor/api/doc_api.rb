@@ -1,7 +1,7 @@
 require "uri"
 
 module DocRaptor
-  class ClientApi
+  class DocApi
     attr_accessor :api_client
 
     def initialize(api_client = ApiClient.default)
@@ -25,7 +25,7 @@ module DocRaptor
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
     def create_async_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#create_async_doc ..."
+        @api_client.config.logger.debug "Calling API: DocApi#create_async_doc ..."
       end
       
       # verify the required parameter 'doc' is set
@@ -54,7 +54,6 @@ module DocRaptor
       # http body (model)
       post_body = @api_client.object_to_http_body(doc)
       
-
       auth_names = ['basicAuth']
       data, status_code, headers = @api_client.call_api(:POST, path,
         :header_params => header_params,
@@ -64,7 +63,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'AsyncDoc')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#create_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DocApi#create_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -86,7 +85,7 @@ module DocRaptor
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def create_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#create_doc ..."
+        @api_client.config.logger.debug "Calling API: DocApi#create_doc ..."
       end
       
       # verify the required parameter 'doc' is set
@@ -115,7 +114,6 @@ module DocRaptor
       # http body (model)
       post_body = @api_client.object_to_http_body(doc)
       
-
       auth_names = ['basicAuth']
       data, status_code, headers = @api_client.call_api(:POST, path,
         :header_params => header_params,
@@ -125,7 +123,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'String')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#create_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DocApi#create_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -147,7 +145,7 @@ module DocRaptor
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def get_async_doc_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#get_async_doc ..."
+        @api_client.config.logger.debug "Calling API: DocApi#get_async_doc ..."
       end
       
       # verify the required parameter 'id' is set
@@ -176,7 +174,6 @@ module DocRaptor
       # http body (model)
       post_body = nil
       
-
       auth_names = ['basicAuth']
       data, status_code, headers = @api_client.call_api(:GET, path,
         :header_params => header_params,
@@ -186,7 +183,7 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'String')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#get_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DocApi#get_async_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
@@ -208,7 +205,7 @@ module DocRaptor
     # @return [Array<(AsyncDocStatus, Fixnum, Hash)>] AsyncDocStatus data, response status code and response headers
     def get_async_doc_status_with_http_info(id, opts = {})
       if @api_client.config.debugging
-        @api_client.config.logger.debug "Calling API: ClientApi#get_async_doc_status ..."
+        @api_client.config.logger.debug "Calling API: DocApi#get_async_doc_status ..."
       end
       
       # verify the required parameter 'id' is set
@@ -237,7 +234,6 @@ module DocRaptor
       # http body (model)
       post_body = nil
       
-
       auth_names = ['basicAuth']
       data, status_code, headers = @api_client.call_api(:GET, path,
         :header_params => header_params,
@@ -247,13 +243,9 @@ module DocRaptor
         :auth_names => auth_names,
         :return_type => 'AsyncDocStatus')
       if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: ClientApi#get_async_doc_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
+        @api_client.config.logger.debug "API called: DocApi#get_async_doc_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
   end
 end
-
-
-
-

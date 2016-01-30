@@ -10,7 +10,7 @@ schemes: [https]
 securityDefinitions:
   basicAuth:
     type: basic
-    description: HTTP Basic Authentication. Works over `HTTP` and `HTTPS`
+    description: Use your API key as the username. Password does not need to be set.
 produces:
   - application/json
   - application/xml
@@ -22,11 +22,10 @@ paths:
   /docs:
     post:
       operationId: createDoc
-      tags: [Client]
+      tags: [Doc]
       description: >
         Creates a document synchronously.
       security:
-
         - basicAuth: []
       parameters:
         - name: doc
@@ -54,7 +53,7 @@ paths:
   /async_docs:
     post:
       operationId: createAsyncDoc
-      tags: [Client]
+      tags: [Doc]
       description: >
         Creates a document asynchronously.
         You must use a callback url or the the returned status id and the status api to find out when it completes.
@@ -87,11 +86,10 @@ paths:
   /status/{id}:
     get:
       operationId: getAsyncDocStatus
-      tags: [Client]
+      tags: [Doc]
       description: >
         Check on the status of an asynchronously created document.
       security:
-
         - basicAuth: []
       parameters:
         - name: id
@@ -112,15 +110,13 @@ paths:
         500:
           description: Server Error
 
-
   /download/{id}:
     get:
       operationId: getAsyncDoc
-      tags: [Client]
-      description:
+      tags: [Doc]
+      description: >
         Downloads a document.
       security:
-
         - basicAuth: []
       parameters:
         - name: id

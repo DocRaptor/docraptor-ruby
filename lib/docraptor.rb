@@ -11,7 +11,7 @@ require 'docraptor/models/async_doc'
 require 'docraptor/models/async_doc_status'
 
 # APIs
-require 'docraptor/api/client_api'
+require 'docraptor/api/doc_api'
 
 module DocRaptor
   class << self

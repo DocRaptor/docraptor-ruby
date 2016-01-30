@@ -8,7 +8,7 @@ fi
 
 cd swagger-codegen
 
-SWAGGER_CODGEN_REVISION="e50dc04418b288dff16686a57eb6d4d540c073d2" # v2.1.5+
+SWAGGER_CODGEN_REVISION="f42f9acf3564264f84b970c894574da1e4c7c053" # v2.1.5+
 if [[ `cat .git/HEAD` != "$SWAGGER_CODGEN_REVISION" ]]; then
   git fetch
   git checkout $SWAGGER_CODGEN_REVISION

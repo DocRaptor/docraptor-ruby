@@ -28,7 +28,7 @@ DocRaptor.configure do |dr|
   # dr.debugging = true
 end
 
-$docraptor = DocRaptor::ClientApi.new
+$docraptor = DocRaptor::DocApi.new
 
 response = $docraptor.create_doc(
   test:             true,                                         # test documents are free but watermarked
@@ -63,9 +63,6 @@ Stuck? We're experts at using DocRaptor so please [email us](mailto:support@docr
 ## Development
 
 The majority of the code in this repo is generated using swagger-codegen on [docraptor.yaml](docraptor.yaml). You can modify this file and regenerate the client using `script/generate_language ruby`.
-
-The generated client needed a few fixes
-- binary string response code generated from https://github.com/swagger-api/swagger-codegen/pull/1934
 
 
 ## Release Process
