@@ -8,9 +8,9 @@ module DocRaptor
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        
+
         :'status_id' => :'status_id'
-        
+
       }
     end
 
@@ -18,7 +18,7 @@ module DocRaptor
     def self.swagger_types
       {
         :'status_id' => :'String'
-        
+
       }
     end
 
@@ -28,11 +28,11 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
-      
+
       if attributes[:'status_id']
         self.status_id = attributes[:'status_id']
       end
-      
+
     end
 
     # Check equality by comparing each attribute.

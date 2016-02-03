@@ -23,19 +23,19 @@ module DocRaptor
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        
+
         :'status' => :'status',
-        
+
         :'download_url' => :'download_url',
-        
+
         :'download_id' => :'download_id',
-        
+
         :'message' => :'message',
-        
+
         :'number_of_pages' => :'number_of_pages',
-        
+
         :'validation_errors' => :'validation_errors'
-        
+
       }
     end
 
@@ -48,7 +48,7 @@ module DocRaptor
         :'message' => :'String',
         :'number_of_pages' => :'Integer',
         :'validation_errors' => :'String'
-        
+
       }
     end
 
@@ -58,31 +58,31 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
-      
+
       if attributes[:'status']
         self.status = attributes[:'status']
       end
-      
+
       if attributes[:'download_url']
         self.download_url = attributes[:'download_url']
       end
-      
+
       if attributes[:'download_id']
         self.download_id = attributes[:'download_id']
       end
-      
+
       if attributes[:'message']
         self.message = attributes[:'message']
       end
-      
+
       if attributes[:'number_of_pages']
         self.number_of_pages = attributes[:'number_of_pages']
       end
-      
+
       if attributes[:'validation_errors']
         self.validation_errors = attributes[:'validation_errors']
       end
-      
+
     end
 
     # Check equality by comparing each attribute.

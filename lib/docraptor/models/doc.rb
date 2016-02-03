@@ -43,33 +43,33 @@ module DocRaptor
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        
+
         :'name' => :'name',
-        
+
         :'document_type' => :'document_type',
-        
+
         :'document_content' => :'document_content',
-        
+
         :'document_url' => :'document_url',
-        
+
         :'test' => :'test',
-        
+
         :'strict' => :'strict',
-        
+
         :'ignore_resource_errors' => :'ignore_resource_errors',
-        
+
         :'tag' => :'tag',
-        
+
         :'help' => :'help',
-        
+
         :'javascript' => :'javascript',
-        
+
         :'referrer' => :'referrer',
-        
+
         :'callback_url' => :'callback_url',
-        
+
         :'prince_options' => :'prince_options'
-        
+
       }
     end
 
@@ -89,7 +89,7 @@ module DocRaptor
         :'referrer' => :'String',
         :'callback_url' => :'String',
         :'prince_options' => :'PrinceOptions'
-        
+
       }
     end
 
@@ -99,69 +99,69 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
-      
+
       if attributes[:'name']
         self.name = attributes[:'name']
       end
-      
+
       if attributes[:'document_type']
         self.document_type = attributes[:'document_type']
       end
-      
+
       if attributes[:'document_content']
         self.document_content = attributes[:'document_content']
       end
-      
+
       if attributes[:'document_url']
         self.document_url = attributes[:'document_url']
       end
-      
+
       if attributes[:'test']
         self.test = attributes[:'test']
       else
         self.test = true
       end
-      
+
       if attributes[:'strict']
         self.strict = attributes[:'strict']
       else
         self.strict = "none"
       end
-      
+
       if attributes[:'ignore_resource_errors']
         self.ignore_resource_errors = attributes[:'ignore_resource_errors']
       else
         self.ignore_resource_errors = true
       end
-      
+
       if attributes[:'tag']
         self.tag = attributes[:'tag']
       end
-      
+
       if attributes[:'help']
         self.help = attributes[:'help']
       else
         self.help = false
       end
-      
+
       if attributes[:'javascript']
         self.javascript = attributes[:'javascript']
       else
         self.javascript = false
       end
-      
+
       if attributes[:'referrer']
         self.referrer = attributes[:'referrer']
       end
-      
+
       if attributes[:'callback_url']
         self.callback_url = attributes[:'callback_url']
       end
-      
+
       if attributes[:'prince_options']
         self.prince_options = attributes[:'prince_options']
       end
-      
+
     end
 
     # Custom attribute writer method checking allowed values (enum).

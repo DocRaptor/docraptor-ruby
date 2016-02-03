@@ -86,61 +86,61 @@ module DocRaptor
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        
+
         :'baseurl' => :'baseurl',
-        
+
         :'no_xinclude' => :'no_xinclude',
-        
+
         :'no_network' => :'no_network',
-        
+
         :'http_user' => :'http_user',
-        
+
         :'http_password' => :'http_password',
-        
+
         :'http_proxy' => :'http_proxy',
-        
+
         :'http_timeout' => :'http_timeout',
-        
+
         :'insecure' => :'insecure',
-        
+
         :'media' => :'media',
-        
+
         :'no_author_style' => :'no_author_style',
-        
+
         :'no_default_style' => :'no_default_style',
-        
+
         :'no_embed_fonts' => :'no_embed_fonts',
-        
+
         :'no_subset_fonts' => :'no_subset_fonts',
-        
+
         :'no_compress' => :'no_compress',
-        
+
         :'encrypt' => :'encrypt',
-        
+
         :'key_bits' => :'key_bits',
-        
+
         :'user_password' => :'user_password',
-        
+
         :'owner_password' => :'owner_password',
-        
+
         :'disallow_print' => :'disallow_print',
-        
+
         :'disallow_copy' => :'disallow_copy',
-        
+
         :'disallow_annotate' => :'disallow_annotate',
-        
+
         :'disallow_modify' => :'disallow_modify',
-        
+
         :'input' => :'input',
-        
+
         :'version' => :'version',
-        
+
         :'javascript' => :'javascript',
-        
+
         :'css_dpi' => :'css_dpi',
-        
+
         :'profile' => :'profile'
-        
+
       }
     end
 
@@ -174,7 +174,7 @@ module DocRaptor
         :'javascript' => :'BOOLEAN',
         :'css_dpi' => :'Integer',
         :'profile' => :'String'
-        
+
       }
     end
 
@@ -184,119 +184,119 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
-      
+
       if attributes[:'baseurl']
         self.baseurl = attributes[:'baseurl']
       end
-      
+
       if attributes[:'no_xinclude']
         self.no_xinclude = attributes[:'no_xinclude']
       end
-      
+
       if attributes[:'no_network']
         self.no_network = attributes[:'no_network']
       end
-      
+
       if attributes[:'http_user']
         self.http_user = attributes[:'http_user']
       end
-      
+
       if attributes[:'http_password']
         self.http_password = attributes[:'http_password']
       end
-      
+
       if attributes[:'http_proxy']
         self.http_proxy = attributes[:'http_proxy']
       end
-      
+
       if attributes[:'http_timeout']
         self.http_timeout = attributes[:'http_timeout']
       end
-      
+
       if attributes[:'insecure']
         self.insecure = attributes[:'insecure']
       end
-      
+
       if attributes[:'media']
         self.media = attributes[:'media']
       else
         self.media = "print"
       end
-      
+
       if attributes[:'no_author_style']
         self.no_author_style = attributes[:'no_author_style']
       end
-      
+
       if attributes[:'no_default_style']
         self.no_default_style = attributes[:'no_default_style']
       end
-      
+
       if attributes[:'no_embed_fonts']
         self.no_embed_fonts = attributes[:'no_embed_fonts']
       end
-      
+
       if attributes[:'no_subset_fonts']
         self.no_subset_fonts = attributes[:'no_subset_fonts']
       end
-      
+
       if attributes[:'no_compress']
         self.no_compress = attributes[:'no_compress']
       end
-      
+
       if attributes[:'encrypt']
         self.encrypt = attributes[:'encrypt']
       end
-      
+
       if attributes[:'key_bits']
         self.key_bits = attributes[:'key_bits']
       end
-      
+
       if attributes[:'user_password']
         self.user_password = attributes[:'user_password']
       end
-      
+
       if attributes[:'owner_password']
         self.owner_password = attributes[:'owner_password']
       end
-      
+
       if attributes[:'disallow_print']
         self.disallow_print = attributes[:'disallow_print']
       end
-      
+
       if attributes[:'disallow_copy']
         self.disallow_copy = attributes[:'disallow_copy']
       end
-      
+
       if attributes[:'disallow_annotate']
         self.disallow_annotate = attributes[:'disallow_annotate']
       end
-      
+
       if attributes[:'disallow_modify']
         self.disallow_modify = attributes[:'disallow_modify']
       end
-      
+
       if attributes[:'input']
         self.input = attributes[:'input']
       else
         self.input = "html"
       end
-      
+
       if attributes[:'version']
         self.version = attributes[:'version']
       end
-      
+
       if attributes[:'javascript']
         self.javascript = attributes[:'javascript']
       end
-      
+
       if attributes[:'css_dpi']
         self.css_dpi = attributes[:'css_dpi']
       end
-      
+
       if attributes[:'profile']
         self.profile = attributes[:'profile']
       end
-      
+
     end
 
     # Custom attribute writer method checking allowed values (enum).
