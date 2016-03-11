@@ -1,3 +1,6 @@
+### 0.3.0 [March 11, 2016]
+* Added support for prince_options[debug]
+
 ### 0.2.0 [January 29, 2016]
 * **BREAKING CHANGE**: Rename ClientApi to DocApi
 
