@@ -6,9 +6,8 @@ if [ ! -d "swagger-codegen" ]; then
   git clone https://github.com/swagger-api/swagger-codegen
 fi
 
+SWAGGER_CODGEN_REVISION=$(cat .swagger-revision)
 cd swagger-codegen
-
-SWAGGER_CODGEN_REVISION="62fbcb9e8bec4a40569e51c7f316af85806628ee" # v2.1.5+
 if [[ `cat .git/HEAD` != "$SWAGGER_CODGEN_REVISION" ]]; then
   git fetch
   git checkout $SWAGGER_CODGEN_REVISION
