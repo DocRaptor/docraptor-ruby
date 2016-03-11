@@ -32,7 +32,7 @@ module DocRaptor
       fail "Missing the required parameter 'doc' when calling create_async_doc" if doc.nil?
 
       # resource path
-      path = "/async_docs".sub('{format}','json')
+      local_var_path = "/async_docs".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -55,7 +55,7 @@ module DocRaptor
       post_body = @api_client.object_to_http_body(doc)
 
       auth_names = ['basicAuth']
-      data, status_code, headers = @api_client.call_api(:POST, path,
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -92,7 +92,7 @@ module DocRaptor
       fail "Missing the required parameter 'doc' when calling create_doc" if doc.nil?
 
       # resource path
-      path = "/docs".sub('{format}','json')
+      local_var_path = "/docs".sub('{format}','json')
 
       # query parameters
       query_params = {}
@@ -115,7 +115,7 @@ module DocRaptor
       post_body = @api_client.object_to_http_body(doc)
 
       auth_names = ['basicAuth']
-      data, status_code, headers = @api_client.call_api(:POST, path,
+      data, status_code, headers = @api_client.call_api(:POST, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -152,7 +152,7 @@ module DocRaptor
       fail "Missing the required parameter 'id' when calling get_async_doc" if id.nil?
 
       # resource path
-      path = "/download/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/download/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -175,7 +175,7 @@ module DocRaptor
       post_body = nil
 
       auth_names = ['basicAuth']
-      data, status_code, headers = @api_client.call_api(:GET, path,
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,
@@ -212,7 +212,7 @@ module DocRaptor
       fail "Missing the required parameter 'id' when calling get_async_doc_status" if id.nil?
 
       # resource path
-      path = "/status/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
+      local_var_path = "/status/{id}".sub('{format}','json').sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -235,7 +235,7 @@ module DocRaptor
       post_body = nil
 
       auth_names = ['basicAuth']
-      data, status_code, headers = @api_client.call_api(:GET, path,
+      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
         :header_params => header_params,
         :query_params => query_params,
         :form_params => form_params,

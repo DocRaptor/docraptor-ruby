@@ -150,7 +150,7 @@ module DocRaptor
         # parse date time (expecting ISO 8601 format)
         Date.parse data
       when 'Object'
-        # generic object, return directly
+        # generic object (usually a Hash), return directly
         data
       when /\AArray<(.+)>\z/
         # e.g. Array<Pet>
