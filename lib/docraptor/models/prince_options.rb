@@ -68,6 +68,9 @@ module DocRaptor
     # Disallow modification of this PDF.
     attr_accessor :disallow_modify
 
+    # Enable Prince debug mode.
+    attr_accessor :debug
+
     # Specify the input format.
     attr_accessor :input
 
@@ -131,6 +134,8 @@ module DocRaptor
 
         :'disallow_modify' => :'disallow_modify',
 
+        :'debug' => :'debug',
+
         :'input' => :'input',
 
         :'version' => :'version',
@@ -169,6 +174,7 @@ module DocRaptor
         :'disallow_copy' => :'BOOLEAN',
         :'disallow_annotate' => :'BOOLEAN',
         :'disallow_modify' => :'BOOLEAN',
+        :'debug' => :'BOOLEAN',
         :'input' => :'String',
         :'version' => :'String',
         :'javascript' => :'BOOLEAN',
@@ -275,6 +281,10 @@ module DocRaptor
         self.disallow_modify = attributes[:'disallow_modify']
       end
 
+      if attributes[:'debug']
+        self.debug = attributes[:'debug']
+      end
+
       if attributes[:'input']
         self.input = attributes[:'input']
       else
@@ -334,6 +344,7 @@ module DocRaptor
           disallow_copy == o.disallow_copy &&
           disallow_annotate == o.disallow_annotate &&
           disallow_modify == o.disallow_modify &&
+          debug == o.debug &&
           input == o.input &&
           version == o.version &&
           javascript == o.javascript &&
@@ -348,7 +359,7 @@ module DocRaptor
 
     # Calculate hash code according to all attributes.
     def hash
-      [baseurl, no_xinclude, no_network, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, input, version, javascript, css_dpi, profile].hash
+      [baseurl, no_xinclude, no_network, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, debug, input, version, javascript, css_dpi, profile].hash
     end
 
     # build the object from hash

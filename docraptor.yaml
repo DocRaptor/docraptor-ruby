@@ -1,7 +1,7 @@
 swagger: '2.0'
 
 info:
-  version: "0.0.1"
+  version: "1.1.0"
   title: DocRaptor v1
 
 host: docraptor.com
@@ -277,6 +277,9 @@ definitions:
       disallow_modify:
         type: boolean
         description: Disallow modification of this PDF.
+      debug:
+        type: boolean
+        description: Enable Prince debug mode.
       input:
         type: string
         description: Specify the input format.
