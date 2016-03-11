@@ -67,13 +67,16 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 
 ## Release Process
 
-1. `script/test`
-2. Increment version in code:
+1. Pull latest master
+2. Merge feature branch(es) into master
+3. `script/test`
+4. Increment version in code:
   - `swagger-config.json`
   - `lib/docraptor/version.rb`
-3. Update [CHANGELOG.md](CHANGELOG.md)
-4. `rake release`
-5. Update documentation on docraptor.com
+5. Update [CHANGELOG.md](CHANGELOG.md)
+6. Commit "Release version vX.Y.Z"
+7. `rake release`
+8. Refresh documentation on docraptor.com
 
 
 ## Version Policy
