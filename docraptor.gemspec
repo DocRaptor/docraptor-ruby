@@ -13,7 +13,7 @@ Gem::Specification.new do |s|
   s.description = %q{A native client library for the DocRaptor HTML to PDF/XLS service.}
   s.license     = "Apache-2.0"
 
-  s.add_runtime_dependency 'typhoeus', '~> 0.2', '>= 0.2.1'
+  s.add_runtime_dependency 'typhoeus', '~> 1.0.2', '>= 1.0.2'
   s.add_runtime_dependency 'json', '~> 1.4', '>= 1.4.6'
 
   s.add_development_dependency 'pry', '~> 0.10', '>= 0.10.3'
