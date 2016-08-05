@@ -1,3 +1,10 @@
+### 1.0.0beta1 [August 5, 2016]
+* Regenerated with swagger-codegen v2.2.0
+* Dependency update typhoeus
+* Development dependency update: json, webmock, pry, rake
+* Improve generated gemspec by adding more of the gem details to the swagger config
+* `document_content` is no longer a required attribute because there is not a way to say "one of these is required, but only one"
+
 ### 0.3.0 [March 11, 2016]
 * Added support for prince_options[debug]
 

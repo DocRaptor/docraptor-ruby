@@ -23,9 +23,9 @@ bundle install
 See [examples](examples/) for runnable examples with file output, error handling, etc.
 
 ```ruby
-DocRaptor.configure do |dr|
-  dr.username = "YOUR_API_KEY_HERE" # this key works for test documents
-  # dr.debugging = true
+DocRaptor.configure do |config|
+  config.username = "YOUR_API_KEY_HERE" # this key works for test documents
+  # config.debugging = true
 end
 
 $docraptor = DocRaptor::DocApi.new

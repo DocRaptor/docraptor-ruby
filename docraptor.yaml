@@ -142,7 +142,6 @@ definitions:
     required:
       - name
       - document_type
-      - document_content
     properties:
       name:
         type: string
