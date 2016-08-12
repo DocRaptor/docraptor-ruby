@@ -24,8 +24,9 @@ limitations under the License.
 
 ARGV.each do |filename|
   content = File.read(filename)
+  updated_content = content.sub(license_string, "")
+
   File.open(filename, "w") do |file|
-    updated_content = content.sub(license_string, "")
     file.write(updated_content)
   end
 end
