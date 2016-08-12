@@ -12,3 +12,10 @@ ruby script/remove_apache_license.rb docraptor.gemspec
 echo "Removing unneccessary files..."
 rm git_push.sh
 rm -rf docs
+
+echo "Restoring files to correct, reasonable points..."
+git checkout .gitignore
+git checkout LICENSE
+
+echo "Fixing gemspec to work around swagger..."
+ruby script/fix_gemspec.rb
