@@ -214,6 +214,9 @@ definitions:
       no_network:
         type: boolean
         description: Disable network access.
+      no_parallel_downloads:
+        type: boolean
+        description: Disable parallel downloads.
       http_user:
         type: string
         description: Set the user for HTTP authentication.

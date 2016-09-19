@@ -1,19 +1,25 @@
 #!/bin/bash
 set -e
-cd "`dirname \"$0\"`/.."
+cd "$(dirname "$0")/.."
+
+SWAGGER_CODGEN_REVISION=$(cat .swagger-revision 2> /dev/null || true)
+if [ "$SWAGGER_CODGEN_REVISION" = "" ]; then
+  echo "Set a revision of swagger-codegen to use in .swagger-revision"
+  exit 1
+fi
 
 if [ ! -d "swagger-codegen" ]; then
   git clone https://github.com/swagger-api/swagger-codegen
 fi
 
-SWAGGER_CODGEN_REVISION=$(cat .swagger-revision)
-cd swagger-codegen
-if [[ `cat .git/HEAD` != "$SWAGGER_CODGEN_REVISION" ]]; then
-  git fetch
-  git checkout $SWAGGER_CODGEN_REVISION
-  mvn clean package
-fi
-cd ..
+(
+  cd swagger-codegen
+  if [[ $(cat .git/HEAD) != "$SWAGGER_CODGEN_REVISION" ]]; then
+    git fetch
+    git checkout "$SWAGGER_CODGEN_REVISION"
+    mvn clean package
+  fi
+)
 
 executable="./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar"
 
