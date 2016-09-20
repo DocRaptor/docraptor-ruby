@@ -1,18 +1,18 @@
 #!/bin/sh
 set -e
-cd "`dirname \"$0\"`/.."
+cd "$(dirname "$0")/.."
 
 LANGUAGE="$1"
 CONFIG_FILE="swagger-config.json"
 
-if [ "$LANGUAGE" == "" ]; then
+if [ "$LANGUAGE" = "" ]; then
   ./script/swagger # prints languages
   exit 1
 fi
 
 if [ ! -f "$CONFIG_FILE" ]; then
   echo "Could not find $CONFIG_FILE"
-  ./script/swagger config-help -l $LANGUAGE
+  ./script/swagger config-help -l "$LANGUAGE"
   exit 1
 fi
 
@@ -20,8 +20,8 @@ fi
 
 ./script/swagger generate \
   -i docraptor.yaml \
-  -l $LANGUAGE \
-  -c $CONFIG_FILE
+  -l "$LANGUAGE" \
+  -c "$CONFIG_FILE"
 
 # call a generator cleanup script
 if [ -f "script/post_generate_language" ]; then
