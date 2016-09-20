@@ -11,7 +11,7 @@ module DocRaptor
     # Disable network access.
     attr_accessor :no_network
 
-    # Disable parallel downloads.
+    # Disables parallel fetching of assets during PDF creation. Useful if your asset host has strict rate limiting.
     attr_accessor :no_parallel_downloads
 
     # Set the user for HTTP authentication.
