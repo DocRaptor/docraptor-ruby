@@ -1,8 +1,3 @@
-### 1.0.0beta1 [August 5, 2016]
-* Regenerated with swagger-codegen v2.2.0
-* Dependency update typhoeus
-* `document_content` is no longer a required attribute because there is not a way to say "one of these is required, but only one"
-
 ### 0.4.0 [September 26, 2016]
 * Added support for prince_options[no_parallel_downloads]
 

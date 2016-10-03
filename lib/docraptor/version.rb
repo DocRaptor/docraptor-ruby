@@ -1,3 +1,3 @@
 module DocRaptor
-  VERSION = "1.0.0beta1"
+  VERSION = "0.4.0"
 end
