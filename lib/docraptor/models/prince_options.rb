@@ -202,7 +202,7 @@ module DocRaptor
         self.no_network = attributes[:'no_network']
       end
 
-      if attributes[:'no_parallel_downloads']
+      if attributes.has_key?(:'no_parallel_downloads')
         self.no_parallel_downloads = attributes[:'no_parallel_downloads']
       end
 
