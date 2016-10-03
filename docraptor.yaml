@@ -213,6 +213,9 @@ definitions:
       no_network:
         type: boolean
         description: Disable network access.
+      no_parallel_downloads:
+        type: boolean
+        description: Disables parallel fetching of assets during PDF creation. Useful if your asset host has strict rate limiting.
       http_user:
         type: string
         description: Set the user for HTTP authentication.

@@ -3,6 +3,9 @@
 * Dependency update typhoeus
 * `document_content` is no longer a required attribute because there is not a way to say "one of these is required, but only one"
 
+### 0.4.0 [September 26, 2016]
+* Added support for prince_options[no_parallel_downloads]
+
 ### 0.3.0 [March 11, 2016]
 * Added support for prince_options[debug]
 

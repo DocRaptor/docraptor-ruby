@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
-cd "`dirname \"$0\"`/.."
+cd "$(dirname "$0")/.."
 
-if [[ `basename $PWD` == "swagger" ]]; then
+if [[ $(basename "$PWD") == "swagger" ]]; then
   echo "This command is only used in langauge specific repositories"
   exit 1
 fi
@@ -10,23 +10,23 @@ fi
 # Gets content at $1 and puts it into $2, automatically chmod +x if $2 is the
 # script dir.
 get() {
-  curl --fail --silent --show-error $1 > $2
-  if [[ `dirname $2` == "script" ]]; then
-    chmod +x $2
+  curl --fail --silent --show-error "$1" > "$2"
+  if [[ $(dirname "$2") == "script" ]]; then
+    chmod +x "$2"
   fi
 }
 
 # Gets a file $1 from the upstream repo and places it in the same location.
 get_upstream() {
-  get "https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/$1" $1
+  get "https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/$1" "$1"
 }
 
 # Main entry point, wrapped in a function so that bash can handle replacing
 # this file while executing it.
 update() {
-  original=`md5 script/update_from_upstream`
+  original=$(md5 script/update_from_upstream)
   get_upstream script/update_from_upstream
-  if [[ `md5 script/update_from_upstream` != "$original" ]]; then
+  if [[ $(md5 script/update_from_upstream) != "$original" ]]; then
     echo "Detected updated update_from_upstream command, running again"
     script/update_from_upstream
     exit 0 # recursive call above handled everything

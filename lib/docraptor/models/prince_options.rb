@@ -12,6 +12,9 @@ module DocRaptor
     # Disable network access.
     attr_accessor :no_network
 
+    # Disables parallel fetching of assets during PDF creation. Useful if your asset host has strict rate limiting.
+    attr_accessor :no_parallel_downloads
+
     # Set the user for HTTP authentication.
     attr_accessor :http_user
 
@@ -115,6 +118,7 @@ module DocRaptor
         :'baseurl' => :'baseurl',
         :'no_xinclude' => :'no_xinclude',
         :'no_network' => :'no_network',
+        :'no_parallel_downloads' => :'no_parallel_downloads',
         :'http_user' => :'http_user',
         :'http_password' => :'http_password',
         :'http_proxy' => :'http_proxy',
@@ -149,6 +153,7 @@ module DocRaptor
         :'baseurl' => :'String',
         :'no_xinclude' => :'BOOLEAN',
         :'no_network' => :'BOOLEAN',
+        :'no_parallel_downloads' => :'BOOLEAN',
         :'http_user' => :'String',
         :'http_password' => :'String',
         :'http_proxy' => :'String',
@@ -195,6 +200,10 @@ module DocRaptor
 
       if attributes.has_key?(:'no_network')
         self.no_network = attributes[:'no_network']
+      end
+
+      if attributes[:'no_parallel_downloads']
+        self.no_parallel_downloads = attributes[:'no_parallel_downloads']
       end
 
       if attributes.has_key?(:'http_user')
@@ -336,6 +345,7 @@ module DocRaptor
           baseurl == o.baseurl &&
           no_xinclude == o.no_xinclude &&
           no_network == o.no_network &&
+          no_parallel_downloads == o.no_parallel_downloads &&
           http_user == o.http_user &&
           http_password == o.http_password &&
           http_proxy == o.http_proxy &&
@@ -372,7 +382,7 @@ module DocRaptor
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [baseurl, no_xinclude, no_network, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, debug, input, version, javascript, css_dpi, profile].hash
+      [baseurl, no_xinclude, no_network, no_parallel_downloads, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, debug, input, version, javascript, css_dpi, profile].hash
     end
 
     # Builds the object from hash
