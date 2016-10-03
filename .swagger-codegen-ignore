@@ -22,6 +22,8 @@
 # Then explicitly reverse the ignore rule for a single file:
 #!docs/README.md
 
-LICENSE
 README.md
 CHANGELOG.md
+git_push.sh
+docs/
+.gitignore
