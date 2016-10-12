@@ -2,6 +2,9 @@ require 'date'
 
 module DocRaptor
   class Doc
+    # Specify a specific verison of the DocRaptor Pipeline to use.
+    attr_accessor :pipeline
+
     # A name for identifying your document.
     attr_accessor :name
 
@@ -44,6 +47,8 @@ module DocRaptor
     def self.attribute_map
       {
 
+        :'pipeline' => :'pipeline',
+
         :'name' => :'name',
 
         :'document_type' => :'document_type',
@@ -76,6 +81,7 @@ module DocRaptor
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'pipeline' => :'String',
         :'name' => :'String',
         :'document_type' => :'String',
         :'document_content' => :'String',
@@ -99,6 +105,10 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
+
+      if attributes[:'pipeline']
+        self.pipeline = attributes[:'pipeline']
+      end
 
       if attributes[:'name']
         self.name = attributes[:'name']
@@ -186,6 +196,7 @@ module DocRaptor
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          pipeline == o.pipeline &&
           name == o.name &&
           document_type == o.document_type &&
           document_content == o.document_content &&
@@ -208,7 +219,7 @@ module DocRaptor
 
     # Calculate hash code according to all attributes.
     def hash
-      [name, document_type, document_content, document_url, test, strict, ignore_resource_errors, tag, help, javascript, referrer, callback_url, prince_options].hash
+      [pipeline, name, document_type, document_content, document_url, test, strict, ignore_resource_errors, tag, help, javascript, referrer, callback_url, prince_options].hash
     end
 
     # build the object from hash

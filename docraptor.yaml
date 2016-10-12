@@ -144,6 +144,9 @@ definitions:
       - document_type
       - document_content
     properties:
+      pipeline:
+        type: string
+        description: Specify a specific verison of the DocRaptor Pipeline to use.
       name:
         type: string
         description: A name for identifying your document.
