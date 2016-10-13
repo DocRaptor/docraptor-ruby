@@ -1,3 +1,6 @@
+### 1.0.0 [October 13, 2016]
+* Updated version to 1.0.0 now that this new client has been running without issues for customers for quite some time
+
 ### 0.4.0 [September 26, 2016]
 * Added support for prince_options[no_parallel_downloads]
 
