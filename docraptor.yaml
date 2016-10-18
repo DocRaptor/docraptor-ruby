@@ -140,7 +140,6 @@ definitions:
   Doc:
     type: object
     required:
-      - name
       - document_type
       - document_content
     properties:
