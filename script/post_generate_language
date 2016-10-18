@@ -4,3 +4,14 @@ cd "`dirname \"$0\"`/.."
 
 echo "Removing trailing whitespace..."
 find lib -name "*.rb" -type f -exec sed -E -i '' 's/[[:space:]]+$//g' {} +
+
+echo "Removing Apache License Annotations..."
+find lib -name "*.rb" -type f -exec ruby script/remove_apache_license.rb {} +
+find spec -name "*.rb" -type f -exec ruby script/remove_apache_license.rb {} +
+ruby script/remove_apache_license.rb docraptor.gemspec
+
+echo "Restoring files to correct, reasonable points..."
+git checkout LICENSE
+
+echo "Fixing gemspec to work around swagger..."
+ruby script/fix_gemspec.rb

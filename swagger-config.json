@@ -1,5 +1,11 @@
 {
-	"gemName": "docraptor",
-	"moduleName": "DocRaptor",
-  "gemVersion": "1.0.0"
+    "gemName": "docraptor",
+    "moduleName": "DocRaptor",
+    "gemVersion": "1.0.0",
+    "gemAuthor": ["Elijah Miller", "Matthew Gordon"],
+    "gemAuthorEmail": ["elijah@expectedbehavior.com", "matt@expectedbehavior.com"],
+    "gemHomepage": "https://github.com/docraptor/docraptor-ruby",
+    "gemSummary": "A wrapper for the DocRaptor HTML to PDF/XLS service.",
+    "gemDescription": "A native client library for the DocRaptor HTML to PDF/XLS service.",
+    "gemLicense": "Apache 2.0"
 }
