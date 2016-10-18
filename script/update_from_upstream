@@ -7,6 +7,8 @@ if [[ $(basename "$PWD") == "swagger" ]]; then
   exit 1
 fi
 
+branch="next"
+
 # Gets content at $1 and puts it into $2, automatically chmod +x if $2 is the
 # script dir.
 get() {
@@ -18,7 +20,7 @@ get() {
 
 # Gets a file $1 from the upstream repo and places it in the same location.
 get_upstream() {
-  get "https://raw.githubusercontent.com/docraptor/docraptor-swagger/master/$1" "$1"
+  get "https://raw.githubusercontent.com/docraptor/docraptor-swagger/$branch/$1" "$1"
 }
 
 # Main entry point, wrapped in a function so that bash can handle replacing
