@@ -12,7 +12,7 @@ create_response = $docraptor.create_async_doc(
   test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             "s" * 201, # limit is 200 characters
-  document_type:    "pdf",
+  type:             "pdf",
 )
 
 status_response = nil

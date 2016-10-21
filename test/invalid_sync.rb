@@ -10,9 +10,9 @@ $docraptor = DocRaptor::DocApi.new
 
 begin
   $docraptor.create_doc(
-    test:          true,
-    name:          "s" * 201, # limit is 200 characters
-    document_type: "pdf",
+    test: true,
+    name: "s" * 201, # limit is 200 characters
+    type: "pdf",
   )
 rescue DocRaptor::ApiError
   exit
