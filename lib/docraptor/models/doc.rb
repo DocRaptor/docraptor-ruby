@@ -2,11 +2,14 @@ require 'date'
 
 module DocRaptor
   class Doc
+    # Specify a specific verison of the DocRaptor Pipeline to use.
+    attr_accessor :pipeline
+
     # A name for identifying your document.
     attr_accessor :name
 
-    # The type of document being created.
-    attr_accessor :document_type
+    # The kind of document being created.
+    attr_accessor :type
 
     # The HTML data to be transformed into a document. You must supply content using document_content or document_url.
     attr_accessor :document_content
@@ -44,9 +47,11 @@ module DocRaptor
     def self.attribute_map
       {
 
+        :'pipeline' => :'pipeline',
+
         :'name' => :'name',
 
-        :'document_type' => :'document_type',
+        :'type' => :'type',
 
         :'document_content' => :'document_content',
 
@@ -76,8 +81,9 @@ module DocRaptor
     # Attribute type mapping.
     def self.swagger_types
       {
+        :'pipeline' => :'String',
         :'name' => :'String',
-        :'document_type' => :'String',
+        :'type' => :'String',
         :'document_content' => :'String',
         :'document_url' => :'String',
         :'test' => :'BOOLEAN',
@@ -100,12 +106,16 @@ module DocRaptor
       attributes = attributes.inject({}){|memo,(k,v)| memo[k.to_sym] = v; memo}
 
 
+      if attributes[:'pipeline']
+        self.pipeline = attributes[:'pipeline']
+      end
+
       if attributes[:'name']
         self.name = attributes[:'name']
       end
 
-      if attributes[:'document_type']
-        self.document_type = attributes[:'document_type']
+      if attributes[:'type']
+        self.type = attributes[:'type']
       end
 
       if attributes[:'document_content']
@@ -165,12 +175,12 @@ module DocRaptor
     end
 
     # Custom attribute writer method checking allowed values (enum).
-    def document_type=(document_type)
+    def type=(type)
       allowed_values = ["pdf", "xls", "xlsx"]
-      if document_type && !allowed_values.include?(document_type)
-        fail "invalid value for 'document_type', must be one of #{allowed_values}"
+      if type && !allowed_values.include?(type)
+        fail "invalid value for 'type', must be one of #{allowed_values}"
       end
-      @document_type = document_type
+      @type = type
     end
 
     # Custom attribute writer method checking allowed values (enum).
@@ -186,8 +196,9 @@ module DocRaptor
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
+          pipeline == o.pipeline &&
           name == o.name &&
-          document_type == o.document_type &&
+          type == o.type &&
           document_content == o.document_content &&
           document_url == o.document_url &&
           test == o.test &&
@@ -208,7 +219,7 @@ module DocRaptor
 
     # Calculate hash code according to all attributes.
     def hash
-      [name, document_type, document_content, document_url, test, strict, ignore_resource_errors, tag, help, javascript, referrer, callback_url, prince_options].hash
+      [pipeline, name, type, document_content, document_url, test, strict, ignore_resource_errors, tag, help, javascript, referrer, callback_url, prince_options].hash
     end
 
     # build the object from hash

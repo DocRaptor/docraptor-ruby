@@ -12,5 +12,5 @@ $docraptor.create_doc(
   test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             "ruby-sync.pdf",
-  document_type:    "pdf",
+  type:             "pdf",
 )

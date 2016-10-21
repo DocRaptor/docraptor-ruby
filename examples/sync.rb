@@ -28,8 +28,7 @@ begin
     test:             true,                                         # test documents are free but watermarked
     document_content: "<html><body>Hello World</body></html>",      # supply content directly
     # document_url:   "http://docraptor.com/examples/invoice.html", # or use a url
-    name:             "docraptor-ruby.pdf",                         # help you find a document later
-    document_type:    "pdf",                                        # pdf or xls or xlsx
+    type:             "pdf",                                        # pdf or xls or xlsx
     # javascript:       true,                                       # enable JavaScript processing
     # prince_options: {
     #   media: "screen",                                            # use screen styles instead of print styles
