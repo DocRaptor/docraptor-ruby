@@ -1,3 +1,6 @@
+### 1.1.0 [November 3, 2016]
+* Added support for pipeline API parameter
+
 ### 1.0.0 [October 18, 2016]
 * No significant code changes
 
