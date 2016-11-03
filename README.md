@@ -76,7 +76,8 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 5. Update [CHANGELOG.md](CHANGELOG.md)
 6. Commit "Release version vX.Y.Z"
 7. `rake release`
-8. Refresh documentation on docraptor.com
+8. Verify package release at https://rubygems.org/gems/docraptor
+9. Refresh documentation on docraptor.com
 
 
 ## Version Policy
