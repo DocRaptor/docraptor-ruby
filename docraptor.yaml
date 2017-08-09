@@ -1,8 +1,12 @@
 swagger: '2.0'
 
 info:
-  version: "1.2.0"
   title: DocRaptor v1
+  description: "A native client library for the DocRaptor HTML to PDF/XLS service."
+  termsOfService: "https://docraptor.com/tos"
+  license:
+    name: "MIT"
+    url: "https://mit-license.org/"
 
 host: docraptor.com
 basePath: /
