@@ -38,6 +38,12 @@ Gem::Specification.new do |s|
   s.add_development_dependency 'autotest-growl', '~> 0.2', '>= 0.2.16'
   s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.12'
 
+  # added by script/fix_gemspec.rb.
+  s.add_development_dependency 'rake', '~>11.2', '>= 11.2.2'
+  s.add_development_dependency 'pry', '~>0.10', '>= 0.10.4'
+  # </added> : if the above lines are missing in the gemspec, then
+  # the matcher for autotest is probably broken
+
   s.files         = `git ls-files`.split("\n").uniq.sort.select{|f| !f.empty? }
   s.test_files    = `git ls-files spec test`.split("\n")
   s.executables   = []
