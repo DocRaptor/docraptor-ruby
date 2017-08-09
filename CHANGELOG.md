@@ -1,3 +1,6 @@
+### 1.2.0beta1 [August 9, 2017]
+* Re-runnning against newer swagger version (v.2.2.3), bumping many gem dependencies to much newer versions. Applications using client *should not* be affected.
+
 ### 1.1.0 [November 3, 2016]
 * Added support for pipeline API parameter
 
