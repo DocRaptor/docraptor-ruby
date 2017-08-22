@@ -1,3 +1,6 @@
+### 1.2.0 [August 22, 2017]
+* No changes from beta1
+
 ### 1.2.0beta1 [August 9, 2017]
 * Re-runnning against newer swagger version (v.2.2.3), bumping many gem dependencies to much newer versions. Applications using client *should not* be affected.
 

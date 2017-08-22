@@ -11,5 +11,5 @@ Swagger Codegen version: 2.2.3
 =end
 
 module DocRaptor
-  VERSION = "1.2.0beta1"
+  VERSION = "1.2.0"
 end
