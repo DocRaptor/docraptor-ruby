@@ -1,3 +1,6 @@
+### 1.3.0 [November 21, 2017]
+* Added support for `prince_options[pdf_title]` and `ignore_console_messages` options
+
 ### 1.2.0 [August 22, 2017]
 * No changes from beta1
 
