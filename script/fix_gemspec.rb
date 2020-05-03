@@ -1,6 +1,7 @@
-bad_files       = %q{s.files         = `find *`.split("\n").uniq.sort.select{|f| !f.empty? }}
+# coding: utf-8
+bad_files       = %q{s.files         = `find *`.split("\n").uniq.sort.select { |f| !f.empty? }}
 bad_test_files  = %q{s.test_files    = `find spec/*`.split("\n")}
-good_files      = %q{s.files         = `git ls-files`.split("\n").uniq.sort.select{|f| !f.empty? }}
+good_files      = %q{s.files         = `git ls-files`.split("\n").uniq.sort.select { |f| !f.empty? }}
 good_test_files = %q{s.test_files    = `git ls-files spec test`.split("\n")}
 
 development_dependency_marker = %q{  s.add_development_dependency 'autotest-fsevent', '~> 0.2', '>= 0.2.12'}
