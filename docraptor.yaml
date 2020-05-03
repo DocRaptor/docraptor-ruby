@@ -420,3 +420,21 @@ definitions:
       validation_errors:
         type: string
         description: Error information.
+
+  HostedDoc:
+    type: object
+    properties:
+      status:
+        type: string
+        description: The present status of the document. Can be queued, working, completed, and failed.
+      download_url:
+        type: string
+        description: The URL where the document can be retrieved. This URL may only be used a few times.
+      download_id:
+        type: string
+        description: The identifier for downloading the document with the download api.
+      number_of_pages:
+        type: integer
+        description: Number of PDF pages in document.
+
+
