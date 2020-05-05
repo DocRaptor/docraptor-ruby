@@ -17,9 +17,7 @@ output_payload = $docraptor.create_hosted_doc(
   document_type:    "pdf",
 )
 
-downloaded_document = $docraptor.get_hosted_doc(output_payload.download_id)
-
-
+downloaded_document = $docraptor.get_doc(output_payload.download_id)
 
 File.write(output_file, downloaded_document)
 output_type = `file -b #{output_file}`

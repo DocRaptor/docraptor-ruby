@@ -13,21 +13,36 @@ Swagger Codegen version: 2.4.13
 require 'date'
 
 module DocRaptor
-  class AsyncDoc
-    # The identifier used to get the status of the document using the status api.
-    attr_accessor :status_id
+  class HostedDoc
+    # The present status of the document. Can be queued, working, completed, and failed.
+    attr_accessor :status
+
+    # The URL where the document can be retrieved. This URL may only be used a few times.
+    attr_accessor :download_url
+
+    # The identifier for downloading the document with the download api.
+    attr_accessor :download_id
+
+    # Number of PDF pages in document.
+    attr_accessor :number_of_pages
 
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'status_id' => :'status_id'
+        :'status' => :'status',
+        :'download_url' => :'download_url',
+        :'download_id' => :'download_id',
+        :'number_of_pages' => :'number_of_pages'
       }
     end
 
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'status_id' => :'String'
+        :'status' => :'String',
+        :'download_url' => :'String',
+        :'download_id' => :'String',
+        :'number_of_pages' => :'Integer'
       }
     end
 
@@ -39,8 +54,20 @@ module DocRaptor
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
 
-      if attributes.has_key?(:'status_id')
-        self.status_id = attributes[:'status_id']
+      if attributes.has_key?(:'status')
+        self.status = attributes[:'status']
+      end
+
+      if attributes.has_key?(:'download_url')
+        self.download_url = attributes[:'download_url']
+      end
+
+      if attributes.has_key?(:'download_id')
+        self.download_id = attributes[:'download_id']
+      end
+
+      if attributes.has_key?(:'number_of_pages')
+        self.number_of_pages = attributes[:'number_of_pages']
       end
     end
 
@@ -62,7 +89,10 @@ module DocRaptor
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          status_id == o.status_id
+          status == o.status &&
+          download_url == o.download_url &&
+          download_id == o.download_id &&
+          number_of_pages == o.number_of_pages
     end
 
     # @see the `==` method
@@ -74,7 +104,7 @@ module DocRaptor
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [status_id].hash
+      [status, download_url, download_id, number_of_pages].hash
     end
 
     # Builds the object from hash

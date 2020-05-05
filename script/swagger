@@ -8,6 +8,11 @@ if [ "$SWAGGER_CODGEN_REVISION" = "" ]; then
   exit 1
 fi
 
+if ! [ -x "$(command -v mvn)" ]; then
+  echo 'Error: mvn not installed, using homebrew to install' >&2
+  brew install maven
+fi
+
 if [ ! -d "swagger-codegen" ]; then
   git clone https://github.com/swagger-api/swagger-codegen
 fi
