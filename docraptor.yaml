@@ -9,9 +9,9 @@ info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
     name: "MIT"
     url: "https://mit-license.org/"
 
-host: docraptor.com
+host: localhost:3000
 basePath: /
-schemes: [https]
+schemes: [http]
 securityDefinitions:
   basicAuth:
     type: basic
@@ -201,6 +201,31 @@ paths:
             format: binary
         400:
           description: Bad Request
+        403:
+          description: Forbidden
+        500:
+          description: Server Error
+
+  /expire/{id}:
+    patch:
+      operationId: expire
+      tags: [Doc]
+      description: >
+        Expires a previously created hosted doc.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The download_id returned from status request, hosted document response, or a callback.
+          required: true
+          schema:
+            $ref: '#/definitions/HostedDoc'
+      responses:
+        200:
+          description: Successful response
+        401:
+          description: Unauthorized
         403:
           description: Forbidden
         500:
