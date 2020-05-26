@@ -2,7 +2,7 @@ swagger: '2.0'
 
 info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#info-object
   version: "2.0.0"
-  title: DocRaptor v1
+  title: DocRaptor
   description: "A native client library for the DocRaptor HTML to PDF/XLS service."
   termsOfService: "https://docraptor.com/tos"
   license:
@@ -93,8 +93,8 @@ paths:
       tags: [Doc]
       description: >
         Creates a document asynchronously.
-        You must use a callback url or the the returned status id and the status api to find out when it completes.
-        Then use the download api to get the document.
+        You must use a callback url or the the returned status id and the status API to find out when it completes.
+        Then use the download API to get the document.
       security:
         - basicAuth: []
       parameters:
@@ -126,8 +126,8 @@ paths:
       tags: [Doc]
       description: >
         Creates a hosted document asynchronously.
-        You must use a callback url or the the returned status id and the status api to find out when it completes.
-        Then use the download api to get the document.
+        You must use a callback url or the the returned status id and the status API to find out when it completes.
+        Then use the download API to get the document.
       security:
         - basicAuth: []
       parameters:
@@ -327,7 +327,7 @@ definitions:
         type: string
         description: >
           A URL that will receive a POST request after successfully completing an asynchronous document.
-          The POST data will include download_url and download_id similar to status api responses.
+          The POST data will include download_url and download_id similar to status API responses.
           WARNING: this only works on asynchronous documents.
       prince_options:
         $ref: '#/definitions/PrinceOptions'
@@ -458,7 +458,7 @@ definitions:
     properties:
       status_id:
         type: string
-        description: The identifier used to get the status of the document using the status api.
+        description: The identifier used to get the status of the document using the status API.
 
   AsyncDocStatus:
     type: object
@@ -471,7 +471,7 @@ definitions:
         description: The URL where the document can be retrieved. This URL may only be used a few times.
       download_id:
         type: string
-        description: The identifier for downloading the document with the download api.
+        description: The identifier for downloading the document with the download API.
       message:
         type: string
         description: Additional information.
@@ -493,7 +493,7 @@ definitions:
         description: The URL where the document can be retrieved. This URL may only be used a few times.
       download_id:
         type: string
-        description: The identifier for downloading the document with the download api.
+        description: The identifier for downloading the document with the download API.
       number_of_pages:
         type: integer
         description: Number of PDF pages in document.

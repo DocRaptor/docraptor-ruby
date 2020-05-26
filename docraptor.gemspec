@@ -1,7 +1,7 @@
 # -*- encoding: utf-8 -*-
 
 =begin
-#DocRaptor v1
+#DocRaptor
 
 #A native client library for the DocRaptor HTML to PDF/XLS service.
 
