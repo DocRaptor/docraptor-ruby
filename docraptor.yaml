@@ -166,8 +166,7 @@ paths:
           in: path
           description: The status_id returned when creating an asynchronous document.
           required: true
-          schema:
-            $ref: '#/definitions/AsyncDocStatus'
+          type: string
       responses:
         200:
           description: Successful response
@@ -193,6 +192,7 @@ paths:
           in: path
           description: The download_id returned from status request, hosted document response, or a callback.
           required: true
+          type: string
       responses:
         200:
           description: Successful response
@@ -219,11 +219,12 @@ paths:
           in: path
           description: The download_id returned from status request, hosted document response, or a callback.
           required: true
-          schema:
-            $ref: '#/definitions/HostedDoc'
+          type: string
       responses:
         200:
           description: Successful response
+          schema:
+            $ref: '#/definitions/HostedDoc'
         401:
           description: Unauthorized
         403:
@@ -246,6 +247,7 @@ paths:
           in: path
           description: The download_id returned from status request, hosted document response, or a callback.
           required: true
+          type: string
       responses:
         200:
           description: Successful response
