@@ -9,9 +9,9 @@ info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
     name: "MIT"
     url: "https://mit-license.org/"
 
-host: localhost:3000
+host: docraptor.com
 basePath: /
-schemes: [http]
+schemes: [https]
 securityDefinitions:
   basicAuth:
     type: basic
