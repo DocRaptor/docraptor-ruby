@@ -331,6 +331,12 @@ definitions:
           A URL that will receive a POST request after successfully completing an asynchronous document.
           The POST data will include download_url and download_id similar to status API responses.
           WARNING: this only works on asynchronous documents.
+      hosted_download_limit:
+        type: integer
+        description: The number of times a hosted document can be downloaded.  If no limit is specified, the document will be available for an unlimited number of downloads.
+      hosted_expires_at:
+        type: string
+        description: The date and time at which a hosted document will be removed and no longer available. Must be a properly formatted ISO 8601 datetime, like 1981-01-23T08:02:30-05:00.
       prince_options:
         $ref: '#/definitions/PrinceOptions'
 
