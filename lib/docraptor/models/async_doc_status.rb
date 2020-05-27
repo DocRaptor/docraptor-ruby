@@ -20,7 +20,7 @@ module DocRaptor
     # The URL where the document can be retrieved. This URL may only be used a few times.
     attr_accessor :download_url
 
-    # The identifier for downloading the document with the download api.
+    # The identifier for downloading the document with the download API.
     attr_accessor :download_id
 
     # Additional information.

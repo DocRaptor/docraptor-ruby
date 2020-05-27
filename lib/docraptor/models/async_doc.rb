@@ -14,7 +14,7 @@ require 'date'
 
 module DocRaptor
   class AsyncDoc
-    # The identifier used to get the status of the document using the status api.
+    # The identifier used to get the status of the document using the status API.
     attr_accessor :status_id
 
     # Attribute mapping from ruby-style variable name to JSON key.

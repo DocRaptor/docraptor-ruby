@@ -1,8 +1,14 @@
 require "bundler/setup"
 Bundler.require
+require 'open-uri'
+
+api_key = File.read("#{__dir__}/../.docraptor_key").strip
+unless api_key
+  raise "Please put a valid (paid plan) api key in the .docraptor_key file when testing this feature."
+end
 
 DocRaptor.configure do |dr|
-  dr.username  = "YOUR_API_KEY_HERE"
+  dr.username  = api_key
   # dr.debugging = true
 end
 
@@ -11,7 +17,7 @@ $docraptor = DocRaptor::DocApi.new
 output_file = "expire-hosted-ruby-sync.pdf"
 
 output_payload = $docraptor.create_hosted_async_doc(
-  test:             true,
+  test:             false,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",
@@ -24,9 +30,9 @@ status_response = nil
   sleep 1
 end
 
-output_payload = $docraptor.get_doc(status_response.download_id)
+actual_document = open status_response.download_url
+IO.copy_stream(actual_document, output_file)
 
-File.write(output_file, output_payload)
 output_type = `file -b #{output_file}`
 File.delete output_file
 
@@ -35,8 +41,8 @@ raise "Output was not a PDF" unless output_type.start_with?("PDF")
 $docraptor.expire(status_response.download_id)
 
 begin
-  $docraptor.get_doc(status_response.download_id)
-rescue DocRaptor::ApiError => api_error
+  actual_document = open status_response.download_url
+rescue OpenURI::HTTPError => http_error
   exit 0
 end
 

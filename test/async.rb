@@ -24,15 +24,6 @@ status_response = nil
   sleep 1
 end
 
-output_payload = $docraptor.get_doc(status_response.download_id)
-
-File.write(output_file, output_payload)
-output_type = `file -b #{output_file}`
-File.delete output_file
-
-raise "Output was not a PDF" unless output_type.start_with?("PDF")
-
-# this method deprecated in 1.4.0 in favor of get_doc
 output_payload = $docraptor.get_async_doc(status_response.download_id)
 
 File.write(output_file, output_payload)
@@ -40,3 +31,4 @@ output_type = `file -b #{output_file}`
 File.delete output_file
 
 raise "Output was not a PDF" unless output_type.start_with?("PDF")
+

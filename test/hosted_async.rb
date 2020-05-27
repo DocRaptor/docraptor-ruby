@@ -1,8 +1,14 @@
 require "bundler/setup"
 Bundler.require
+require "open-uri"
+
+api_key = File.read("#{__dir__}/../.docraptor_key").strip
+unless api_key
+  raise "Please put a valid (paid plan) api key in the .docraptor_key file when testing this feature."
+end
 
 DocRaptor.configure do |dr|
-  dr.username  = "YOUR_API_KEY_HERE"
+  dr.username  = api_key
   # dr.debugging = true
 end
 
@@ -11,7 +17,7 @@ $docraptor = DocRaptor::DocApi.new
 output_file = "hosted-ruby-sync.pdf"
 
 output_payload = $docraptor.create_hosted_async_doc(
-  test:             true,
+  test:             false,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",
@@ -24,19 +30,10 @@ status_response = nil
   sleep 1
 end
 
-output_payload = $docraptor.get_doc(status_response.download_id)
+# should be the unbranded hosted doc url
+unless status_response.download_url.include?("documentdeliver")
+  raise "Returned URL was not the unbranded URL"
+end
 
-File.write(output_file, output_payload)
-output_type = `file -b #{output_file}`
-File.delete output_file
 
-raise "Output was not a PDF" unless output_type.start_with?("PDF")
 
-# this method deprecated in 1.4.0 in favor of get_doc
-output_payload = $docraptor.get_async_doc(status_response.download_id)
-
-File.write(output_file, output_payload)
-output_type = `file -b #{output_file}`
-File.delete output_file
-
-raise "Output was not a PDF" unless output_type.start_with?("PDF")

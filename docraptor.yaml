@@ -181,7 +181,7 @@ paths:
 
   /download/{id}:
     get:
-      operationId: getDoc
+      operationId: getAsyncDoc
       tags: [Doc]
       description: >
         Downloads a finished document.
@@ -190,7 +190,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The download_id returned from status request, hosted document response, or a callback.
+          description: The download_id returned from async status request or callback.
           required: true
           type: string
       responses:
@@ -227,35 +227,6 @@ paths:
             $ref: '#/definitions/HostedDoc'
         401:
           description: Unauthorized
-        403:
-          description: Forbidden
-        500:
-          description: Server Error
-
-  # provided for backwards compatiblity
-  /download/{id}?deprecated_async_method=true:
-    get:
-      operationId: getAsyncDoc
-      deprecated: true
-      tags: [Doc]
-      description: >
-        Downloads a finished document.
-      security:
-        - basicAuth: []
-      parameters:
-        - name: id
-          in: path
-          description: The download_id returned from status request, hosted document response, or a callback.
-          required: true
-          type: string
-      responses:
-        200:
-          description: Successful response
-          schema:
-            type: string
-            format: binary
-        400:
-          description: Bad Request
         403:
           description: Forbidden
         500:

@@ -19,7 +19,7 @@ module DocRaptor
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
@@ -28,7 +28,7 @@ module DocRaptor
       data
     end
 
-    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
@@ -119,7 +119,7 @@ module DocRaptor
       end
       return data, status_code, headers
     end
-    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
@@ -128,7 +128,7 @@ module DocRaptor
       data
     end
 
-    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status api to find out when it completes. Then use the download api to get the document.
+    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
@@ -222,16 +222,16 @@ module DocRaptor
     # Expires a previously created hosted doc.
     # @param id The download_id returned from status request, hosted document response, or a callback.
     # @param [Hash] opts the optional parameters
-    # @return [nil]
+    # @return [HostedDoc]
     def expire(id, opts = {})
-      expire_with_http_info(id, opts)
-      nil
+      data, _status_code, _headers = expire_with_http_info(id, opts)
+      data
     end
 
     # Expires a previously created hosted doc.
     # @param id The download_id returned from status request, hosted document response, or a callback.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(nil, Fixnum, Hash)>] nil, response status code and response headers
+    # @return [Array<(HostedDoc, Fixnum, Hash)>] HostedDoc data, response status code and response headers
     def expire_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocApi.expire ...'
@@ -262,14 +262,15 @@ module DocRaptor
         :query_params => query_params,
         :form_params => form_params,
         :body => post_body,
-        :auth_names => auth_names)
+        :auth_names => auth_names,
+        :return_type => 'HostedDoc')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DocApi#expire\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end
     # Downloads a finished document.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
+    # @param id The download_id returned from async status request or callback.
     # @param [Hash] opts the optional parameters
     # @return [String]
     def get_async_doc(id, opts = {})
@@ -278,7 +279,7 @@ module DocRaptor
     end
 
     # Downloads a finished document.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
+    # @param id The download_id returned from async status request or callback.
     # @param [Hash] opts the optional parameters
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def get_async_doc_with_http_info(id, opts = {})
@@ -290,7 +291,7 @@ module DocRaptor
         fail ArgumentError, "Missing the required parameter 'id' when calling DocApi.get_async_doc"
       end
       # resource path
-      local_var_path = '/download/{id}?deprecated_async_method=true'.sub('{' + 'id' + '}', id.to_s)
+      local_var_path = '/download/{id}'.sub('{' + 'id' + '}', id.to_s)
 
       # query parameters
       query_params = {}
@@ -365,56 +366,6 @@ module DocRaptor
         :return_type => 'AsyncDocStatus')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DocApi#get_async_doc_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
-      end
-      return data, status_code, headers
-    end
-    # Downloads a finished document.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
-    # @param [Hash] opts the optional parameters
-    # @return [String]
-    def get_doc(id, opts = {})
-      data, _status_code, _headers = get_doc_with_http_info(id, opts)
-      data
-    end
-
-    # Downloads a finished document.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
-    # @param [Hash] opts the optional parameters
-    # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
-    def get_doc_with_http_info(id, opts = {})
-      if @api_client.config.debugging
-        @api_client.config.logger.debug 'Calling API: DocApi.get_doc ...'
-      end
-      # verify the required parameter 'id' is set
-      if @api_client.config.client_side_validation && id.nil?
-        fail ArgumentError, "Missing the required parameter 'id' when calling DocApi.get_doc"
-      end
-      # resource path
-      local_var_path = '/download/{id}'.sub('{' + 'id' + '}', id.to_s)
-
-      # query parameters
-      query_params = {}
-
-      # header parameters
-      header_params = {}
-      # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
-
-      # form parameters
-      form_params = {}
-
-      # http body (model)
-      post_body = nil
-      auth_names = ['basicAuth']
-      data, status_code, headers = @api_client.call_api(:GET, local_var_path,
-        :header_params => header_params,
-        :query_params => query_params,
-        :form_params => form_params,
-        :body => post_body,
-        :auth_names => auth_names,
-        :return_type => 'String')
-      if @api_client.config.debugging
-        @api_client.config.logger.debug "API called: DocApi#get_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
       return data, status_code, headers
     end

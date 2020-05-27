@@ -53,8 +53,14 @@ module DocRaptor
     # Set HTTP referrer when generating this document.
     attr_accessor :referrer
 
-    # A URL that will receive a POST request after successfully completing an asynchronous document. The POST data will include download_url and download_id similar to status api responses. WARNING: this only works on asynchronous documents.
+    # A URL that will receive a POST request after successfully completing an asynchronous document. The POST data will include download_url and download_id similar to status API responses. WARNING: this only works on asynchronous documents.
     attr_accessor :callback_url
+
+    # The number of times a hosted document can be downloaded.  If no limit is specified, the document will be available for an unlimited number of downloads.
+    attr_accessor :hosted_download_limit
+
+    # The date and time at which a hosted document will be removed and no longer available. Must be a properly formatted ISO 8601 datetime, like 1981-01-23T08:02:30-05:00.
+    attr_accessor :hosted_expires_at
 
     attr_accessor :prince_options
 
@@ -97,6 +103,8 @@ module DocRaptor
         :'javascript' => :'javascript',
         :'referrer' => :'referrer',
         :'callback_url' => :'callback_url',
+        :'hosted_download_limit' => :'hosted_download_limit',
+        :'hosted_expires_at' => :'hosted_expires_at',
         :'prince_options' => :'prince_options'
       }
     end
@@ -118,6 +126,8 @@ module DocRaptor
         :'javascript' => :'BOOLEAN',
         :'referrer' => :'String',
         :'callback_url' => :'String',
+        :'hosted_download_limit' => :'Integer',
+        :'hosted_expires_at' => :'String',
         :'prince_options' => :'PrinceOptions'
       }
     end
@@ -198,6 +208,14 @@ module DocRaptor
         self.callback_url = attributes[:'callback_url']
       end
 
+      if attributes.has_key?(:'hosted_download_limit')
+        self.hosted_download_limit = attributes[:'hosted_download_limit']
+      end
+
+      if attributes.has_key?(:'hosted_expires_at')
+        self.hosted_expires_at = attributes[:'hosted_expires_at']
+      end
+
       if attributes.has_key?(:'prince_options')
         self.prince_options = attributes[:'prince_options']
       end
@@ -274,6 +292,8 @@ module DocRaptor
           javascript == o.javascript &&
           referrer == o.referrer &&
           callback_url == o.callback_url &&
+          hosted_download_limit == o.hosted_download_limit &&
+          hosted_expires_at == o.hosted_expires_at &&
           prince_options == o.prince_options
     end
 
@@ -286,7 +306,7 @@ module DocRaptor
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pipeline, name, document_type, document_content, document_url, test, strict, ignore_resource_errors, ignore_console_messages, tag, help, javascript, referrer, callback_url, prince_options].hash
+      [pipeline, name, document_type, document_content, document_url, test, strict, ignore_resource_errors, ignore_console_messages, tag, help, javascript, referrer, callback_url, hosted_download_limit, hosted_expires_at, prince_options].hash
     end
 
     # Builds the object from hash
