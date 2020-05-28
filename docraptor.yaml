@@ -93,7 +93,7 @@ paths:
       tags: [Doc]
       description: >
         Creates a document asynchronously.
-        You must use a callback url or the the returned status id and the status API to find out when it completes.
+        You must use a callback url or the returned status id and the status API to find out when it completes.
         Then use the download API to get the document.
       security:
         - basicAuth: []
@@ -126,7 +126,7 @@ paths:
       tags: [Doc]
       description: >
         Creates a hosted document asynchronously.
-        You must use a callback url or the the returned status id and the status API to find out when it completes.
+        You must use a callback url or the returned status id and the status API to find out when it completes.
         Then use the download API to get the document.
       security:
         - basicAuth: []
@@ -190,7 +190,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The download_id returned from async status request or callback.
+          description: The download_id returned from an async status request or callback.
           required: true
           type: string
       responses:
@@ -217,7 +217,7 @@ paths:
       parameters:
         - name: id
           in: path
-          description: The download_id returned from status request, hosted document response, or a callback.
+          description: The download_id returned from status request or hosted document response.
           required: true
           type: string
       responses:
