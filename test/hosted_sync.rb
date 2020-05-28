@@ -21,6 +21,7 @@ output_payload = $docraptor.create_hosted_doc(
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",
+  hosted_expires_at: (Time.now + 86400).strftime('%FT%T%:z'), # 1 day from now
 )
 
 # should be the unbranded hosted doc url

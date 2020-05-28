@@ -19,7 +19,7 @@ module DocRaptor
     def initialize(api_client = ApiClient.default)
       @api_client = api_client
     end
-    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
+    # Creates a document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
@@ -28,7 +28,7 @@ module DocRaptor
       data
     end
 
-    # Creates a document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
+    # Creates a document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
@@ -119,7 +119,7 @@ module DocRaptor
       end
       return data, status_code, headers
     end
-    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
+    # Creates a hosted document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
@@ -128,7 +128,7 @@ module DocRaptor
       data
     end
 
-    # Creates a hosted document asynchronously. You must use a callback url or the the returned status id and the status API to find out when it completes. Then use the download API to get the document.
+    # Creates a hosted document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Fixnum, Hash)>] AsyncDoc data, response status code and response headers
@@ -220,7 +220,7 @@ module DocRaptor
       return data, status_code, headers
     end
     # Expires a previously created hosted doc.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
+    # @param id The download_id returned from status request or hosted document response.
     # @param [Hash] opts the optional parameters
     # @return [HostedDoc]
     def expire(id, opts = {})
@@ -229,7 +229,7 @@ module DocRaptor
     end
 
     # Expires a previously created hosted doc.
-    # @param id The download_id returned from status request, hosted document response, or a callback.
+    # @param id The download_id returned from status request or hosted document response.
     # @param [Hash] opts the optional parameters
     # @return [Array<(HostedDoc, Fixnum, Hash)>] HostedDoc data, response status code and response headers
     def expire_with_http_info(id, opts = {})
@@ -270,7 +270,7 @@ module DocRaptor
       return data, status_code, headers
     end
     # Downloads a finished document.
-    # @param id The download_id returned from async status request or callback.
+    # @param id The download_id returned from an async status request or callback.
     # @param [Hash] opts the optional parameters
     # @return [String]
     def get_async_doc(id, opts = {})
@@ -279,7 +279,7 @@ module DocRaptor
     end
 
     # Downloads a finished document.
-    # @param id The download_id returned from async status request or callback.
+    # @param id The download_id returned from an async status request or callback.
     # @param [Hash] opts the optional parameters
     # @return [Array<(String, Fixnum, Hash)>] String data, response status code and response headers
     def get_async_doc_with_http_info(id, opts = {})
