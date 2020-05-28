@@ -13,7 +13,7 @@ Swagger Codegen version: 2.4.13
 require 'date'
 
 module DocRaptor
-  class AsyncDocStatus
+  class DocStatus
     # The present status of the document. Can be queued, working, completed, and failed.
     attr_accessor :status
 

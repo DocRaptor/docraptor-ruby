@@ -172,7 +172,7 @@ module DocRaptor
     # Creates a hosted document synchronously.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
-    # @return [HostedDoc]
+    # @return [DocStatus]
     def create_hosted_doc(doc, opts = {})
       data, _status_code, _headers = create_hosted_doc_with_http_info(doc, opts)
       data
@@ -181,7 +181,7 @@ module DocRaptor
     # Creates a hosted document synchronously.
     # @param doc The document to be created.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(HostedDoc, Fixnum, Hash)>] HostedDoc data, response status code and response headers
+    # @return [Array<(DocStatus, Fixnum, Hash)>] DocStatus data, response status code and response headers
     def create_hosted_doc_with_http_info(doc, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocApi.create_hosted_doc ...'
@@ -213,7 +213,7 @@ module DocRaptor
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'HostedDoc')
+        :return_type => 'DocStatus')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DocApi#create_hosted_doc\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -222,7 +222,7 @@ module DocRaptor
     # Expires a previously created hosted doc.
     # @param id The download_id returned from status request or hosted document response.
     # @param [Hash] opts the optional parameters
-    # @return [HostedDoc]
+    # @return [DocStatus]
     def expire(id, opts = {})
       data, _status_code, _headers = expire_with_http_info(id, opts)
       data
@@ -231,7 +231,7 @@ module DocRaptor
     # Expires a previously created hosted doc.
     # @param id The download_id returned from status request or hosted document response.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(HostedDoc, Fixnum, Hash)>] HostedDoc data, response status code and response headers
+    # @return [Array<(DocStatus, Fixnum, Hash)>] DocStatus data, response status code and response headers
     def expire_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocApi.expire ...'
@@ -263,7 +263,7 @@ module DocRaptor
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'HostedDoc')
+        :return_type => 'DocStatus')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DocApi#expire\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
@@ -322,7 +322,7 @@ module DocRaptor
     # Check on the status of an asynchronously created document.
     # @param id The status_id returned when creating an asynchronous document.
     # @param [Hash] opts the optional parameters
-    # @return [AsyncDocStatus]
+    # @return [DocStatus]
     def get_async_doc_status(id, opts = {})
       data, _status_code, _headers = get_async_doc_status_with_http_info(id, opts)
       data
@@ -331,7 +331,7 @@ module DocRaptor
     # Check on the status of an asynchronously created document.
     # @param id The status_id returned when creating an asynchronous document.
     # @param [Hash] opts the optional parameters
-    # @return [Array<(AsyncDocStatus, Fixnum, Hash)>] AsyncDocStatus data, response status code and response headers
+    # @return [Array<(DocStatus, Fixnum, Hash)>] DocStatus data, response status code and response headers
     def get_async_doc_status_with_http_info(id, opts = {})
       if @api_client.config.debugging
         @api_client.config.logger.debug 'Calling API: DocApi.get_async_doc_status ...'
@@ -363,7 +363,7 @@ module DocRaptor
         :form_params => form_params,
         :body => post_body,
         :auth_names => auth_names,
-        :return_type => 'AsyncDocStatus')
+        :return_type => 'DocStatus')
       if @api_client.config.debugging
         @api_client.config.logger.debug "API called: DocApi#get_async_doc_status\nData: #{data.inspect}\nStatus code: #{status_code}\nHeaders: #{headers}"
       end
