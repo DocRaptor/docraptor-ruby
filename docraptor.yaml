@@ -223,8 +223,6 @@ paths:
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: '#/definitions/DocStatus'
         401:
           description: Unauthorized
         403:
