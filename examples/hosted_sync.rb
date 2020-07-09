@@ -3,20 +3,20 @@
 # or anyone else. We'll host the document on your behalf at a completely unbranded URL for as long
 # as you want, or within the limits you specify.
 #
-# This example demonstrates creating a PDF using common options that DocRaptor will host for you.
+# This example demonstrates creating a PDF that DocRaptor will host for you using common options.
 # By default, hosted documents do not have limits on downloads or hosting time, though you may
 # pass additional parameters to the document generation call to set your own limits. Learn more
 # about the specific options in the hosted API documentation.
 # https://docraptor.com/documentation/api#api_hosted
 #
-# The document is created asynchronously, which means DocRaptor will allow it to generate for up to
-# 10 minutes. This is useful when creating many documents in parallel, or very large documents with
-# lots of assets.
+# It is created synchronously, which means DocRaptor will allow it to generate for up to 60 seconds.
+# Since this document will be hosted by DocRaptor the response from this request will return a JSON
+# formatted object containing public URL where the document can be downloaded from.
 #
 # DocRaptor supports many options for output customization, the full list is
 # https://docraptor.com/documentation/api#api_general
 #
-# You can run this example with: ruby hosted_async.rb
+# You can run this example with: ruby hosted_sync.rb
 
 require "bundler/setup"
 Bundler.require
@@ -32,11 +32,11 @@ $docraptor = DocRaptor::DocApi.new
 begin
 
   # https://docraptor.com/documentation/api#api_general
-  create_response = $docraptor.create_hosted_async_doc(
+  create_response = $docraptor.create_hosted_doc(
     test:             true,                                         # test documents are free but watermarked
     document_content: "<html><body>Hello World</body></html>",      # supply content directly
     # document_url:   "http://docraptor.com/examples/invoice.html", # or use a url
-    name:             "hosted-ruby-async.pdf",                      # helps you find a document later
+    name:             "docraptor-ruby.pdf",                         # help you find a document later
     document_type:    "pdf",                                        # pdf or xls or xlsx
     # javascript:       true,                                       # enable JavaScript processing
     # prince_options: {
@@ -44,28 +44,15 @@ begin
     #   baseurl: "http://hello.com",                                # pretend URL when using document_content
     # },
   )
+  puts "The hosted PDF is now available for public download at #{create_response.download_url}"
 
-  loop do
-    status_response = $docraptor.get_async_doc_status(create_response.status_id)
-    puts "doc status: #{status_response.status}"
-    case status_response.status
-    when "completed"
-      puts "The hosted PDF is now available for public download at #{status_response.download_url}"
-      File.open("/tmp/docraptor-ruby.pdf", "wb") do |file|
-        open(status_response.download_url) do |uri|
-          file.write(uri.read)
-        end
-      end
-      puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
-      break
-    when "failed"
-      puts "FAILED"
-      puts status_response
-      break
-    else
-      sleep 1
+  File.open("/tmp/docraptor-ruby.pdf", "wb") do |file|
+    open(create_response.download_url) do |uri|
+      file.write(uri.read)
     end
   end
+
+  puts "Wrote PDF to /tmp/docraptor-ruby.pdf"
 
 rescue DocRaptor::ApiError => error
   puts "#{error.class}: #{error.message}"
