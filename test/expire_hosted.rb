@@ -17,7 +17,7 @@ $docraptor = DocRaptor::DocApi.new
 output_file = "expire-hosted-ruby-sync.pdf"
 
 output_payload = $docraptor.create_hosted_async_doc(
-  test:             false,
+  test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",

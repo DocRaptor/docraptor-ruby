@@ -17,17 +17,12 @@ $docraptor = DocRaptor::DocApi.new
 output_file = "hosted-ruby-sync.pdf"
 
 output_payload = $docraptor.create_hosted_doc(
-  test:             false,
+  test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",
   hosted_expires_at: (Time.now + 86400).strftime('%FT%T%:z'), # 1 day from now
 )
-
-# should be the unbranded hosted doc url
-unless output_payload.download_url.include?("documentdeliver")
-  raise "Returned URL was not the unbranded URL"
-end
 
 actual_document = open output_payload.download_url
 IO.copy_stream(actual_document, output_file)

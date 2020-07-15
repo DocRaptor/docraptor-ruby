@@ -17,7 +17,7 @@ $docraptor = DocRaptor::DocApi.new
 output_file = "hosted-ruby-sync.pdf"
 
 output_payload = $docraptor.create_hosted_async_doc(
-  test:             false,
+  test:             true,
   document_content: "<html><body>Hello from Ruby</body></html>",
   name:             output_file,
   document_type:    "pdf",
@@ -30,11 +30,5 @@ status_response = nil
   break if status_response.status == "completed"
   sleep 1
 end
-
-# should be the unbranded hosted doc url
-unless status_response.download_url.include?("documentdeliver")
-  raise "Returned URL was not the unbranded URL"
-end
-
 
 
