@@ -238,9 +238,6 @@ definitions:
       - document_type
       - document_content
     properties:
-      pipeline:
-        type: string
-        description: Specify a specific verison of the DocRaptor Pipeline to use.
       name:
         type: string
         description: A name for identifying your document.
@@ -265,13 +262,15 @@ definitions:
         type: boolean
         description: Enable test mode for this document. Test documents are not charged for but include a watermark.
         default: true
+      pipeline:
+        type: string
+        description: Specify a specific verison of the DocRaptor Pipeline to use.
       strict:
         type: string
         description: Force strict HTML validation.
-        default: none
         enum:
           - none
-          - true
+          - html
       ignore_resource_errors:
         type: boolean
         description: Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
@@ -458,4 +457,3 @@ definitions:
       validation_errors:
         type: string
         description: Error information.
-

@@ -14,9 +14,6 @@ require 'date'
 
 module DocRaptor
   class Doc
-    # Specify a specific verison of the DocRaptor Pipeline to use.
-    attr_accessor :pipeline
-
     # A name for identifying your document.
     attr_accessor :name
 
@@ -31,6 +28,9 @@ module DocRaptor
 
     # Enable test mode for this document. Test documents are not charged for but include a watermark.
     attr_accessor :test
+
+    # Specify a specific verison of the DocRaptor Pipeline to use.
+    attr_accessor :pipeline
 
     # Force strict HTML validation.
     attr_accessor :strict
@@ -89,12 +89,12 @@ module DocRaptor
     # Attribute mapping from ruby-style variable name to JSON key.
     def self.attribute_map
       {
-        :'pipeline' => :'pipeline',
         :'name' => :'name',
         :'document_type' => :'document_type',
         :'document_content' => :'document_content',
         :'document_url' => :'document_url',
         :'test' => :'test',
+        :'pipeline' => :'pipeline',
         :'strict' => :'strict',
         :'ignore_resource_errors' => :'ignore_resource_errors',
         :'ignore_console_messages' => :'ignore_console_messages',
@@ -112,12 +112,12 @@ module DocRaptor
     # Attribute type mapping.
     def self.swagger_types
       {
-        :'pipeline' => :'String',
         :'name' => :'String',
         :'document_type' => :'String',
         :'document_content' => :'String',
         :'document_url' => :'String',
         :'test' => :'BOOLEAN',
+        :'pipeline' => :'String',
         :'strict' => :'String',
         :'ignore_resource_errors' => :'BOOLEAN',
         :'ignore_console_messages' => :'BOOLEAN',
@@ -139,10 +139,6 @@ module DocRaptor
 
       # convert string to symbol for hash key
       attributes = attributes.each_with_object({}) { |(k, v), h| h[k.to_sym] = v }
-
-      if attributes.has_key?(:'pipeline')
-        self.pipeline = attributes[:'pipeline']
-      end
 
       if attributes.has_key?(:'name')
         self.name = attributes[:'name']
@@ -166,10 +162,12 @@ module DocRaptor
         self.test = true
       end
 
+      if attributes.has_key?(:'pipeline')
+        self.pipeline = attributes[:'pipeline']
+      end
+
       if attributes.has_key?(:'strict')
         self.strict = attributes[:'strict']
-      else
-        self.strict = 'none'
       end
 
       if attributes.has_key?(:'ignore_resource_errors')
@@ -248,7 +246,7 @@ module DocRaptor
       document_type_validator = EnumAttributeValidator.new('String', ['pdf', 'xls', 'xlsx'])
       return false unless document_type_validator.valid?(@document_type)
       return false if @document_content.nil?
-      strict_validator = EnumAttributeValidator.new('String', ['none'])
+      strict_validator = EnumAttributeValidator.new('String', ['none', 'html'])
       return false unless strict_validator.valid?(@strict)
       true
     end
@@ -266,7 +264,7 @@ module DocRaptor
     # Custom attribute writer method checking allowed values (enum).
     # @param [Object] strict Object to be assigned
     def strict=(strict)
-      validator = EnumAttributeValidator.new('String', ['none'])
+      validator = EnumAttributeValidator.new('String', ['none', 'html'])
       unless validator.valid?(strict)
         fail ArgumentError, 'invalid value for "strict", must be one of #{validator.allowable_values}.'
       end
@@ -278,12 +276,12 @@ module DocRaptor
     def ==(o)
       return true if self.equal?(o)
       self.class == o.class &&
-          pipeline == o.pipeline &&
           name == o.name &&
           document_type == o.document_type &&
           document_content == o.document_content &&
           document_url == o.document_url &&
           test == o.test &&
+          pipeline == o.pipeline &&
           strict == o.strict &&
           ignore_resource_errors == o.ignore_resource_errors &&
           ignore_console_messages == o.ignore_console_messages &&
@@ -306,7 +304,7 @@ module DocRaptor
     # Calculates hash code according to all attributes.
     # @return [Fixnum] Hash code
     def hash
-      [pipeline, name, document_type, document_content, document_url, test, strict, ignore_resource_errors, ignore_console_messages, tag, help, javascript, referrer, callback_url, hosted_download_limit, hosted_expires_at, prince_options].hash
+      [name, document_type, document_content, document_url, test, pipeline, strict, ignore_resource_errors, ignore_console_messages, tag, help, javascript, referrer, callback_url, hosted_download_limit, hosted_expires_at, prince_options].hash
     end
 
     # Builds the object from hash
