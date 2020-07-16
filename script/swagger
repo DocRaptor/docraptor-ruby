@@ -36,5 +36,5 @@ if [ ! -f "$executable" ]; then
   mvn clean package
 fi
 
-export JAVA_OPTS="${JAVA_OPTS} -Xmx1024M -DloggerPath=conf/log4j.properties"
+export JAVA_OPTS="${JAVA_OPTS} -Xmx1024M -DloggerPath=conf/log4j.properties -DapiTests=false -DapiDocs=false -DmodelTests=false -DmodelDocs=false"
 java $JAVA_OPTS -jar $executable $*
