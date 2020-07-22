@@ -171,7 +171,7 @@ paths:
         200:
           description: Successful response
           schema:
-            $ref: '#/definitions/DocStatus'
+            $ref: '#/definitions/AsyncDocStatus'
         401:
           description: Unauthorized
         403:
@@ -436,7 +436,7 @@ definitions:
         type: string
         description: The identifier used to get the status of the document using the status API.
 
-  DocStatus:
+  AsyncDocStatus:
     type: object
     properties:
       status:
@@ -457,3 +457,7 @@ definitions:
       validation_errors:
         type: string
         description: Error information.
+  DocStatus:
+    type: object
+    allOf:
+      - $ref: '#/definitions/AsyncDocStatus'

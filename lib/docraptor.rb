@@ -18,9 +18,10 @@ require 'docraptor/configuration'
 
 # Models
 require 'docraptor/models/async_doc'
+require 'docraptor/models/async_doc_status'
 require 'docraptor/models/doc'
-require 'docraptor/models/doc_status'
 require 'docraptor/models/prince_options'
+require 'docraptor/models/doc_status'
 
 # APIs
 require 'docraptor/api/doc_api'
