@@ -1,8 +1,8 @@
 swagger: '2.0'
 
 info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#info-object
-  version: "1.3.0"
-  title: DocRaptor v1
+  version: "1.4.0"
+  title: DocRaptor
   description: "A native client library for the DocRaptor HTML to PDF/XLS service."
   termsOfService: "https://docraptor.com/tos"
   license:
@@ -55,14 +55,79 @@ paths:
           description: Unprocessable Entity
         500:
           description: Server Error
+
+  /hosted_docs:
+    post:
+      operationId: createHostedDoc
+      tags: [Doc]
+      description: >
+        Creates a hosted document synchronously.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: doc
+          in: body
+          description: The document to be created.
+          required: true
+          schema:
+            $ref: '#/definitions/Doc'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/DocStatus'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Server Error
+
   /async_docs:
     post:
       operationId: createAsyncDoc
       tags: [Doc]
       description: >
         Creates a document asynchronously.
-        You must use a callback url or the the returned status id and the status api to find out when it completes.
-        Then use the download api to get the document.
+        You must use a callback url or the returned status id and the status API to find out when it completes.
+        Then use the download API to get the document.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: doc
+          in: body
+          description: The document to be created.
+          required: true
+          schema:
+            $ref: '#/definitions/Doc'
+      responses:
+        200:
+          description: Successful response
+          schema:
+            $ref: '#/definitions/AsyncDoc'
+        400:
+          description: Bad Request
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        422:
+          description: Unprocessable Entity
+        500:
+          description: Server Error
+
+  /hosted_async_docs:
+    post:
+      operationId: createHostedAsyncDoc
+      tags: [Doc]
+      description: >
+        Creates a hosted document asynchronously.
+        You must use a callback url or the returned status id and the status API to find out when it completes.
+        Then use the download API to get the document.
       security:
         - basicAuth: []
       parameters:
@@ -101,13 +166,12 @@ paths:
           in: path
           description: The status_id returned when creating an asynchronous document.
           required: true
-          schema:
-            $ref: '#/definitions/AsyncDocStatus'
+          type: string
       responses:
         200:
           description: Successful response
           schema:
-            $ref: '#/definitions/AsyncDocStatus'
+            $ref: '#/definitions/DocStatus'
         401:
           description: Unauthorized
         403:
@@ -120,14 +184,15 @@ paths:
       operationId: getAsyncDoc
       tags: [Doc]
       description: >
-        Downloads a document.
+        Downloads a finished document.
       security:
         - basicAuth: []
       parameters:
         - name: id
           in: path
-          description: The download_id returned from status request or a callback.
+          description: The download_id returned from an async status request or callback.
           required: true
+          type: string
       responses:
         200:
           description: Successful response
@@ -141,6 +206,30 @@ paths:
         500:
           description: Server Error
 
+  /expire/{id}:
+    patch:
+      operationId: expire
+      tags: [Doc]
+      description: >
+        Expires a previously created hosted doc.
+      security:
+        - basicAuth: []
+      parameters:
+        - name: id
+          in: path
+          description: The download_id returned from status request or hosted document response.
+          required: true
+          type: string
+      responses:
+        200:
+          description: Successful response
+        401:
+          description: Unauthorized
+        403:
+          description: Forbidden
+        500:
+          description: Server Error
+
 definitions:
   Doc:
     type: object
@@ -149,9 +238,6 @@ definitions:
       - document_type
       - document_content
     properties:
-      pipeline:
-        type: string
-        description: Specify a specific verison of the DocRaptor Pipeline to use.
       name:
         type: string
         description: A name for identifying your document.
@@ -176,13 +262,15 @@ definitions:
         type: boolean
         description: Enable test mode for this document. Test documents are not charged for but include a watermark.
         default: true
+      pipeline:
+        type: string
+        description: Specify a specific verison of the DocRaptor Pipeline to use.
       strict:
         type: string
         description: Force strict HTML validation.
-        default: none
         enum:
           - none
-          - true
+          - html
       ignore_resource_errors:
         type: boolean
         description: Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
@@ -209,8 +297,14 @@ definitions:
         type: string
         description: >
           A URL that will receive a POST request after successfully completing an asynchronous document.
-          The POST data will include download_url and download_id similar to status api responses.
+          The POST data will include download_url and download_id similar to status API responses.
           WARNING: this only works on asynchronous documents.
+      hosted_download_limit:
+        type: integer
+        description: The number of times a hosted document can be downloaded.  If no limit is specified, the document will be available for an unlimited number of downloads.
+      hosted_expires_at:
+        type: string
+        description: The date and time at which a hosted document will be removed and no longer available. Must be a properly formatted ISO 8601 datetime, like 1981-01-23T08:02:30-05:00.
       prince_options:
         $ref: '#/definitions/PrinceOptions'
 
@@ -340,9 +434,9 @@ definitions:
     properties:
       status_id:
         type: string
-        description: The identifier used to get the status of the document using the status api.
+        description: The identifier used to get the status of the document using the status API.
 
-  AsyncDocStatus:
+  DocStatus:
     type: object
     properties:
       status:
@@ -353,7 +447,7 @@ definitions:
         description: The URL where the document can be retrieved. This URL may only be used a few times.
       download_id:
         type: string
-        description: The identifier for downloading the document with the download api.
+        description: The identifier for downloading the document with the download API.
       message:
         type: string
         description: Additional information.

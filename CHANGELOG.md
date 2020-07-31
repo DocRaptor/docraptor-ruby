@@ -1,3 +1,7 @@
+### 1.4.0 [July 31, 2020]
+* add support for hosted documents
+* upgrade to latest swagger 2.4.14
+
 ### 1.3.0 [November 21, 2017]
 * Added support for `prince_options[pdf_title]` and `ignore_console_messages` options
 

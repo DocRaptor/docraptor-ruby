@@ -29,6 +29,7 @@ Gemfile.lock
 .ruby-version
 .ruby-gemset
 .rvmrc
+.rubocop.yml
 
 ## Ignore dumb OSX files
 .DS_Store
@@ -39,3 +40,6 @@ swagger-codegen
 
 ## Ignore dumb emacs files
 *~
+
+## Ignore files that contain special keys
+.docraptor_key
