@@ -2,13 +2,8 @@ require "bundler/setup"
 Bundler.require
 require 'open-uri'
 
-api_key = File.read("#{__dir__}/../.docraptor_key").strip
-unless api_key
-  raise "Please put a valid (paid plan) api key in the .docraptor_key file when testing this feature."
-end
-
 DocRaptor.configure do |dr|
-  dr.username  = api_key
+  dr.username  = "YOUR_API_KEY_HERE"
   # dr.debugging = true
 end
 
