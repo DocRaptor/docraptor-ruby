@@ -23,7 +23,7 @@ Bundler.require
 require "open-uri"
 
 DocRaptor.configure do |dr|
-  dr.username  = "YOUR_API_KEY_HERE" # you will need a real api key to test hosted documents
+  dr.username  = "YOUR_API_KEY_HERE"
   # dr.debugging = true
 end
 
