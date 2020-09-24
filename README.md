@@ -18,10 +18,7 @@ bundle install
 ```
 
 
-## Usage
-
-Below is a barebones example, more robust examples with [file output and error handling](examples/sync.rb), [asynchronous generation](examples/async.rb), [hosted documents](examples/hosted_sync.rb), or [asynchronous hosted documents](examples/hosted_async.rb) are also available.
-
+## Basic Usage
 
 ```ruby
 DocRaptor.configure do |config|
@@ -45,15 +42,16 @@ response = $docraptor.create_doc(
 )
 ```
 
-Documents created synchronously like above are limited to 60 seconds of generation time, the [asynchronous method](examples/async.rb) allows up to 10 minutes.
+## Next Steps
 
-Our [styling documentation](https://docraptor.com/documentation/style) and [knowledge base](https://help.docraptor.com) contain tips and guides on creating headers, footers, page numbers, table of contents, and much more.
+- Optionally store and get a URL for your converted document with <a href="https://docraptor.com/document-hosting">document hosting</a>.</li>
+- View more <a href="examples">code examples</a> with error handling, asynchronous creation, file saving, and document hosting.</li>
+- Perfect your document styling with our <a href="https://help.docraptor.com">knowledge base</a>, <a href="https://docraptor.com/documentation/style">style and formatting reference</a>, and <a href="https://docraptor.com/documentation/api">API reference</a>. Easily add headers and footers, page breaks, page numbers, table of contents, and much more!</li>
+
 
 ## More Help
 
-DocRaptor has a lot of more [styling](https://docraptor.com/documentation/style) and [implementation options](https://docraptor.com/documentation/api).
-
-Stuck? We're experts at using DocRaptor so please [email us](mailto:support@docraptor.com) if you run into trouble.
+Stuck? We're experts at turning HTML into PDFs so please [email us](mailto:support@docraptor.com) if you run into trouble.
 
 
 ## Development
