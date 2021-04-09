@@ -46,7 +46,7 @@ response = $docraptor.create_doc(
 
 - Optionally store and get a URL for your converted document with [document hosting](https://docraptor.com/document-hosting)
 - View more [code examples](examples) with error handling, asynchronous creation, file saving, and document hosting.
-- Perfect your document styling with our [knowledge base](https://help.docraptor.com), [style and formatting reference](https://docraptor.com/documentation/style), and [API reference](https://docraptor.com/documentation/api). Easily add headers and footers, page breaks, page numbers, table of contents, and much more!
+- Perfect your document styling with our [style and formatting reference](https://docraptor.com/documentation/style), and [API reference](https://docraptor.com/documentation/api). Easily add headers and footers, page breaks, page numbers, table of contents, and much more!
 
 ## More Help
 
