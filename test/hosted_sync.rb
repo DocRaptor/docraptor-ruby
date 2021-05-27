@@ -19,7 +19,7 @@ output_payload = $docraptor.create_hosted_doc(
   hosted_expires_at: (Time.now + 86400).strftime('%FT%T%:z'), # 1 day from now
 )
 
-actual_document = open output_payload.download_url
+actual_document = URI.parse(output_payload.download_url).open
 IO.copy_stream(actual_document, output_file)
 
 output_type = `file -b #{output_file}`

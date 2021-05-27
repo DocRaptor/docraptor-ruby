@@ -26,7 +26,7 @@ status_response = nil
   sleep 1
 end
 
-actual_document = open status_response.download_url
+actual_document = URI.parse(status_response.download_url).open
 IO.copy_stream(actual_document, output_file)
 
 output_type = `file -b #{output_file}`
@@ -37,7 +37,7 @@ raise "Output was not a PDF" unless output_type.start_with?("PDF")
 $docraptor.expire(status_response.download_id)
 
 begin
-  actual_document = open status_response.download_url
+  actual_document = URI.parse(status_response.download_url).open
 rescue OpenURI::HTTPError => http_error
   exit 0
 end
