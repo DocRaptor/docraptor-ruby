@@ -8,17 +8,48 @@ bundler -v > /dev/null || (echo "bundler must be installed"; exit 1)
 
 bundle install
 
-cd test
-
 # runs a test file with PASS/FAIL message
 run_test() {
   ruby $1 && echo "PASS $1" || (echo "FAIL $1"; exit 1)
 }
 
-if [ "$1" == "" ]; then
-  for test in $(ls *.rb); do
-    run_test $test
-  done
+run_tests() {
+  if [ "$1" == "" ]; then
+    for test in $(ls *.rb); do
+      run_test $test
+    done
+  else
+    run_test $1.rb
+  fi
+}
+
+success="true"
+
+# Setup rbenv so we can switch rubies below
+eval "$(rbenv init - --no-rehash)"
+
+for ruby_version in `ruby -ryaml -e 'puts YAML.load(File.read(".travis.yml"))["rvm"].join(" ")'`; do
+  {
+    echo "testing ruby version $ruby_version" &&
+      rbenv shell $ruby_version &&
+      ( cd test && run_tests )
+  } || success="false"
+done
+
+if [ $success == "true" ]; then
+  tput bold    # bold text
+  tput setaf 2 # green text
+  echo "======================================"
+  echo "=              Passed                ="
+  echo "======================================"
+  tput sgr0    # reset to default text
+  exit 0
 else
-  run_test $1.rb
+  tput bold    # bold text
+  tput setaf 1 # red text
+  echo "======================================"
+  echo "=              FAILED                ="
+  echo "======================================"
+  tput sgr0    # reset to default text
+  exit 1
 fi
