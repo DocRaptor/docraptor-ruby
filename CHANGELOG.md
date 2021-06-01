@@ -1,3 +1,7 @@
+### 2.0.0 [June 1, 2021]
+* Add support for ruby 3.x (remove `URI.encode`)
+* Remove support for rubies <2.3
+
 ### 1.4.0 [July 31, 2020]
 * add support for hosted documents
 * upgrade to latest swagger 2.4.14
