@@ -21,4 +21,7 @@ File.write(output_file, output_payload)
 output_type = `file -b #{output_file}`
 File.delete output_file
 
-raise "Output was not an XLSX (zip)" unless output_type.start_with?("Zip")
+# Older version of `file` only recognize it as a zip file
+if !output_type.start_with?("Microsoft OOXML") && !output_type.start_with?("Zip")
+  raise "Output was not an XLSX: #{output_type.inspect}"
+end

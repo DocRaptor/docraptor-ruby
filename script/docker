@@ -25,10 +25,15 @@ if [[ "$image" == "" ]]; then
 fi
 
 command="$1"
+
+cache_dir="$(pwd)/tmp/cache_${image}"
+mkdir -p "$cache_dir"
+
 set -x
 docker run --pull=always -it --rm \
   --env-file .docker_env.list \
   --env RUNTIME_ENV="${image}" \
   --mount type=bind,source="$(pwd)",target=/app \
+  --mount type=bind,source="${cache_dir}",target=/app/tmp/cache \
   "$image" \
   "$command"

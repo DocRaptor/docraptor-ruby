@@ -9,5 +9,6 @@
     "gemDescription": "A native client library for the DocRaptor HTML to PDF/XLS service.",
     "gemLicense": "MIT",
     "hideGenerationTimestamp": true,
-    "httpUserAgent": "ruby-swagger-#{VERSION}"
+    "httpUserAgent": "ruby-swagger-#{VERSION}",
+    "gemRequiredRubyVersion": ">= 2.5"
 }
