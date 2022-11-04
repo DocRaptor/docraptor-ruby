@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+[[ "$TRACE" == "true" ]] && set -x
 cd "$(dirname "$0")/.."
 
 echo "Clearing test output directory"
