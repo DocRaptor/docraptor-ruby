@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-cd "`dirname \"$0\"`/.."
+cd "$(dirname "$0")/.."
 
 echo "Removing trailing whitespace..."
 find lib -name "*.rb" -type f -exec sed -E -i '' 's/[[:space:]]+$//g' {} +

@@ -1,6 +1,6 @@
-#!/bin/sh
+#!/bin/bash
 set -e
-cd "`dirname \"$0\"`/.."
+cd "$(dirname "$0")/.."
 
 # check dependencies
 ruby -v > /dev/null    || (echo "ruby must be installed"; exit 1)
