@@ -9,7 +9,8 @@ end
 
 $docraptor = DocRaptor::DocApi.new
 
-output_file = "hosted-ruby-sync.pdf"
+test_output_dir = File.join(File.dirname(File.expand_path(__FILE__)), "..", "tmp", "test_output")
+output_file = File.join(test_output_dir, "#{File.basename(__FILE__, ".rb")}_ruby_#{RUBY_VERSION}.pdf")
 
 output_payload = $docraptor.create_hosted_doc(
   test:             true,
@@ -23,6 +24,5 @@ actual_document = URI.parse(output_payload.download_url).open
 IO.copy_stream(actual_document, output_file)
 
 output_type = `file -b #{output_file}`
-File.delete output_file
 
 raise "Output was not a PDF" unless output_type.start_with?("PDF")
