@@ -20,7 +20,7 @@ fi
 
 ./script/swagger generate \
   -i docraptor.yaml \
-  -l "$LANGUAGE" \
+  -g "$LANGUAGE" \
   -c "$CONFIG_FILE"
 
 # call a generator cleanup script

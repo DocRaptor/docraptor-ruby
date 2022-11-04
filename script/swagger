@@ -2,39 +2,12 @@
 set -e
 cd "$(dirname "$0")/.."
 
-SWAGGER_CODGEN_REVISION=$(cat .swagger-revision 2> /dev/null || true)
-if [ "$SWAGGER_CODGEN_REVISION" = "" ]; then
-  echo "Set a revision of swagger-codegen to use in .swagger-revision"
+set -x
+
+GENERATOR_REVISION=$(cat .generator-revision 2> /dev/null || true)
+if [ "$GENERATOR_REVISION" = "" ]; then
+  echo "Set a revision of openapi-generator to use in .generator-revision"
   exit 1
 fi
 
-if ! [ -x "$(command -v mvn)" ]; then
-  echo 'Error: mvn not installed, using homebrew to install' >&2
-  brew install maven
-fi
-
-if [ ! -d "swagger-codegen" ]; then
-  git clone https://github.com/swagger-api/swagger-codegen
-fi
-
-(
-  cd swagger-codegen
-  if [[ "${#SWAGGER_CODGEN_REVISION}" -lt 40 ]]; then
-    # resolve git tags / branch names
-    SWAGGER_CODGEN_REVISION=$(git show "$SWAGGER_CODGEN_REVISION" --format="%H")
-  fi
-  if [[ $(cat .git/HEAD) != "$SWAGGER_CODGEN_REVISION" ]]; then
-    git fetch
-    git checkout "$SWAGGER_CODGEN_REVISION"
-    mvn clean package
-  fi
-)
-
-executable="./swagger-codegen/modules/swagger-codegen-cli/target/swagger-codegen-cli.jar"
-
-if [ ! -f "$executable" ]; then
-  mvn clean package
-fi
-
-export JAVA_OPTS="${JAVA_OPTS} -Xmx1024M -DloggerPath=conf/log4j.properties -DapiTests=false -DapiDocs=false -DmodelTests=false -DmodelDocs=false"
-java $JAVA_OPTS -jar $executable $*
+docker run -it -w "/local" --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:${GENERATOR_REVISION} $*
