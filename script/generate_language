@@ -2,7 +2,7 @@
 set -e
 cd "$(dirname "$0")/.."
 
-LANGUAGE="$1"
+LANGUAGE="$(cat .generator-language-identifier)"
 CONFIG_FILE="swagger-config.json"
 
 if [ "$LANGUAGE" = "" ]; then
