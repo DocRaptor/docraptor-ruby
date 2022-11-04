@@ -43,7 +43,7 @@ if [ $success == "true" ]; then
   tput bold    # bold text
   tput setaf 2 # green text
   echo "======================================"
-  echo "=              Passed                ="
+  echo "=      Full Test Suite Passed        ="
   echo "======================================"
   tput sgr0    # reset to default text
   exit 0
@@ -51,7 +51,7 @@ else
   tput bold    # bold text
   tput setaf 1 # red text
   echo "======================================"
-  echo "=              FAILED                ="
+  echo "=      Full Test Suite FAILED        ="
   echo "======================================"
   tput sgr0    # reset to default text
   exit 1
