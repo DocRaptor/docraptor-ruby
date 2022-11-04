@@ -140,7 +140,7 @@ module DocRaptor
 
     def initialize
       @scheme = 'https'
-      @host = 'docraptor.com'
+      @host = 'api.docraptor.com'
       @base_path = ''
       @server_index = 0
       @server_operation_index = {}
@@ -230,7 +230,7 @@ module DocRaptor
     def server_settings
       [
         {
-          url: "https://docraptor.com",
+          url: "https://api.docraptor.com",
           description: "No description provided",
         }
       ]
