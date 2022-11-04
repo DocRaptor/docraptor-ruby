@@ -7,12 +7,7 @@ echo "Clearing test output directory"
 rm -rf tmp/test_output/
 mkdir -p tmp/test_output
 
-bundle install
-
-# runs a test file with PASS/FAIL message
-run_test() {
-  ruby $1 && echo "PASS $1" || (echo "FAIL $1"; exit 1)
-}
+[ -f script/build ] && script/build
 
 run_tests() {
   runtime_env="$1"
