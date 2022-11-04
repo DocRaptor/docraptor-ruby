@@ -14,26 +14,33 @@ run_test() {
 }
 
 run_tests() {
-  if [ "$1" == "" ]; then
-    for test in $(ls *.rb); do
-      run_test $test
-    done
+  runtime_env="$1"
+  if time script/docker -i "$runtime_env" /app/script/inside_container/test; then
+    tput bold    # bold text
+    tput setaf 2 # green text
+    echo "======================================"
+    echo "$runtime_env Passed"
+    echo "======================================"
+    tput sgr0    # reset to default text
+    return 0
   else
-    run_test $1.rb
+    tput bold    # bold text
+    tput setaf 1 # red text
+    echo "======================================"
+    echo "$runtime_env FAILED"
+    echo "======================================"
+    tput sgr0    # reset to default text
+    return 1
   fi
 }
 
 success="true"
 
-# Setup rbenv so we can switch rubies below
-eval "$(rbenv init - --no-rehash)"
-
-for ruby_version in `ruby -ryaml -e 'puts YAML.load(File.read(".travis.yml"))["rvm"].join(" ")'`; do
-  {
-    echo "testing ruby version $ruby_version" &&
-      rbenv shell $ruby_version &&
-      ( cd test && run_tests )
-  } || success="false"
+for runtime_env in $(cat .runtime-environments | grep -v '^#'); do
+  echo
+  echo
+  echo "Testing runtime env $runtime_env"
+  run_tests "$runtime_env" || success="false"
 done
 
 if [ $success == "true" ]; then

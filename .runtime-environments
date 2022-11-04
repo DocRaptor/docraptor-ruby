@@ -1,0 +1,10 @@
+# Versions without patch numbers will test the latest patch version. We include
+# specific patch versions to provide consistency. We include version numbers
+# without the patch version in order to automatically test the latest patch
+# version of each minor version.
+# DR gem itself requires >= 2.4, so 2.3 is out
+# 2.4: /app/lib/docraptor/models/async_doc.rb:111:in `build_from_hash': undefined method `transform_keys'
+# 2.5: xlsx.rb:28:in `<main>': Output was not an XLSX (RuntimeError), I believe because `file` is too old to recognize it
+ruby:2.6
+ruby:2.7
+ruby:3.0

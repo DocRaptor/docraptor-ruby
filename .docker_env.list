@@ -1,0 +1,3 @@
+TRACE
+TEST_OUTPUT_DIR=/app/tmp/test_output
+BUNDLE_PATH=/app/tmp/cache/bundle

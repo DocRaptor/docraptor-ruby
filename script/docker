@@ -1,0 +1,34 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")/.."
+
+OPTIND=1
+
+image=""
+
+while getopts "h?i:" opt; do
+  case "$opt" in
+    h|\?)
+      show_help
+      exit 0
+      ;;
+    i)  image="$OPTARG"
+      ;;
+  esac
+done
+
+shift $((OPTIND-1))
+
+if [[ "$image" == "" ]]; then
+  image="$(cat .runtime-environments | grep -v '^#' | tail -n 1)"
+  echo "docker image (-i) unset, defaulting to: $image"
+fi
+
+command="$1"
+set -x
+docker run --pull=always -it --rm \
+  --env-file .docker_env.list \
+  --env RUNTIME_ENV="${image}" \
+  --mount type=bind,source="$(pwd)",target=/app \
+  "$image" \
+  "$command"

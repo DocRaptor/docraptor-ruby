@@ -1,0 +1,37 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")/../.."
+
+# check dependencies
+ruby -v > /dev/null    || (echo "ruby must be installed"; exit 1)
+
+major_minor_version="$(ruby -e 'puts RUBY_VERSION.split(".")[0, 2].join(".")')"
+gemfile_lock="gemfiles/Gemfile.${major_minor_version}.lock"
+if [ -f "$gemfile_lock" ]; then
+  cp -v "$gemfile_lock" Gemfile.lock
+else
+  rm -vf Gemfile.lock
+fi
+
+bundle -v > /dev/null  || (echo "bundler must be installed"; exit 1)
+
+bundle install
+
+if [ ! -f "$gemfile_lock" ]; then
+  cp -v Gemfile.lock "$gemfile_lock"
+fi
+
+cd test
+
+# runs a test file with PASS/FAIL message
+run_test() {
+  ruby $1 && echo "PASS $1" || (echo "FAIL $1"; exit 1)
+}
+
+if [ "$1" == "" ]; then
+  for test in $(ls *.rb); do
+    run_test $test
+  done
+else
+  run_test $1.rb
+fi
