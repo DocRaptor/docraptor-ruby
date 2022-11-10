@@ -15,6 +15,7 @@ fi
 
 bundle -v > /dev/null  || (echo "bundler must be installed"; exit 1)
 
+# TODO: update to test against updates dependencies as well
 bundle install
 
 if [ ! -f "$gemfile_lock" ]; then
