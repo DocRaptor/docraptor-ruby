@@ -1,3 +1,8 @@
+### 3.0.0 [TBD]
+* Switch API host to more secure api.docraptor.com (dropping old TLS)
+* Remove support for rubies <2.5
+* Switch from swagger v2.4.19 to openapi-generator v6.0.1 (better maintained)
+
 ### 2.0.0 [June 1, 2021]
 * Add support for ruby 3.x (remove `URI.encode`)
 * Remove support for rubies <2.3
