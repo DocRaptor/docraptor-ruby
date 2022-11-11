@@ -12,12 +12,12 @@ setup_error() {
 
 brew_install() {
   setup_echo "Installing $1..."
-  brew list --formula $1 > /dev/null || brew install --formula $1
+  brew list --formula "$1" > /dev/null || brew install --formula "$1"
 }
 
 brew_cask_install() {
   setup_echo "Installing cask $1..."
-  brew list --cask $1 &> /dev/null || brew install --cask $1
+  brew list --cask "$1" &> /dev/null || brew install --cask "$1"
 }
 
 brew_cask_install docker

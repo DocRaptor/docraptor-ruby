@@ -10,4 +10,4 @@ if [ "$GENERATOR_REVISION" = "" ]; then
   exit 1
 fi
 
-docker run -it -w "/local" --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:${GENERATOR_REVISION} $*
+docker run -it -w "/local" --rm -v "${PWD}:/local" openapitools/openapi-generator-cli:"${GENERATOR_REVISION}" "$@"
