@@ -55,7 +55,7 @@ Stuck? We're experts at turning HTML into PDFs so please [email us](mailto:suppo
 
 ## Development
 
-The majority of the code in this repo is generated using swagger-codegen on [docraptor.yaml](docraptor.yaml). You can modify this file and regenerate the client using `script/generate_language ruby`.
+The majority of the code in this repo is generated using openapi-generator on [docraptor.yaml](docraptor.yaml). You can modify this file and regenerate the client using `script/generate_language`.
 
 
 ## Release Process
@@ -64,7 +64,7 @@ The majority of the code in this repo is generated using swagger-codegen on [doc
 2. Merge feature branch(es) into master
 3. `script/test`
 4. Increment version in code:
-  - `swagger-config.json`
+  - `generator-config.json`
   - `lib/docraptor/version.rb`
 5. Update [CHANGELOG.md](CHANGELOG.md)
 6. Commit "Release version vX.Y.Z"
