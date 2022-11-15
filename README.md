@@ -68,7 +68,7 @@ The majority of the code in this repo is generated using openapi-generator on [d
   - `lib/docraptor/version.rb`
 6. Update [CHANGELOG.md](CHANGELOG.md)
 7. Commit "Release version vX.Y.Z"
-8. `rake release[<name of your git remote corresponding to DocRaptor/docraptor-ruby>]`
+8. `script/release`
 9. Verify package release at https://rubygems.org/gems/docraptor
 10. Refresh documentation on docraptor.com
 

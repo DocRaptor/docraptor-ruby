@@ -33,6 +33,8 @@ set -x
 docker run --pull=always -it --rm \
   --env-file .docker_env.list \
   --env RUNTIME_ENV="${image}" \
+  --volume /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock \
+  --env SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" \
   --mount type=bind,source="$(pwd)",target=/app \
   --mount type=bind,source="${cache_dir}",target=/app/tmp/cache \
   "$image" \

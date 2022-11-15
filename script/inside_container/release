@@ -1,0 +1,6 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")/../.."
+
+public_remote="$(git remote -v | grep -i 'git@github.com:DocRaptor/docraptor-ruby.git' | head -n 1 | cut -f1)"
+rake "release[${public_remote}]"

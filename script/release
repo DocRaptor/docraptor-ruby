@@ -1,0 +1,7 @@
+#!/bin/bash
+set -e
+cd "$(dirname "$0")/.."
+
+git config --local user.email "$(git config --get user.email)"
+
+script/docker "$@" /app/script/inside_container/release
