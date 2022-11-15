@@ -18,6 +18,16 @@ fi
 
 ./script/clean
 
+# See .review/README.md
+echo "Facilitating generated content review"
+tmp_dir=".review/tmp"
+review_root=".review/generated_files"
+rm -rf "$tmp_dir"
+(cd "$review_root" && find . -type f) | while read file_path; do
+  mkdir -p "$(dirname "${tmp_dir}/$file_path")"
+  mv -v "$file_path" "${tmp_dir}/$file_path"
+done
+
 ./script/swagger generate \
   -i docraptor.yaml \
   -g "$LANGUAGE" \
@@ -27,3 +37,10 @@ fi
 if [ -f "script/post_generate_language" ]; then
   ./script/post_generate_language
 fi
+
+# See .review/README.md
+echo "Facilitating generated content review"
+(cd "$review_root" && find . -type f) | while read file_path; do
+  mv -v "$file_path" "$review_root/$file_path"
+  mv -v "${tmp_dir}/$file_path" "$file_path"
+done
