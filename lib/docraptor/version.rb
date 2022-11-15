@@ -11,5 +11,5 @@ OpenAPI Generator version: 6.1.0-SNAPSHOT
 =end
 
 module DocRaptor
-  VERSION = '2.0.0'
+  VERSION = '3.0.0'
 end

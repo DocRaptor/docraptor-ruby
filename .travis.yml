@@ -11,4 +11,4 @@ script:
   - bundle install --path vendor/bundle
   - bundle exec rspec
   - gem build docraptor.gemspec
-  - gem install ./docraptor-2.0.0.gem
+  - gem install ./docraptor-3.0.0.gem
