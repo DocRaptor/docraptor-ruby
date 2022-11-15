@@ -63,14 +63,14 @@ The majority of the code in this repo is generated using openapi-generator on [d
 1. Pull latest master
 2. Merge feature branch(es) into master
 3. `script/test`
-4. Increment version in code:
-  - `generator-config.json`
+4. Increment version: `generator-config.json`
+5. Run `script/generate_language` to update generated version numbers:
   - `lib/docraptor/version.rb`
-5. Update [CHANGELOG.md](CHANGELOG.md)
-6. Commit "Release version vX.Y.Z"
-7. `rake release[<name of your git remote corresponding to DocRaptor/docraptor-ruby>]`
-8. Verify package release at https://rubygems.org/gems/docraptor
-9. Refresh documentation on docraptor.com
+6. Update [CHANGELOG.md](CHANGELOG.md)
+7. Commit "Release version vX.Y.Z"
+8. `rake release[<name of your git remote corresponding to DocRaptor/docraptor-ruby>]`
+9. Verify package release at https://rubygems.org/gems/docraptor
+10. Refresh documentation on docraptor.com
 
 
 ## Version Policy
