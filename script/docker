@@ -24,13 +24,20 @@ if [[ "$image" == "" ]]; then
   echo "docker image (-i) unset, defaulting to: $image"
 fi
 
+if ! docker pull "$image"; then
+  echo "Pulling the latest version of ${image} failed, but we'll continue in"
+  echo "the hopes that there's a previous version of the container available."
+  echo "This probably isn't an issue unless you really want to verify"
+  echo "everything works with a :latest container image."
+fi
+
 command="$1"
 
 cache_dir="$(pwd)/tmp/cache_${image}"
 mkdir -p "$cache_dir"
 
 set -x
-docker run --pull=always -it --rm \
+docker run -it --rm \
   --env-file .docker_env.list \
   --env RUNTIME_ENV="${image}" \
   --volume /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock \
