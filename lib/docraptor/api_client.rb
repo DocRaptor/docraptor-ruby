@@ -115,6 +115,7 @@ module DocRaptor
         :proxyuserpwd => @config.proxyuserpwd,
         :followlocation => follow_location
       }
+      @config.logger.debug "req_opts\n#{req_opts}\n~END~\n"
 
       # set custom cert, if provided
       req_opts[:cainfo] = @config.ssl_ca_cert if @config.ssl_ca_cert
