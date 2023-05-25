@@ -111,6 +111,8 @@ module DocRaptor
         :sslcert => @config.cert_file,
         :sslkey => @config.key_file,
         :verbose => @config.debugging,
+        :proxy => @config.proxy,
+        :proxyuserpwd => @config.proxyuserpwd,
         :followlocation => follow_location
       }
 
