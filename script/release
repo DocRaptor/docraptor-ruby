@@ -1,7 +1,13 @@
 #!/bin/bash
 set -e
+[[ "$TRACE" == "true" ]] && set -x
 cd "$(dirname "$0")/.."
 
-git config --local user.email "$(git config --get user.email)"
 
-script/docker "$@" /app/script/inside_container/release
+if [[ "$INSIDE_DOCKER" != "true" ]]; then
+  git config --local user.email "$(git config --get user.email)"
+  exec script/docker "/app/script/$(basename "$0")"
+fi
+
+public_remote="$(git remote -v | grep -i 'git@github.com:DocRaptor/docraptor-ruby.git' | head -n 1 | cut -f1)"
+rake "release[${public_remote}]"
