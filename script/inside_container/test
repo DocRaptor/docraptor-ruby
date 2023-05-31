@@ -24,9 +24,19 @@ fi
 
 cd test
 
+key_relative_path="tmp/.docraptor_key"
+key_path="../$key_relative_path"
+
 # runs a test file with PASS/FAIL message
 run_test() {
-  ruby $1 && echo "PASS $1" || (echo "FAIL $1"; exit 1)
+  test_name="$1"
+  if [[ "$DOCRAPTOR_KEY" == "" ]] && [ -f "$key_path" ]; then
+    (export DOCRAPTOR_KEY="$(cat "$key_path")" && run_test $1)
+    test_name="$test_name (without "$key_relative_path")"
+  else
+    test_name="$test_name (with "$key_relative_path")"
+  fi
+  ruby $1 && echo "PASS $test_name" || (echo "FAIL $test_name"; exit 1)
 }
 
 if [ "$1" == "" ]; then
