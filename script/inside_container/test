@@ -24,25 +24,61 @@ fi
 
 cd test
 
+
+green() {
+  tput bold    # bold text
+  tput setaf 2 # green text
+  echo -n "$@"
+  tput sgr0    # reset to default text
+}
+red() {
+  tput bold    # bold text
+  tput setaf 1 # red text
+  echo -n "$@"
+  tput sgr0    # reset to default text
+}
+
+
 key_relative_path="tmp/.docraptor_key"
 key_path="../$key_relative_path"
 
 # runs a test file with PASS/FAIL message
 run_test() {
-  test_name="$1"
+  test_success="true"
+  test_name="$1 ${2:-(without $key_relative_path)}"
   if [[ "$DOCRAPTOR_KEY" == "" ]] && [ -f "$key_path" ]; then
-    (export DOCRAPTOR_KEY="$(cat "$key_path")" && run_test $1)
-    test_name="$test_name (without "$key_relative_path")"
-  else
-    test_name="$test_name (with "$key_relative_path")"
+    (
+      export DOCRAPTOR_KEY="$(cat "$key_path")"
+      run_test $1 "(with $key_relative_path)"
+    ) || test_success="false"
   fi
-  ruby $1 && echo "PASS $test_name" || (echo "FAIL $test_name"; exit 1)
+
+  if ruby $1; then
+    echo "$(green PASS) $test_name"
+  else
+    test_success="false"
+    echo "$(red FAIL) $test_name"
+  fi
+
+  if [ $test_success == "true" ]; then
+    return 0
+  else
+    return 1
+  fi
 }
+
+success="true"
 
 if [ "$1" == "" ]; then
   for test in $(ls *.rb); do
-    run_test $test
+    run_test $test || success="false"
   done
 else
-  run_test $1.rb
+  run_test $1.rb || success="false"
+fi
+
+if [ $success == "true" ]; then
+  exit 0
+else
+  exit 1
 fi
