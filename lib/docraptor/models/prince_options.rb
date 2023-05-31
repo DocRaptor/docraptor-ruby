@@ -105,6 +105,15 @@ module DocRaptor
     # Specify the PDF title, part of the document's metadata.
     attr_accessor :pdf_title
 
+    # Enable loading of iframes.
+    attr_accessor :iframes
+
+    # Specify the page margin distance.
+    attr_accessor :page_margin
+
+    # Make form fields editable by default.
+    attr_accessor :pdf_forms
+
     class EnumAttributeValidator
       attr_reader :datatype
       attr_reader :allowable_values
@@ -159,7 +168,10 @@ module DocRaptor
         :'javascript' => :'javascript',
         :'css_dpi' => :'css_dpi',
         :'profile' => :'profile',
-        :'pdf_title' => :'pdf_title'
+        :'pdf_title' => :'pdf_title',
+        :'iframes' => :'iframes',
+        :'page_margin' => :'page_margin',
+        :'pdf_forms' => :'pdf_forms'
       }
     end
 
@@ -200,7 +212,10 @@ module DocRaptor
         :'javascript' => :'Boolean',
         :'css_dpi' => :'Integer',
         :'profile' => :'String',
-        :'pdf_title' => :'String'
+        :'pdf_title' => :'String',
+        :'iframes' => :'Boolean',
+        :'page_margin' => :'String',
+        :'pdf_forms' => :'Boolean'
       }
     end
 
@@ -348,6 +363,18 @@ module DocRaptor
       if attributes.key?(:'pdf_title')
         self.pdf_title = attributes[:'pdf_title']
       end
+
+      if attributes.key?(:'iframes')
+        self.iframes = attributes[:'iframes']
+      end
+
+      if attributes.key?(:'page_margin')
+        self.page_margin = attributes[:'page_margin']
+      end
+
+      if attributes.key?(:'pdf_forms')
+        self.pdf_forms = attributes[:'pdf_forms']
+      end
     end
 
     # Show invalid properties with the reasons. Usually used together with valid?
@@ -409,7 +436,10 @@ module DocRaptor
           javascript == o.javascript &&
           css_dpi == o.css_dpi &&
           profile == o.profile &&
-          pdf_title == o.pdf_title
+          pdf_title == o.pdf_title &&
+          iframes == o.iframes &&
+          page_margin == o.page_margin &&
+          pdf_forms == o.pdf_forms
     end
 
     # @see the `==` method
@@ -421,7 +451,7 @@ module DocRaptor
     # Calculates hash code according to all attributes.
     # @return [Integer] Hash code
     def hash
-      [baseurl, no_xinclude, no_network, no_parallel_downloads, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, debug, input, version, javascript, css_dpi, profile, pdf_title].hash
+      [baseurl, no_xinclude, no_network, no_parallel_downloads, http_user, http_password, http_proxy, http_timeout, insecure, media, no_author_style, no_default_style, no_embed_fonts, no_subset_fonts, no_compress, encrypt, key_bits, user_password, owner_password, disallow_print, disallow_copy, disallow_annotate, disallow_modify, debug, input, version, javascript, css_dpi, profile, pdf_title, iframes, page_margin, pdf_forms].hash
     end
 
     # Builds the object from hash

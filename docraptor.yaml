@@ -428,6 +428,15 @@ definitions:
       pdf_title:
         type: string
         description: Specify the PDF title, part of the document's metadata.
+      iframes:
+        type: boolean
+        description: Enable loading of iframes.
+      page_margin:
+        type: string
+        description: Specify the page margin distance.
+      pdf_forms:
+        type: boolean
+        description: Make form fields editable by default.
 
   AsyncDoc:
     type: object
