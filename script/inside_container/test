@@ -2,6 +2,9 @@
 set -e
 cd "$(dirname "$0")/../.."
 
+apt update
+apt install poppler-utils -y
+
 # check dependencies
 ruby -v > /dev/null    || (echo "ruby must be installed"; exit 1)
 
