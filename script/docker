@@ -1,6 +1,7 @@
 #!/bin/bash
 set -e
 cd "$(dirname "$0")/.."
+[[ "$TRACE" == "true" ]] && set -x
 
 OPTIND=1
 
@@ -33,16 +34,23 @@ fi
 
 command="$1"
 
-cache_dir="$(pwd)/tmp/cache_${image}"
-mkdir -p "$cache_dir"
+mounts=()
+while IFS=':' read -r source target; do
+  # Create the directory if it's not a special/magic path (like for ssh)
+  mkdir -p -m 700 "$source" &> /dev/null || true
+
+  mounts+=(--volume)
+  mounts+=("${source}:${target}")
+
+  # Can't pipe to the while loop because that causes a subshell, which means
+  # the variables set in the loop aren't available outside of it.
+done < <(eval echo "\"$(grep -v '^#' .docker_mounts.list)\"")
 
 set -x
 docker run -it --rm \
   --env-file .docker_env.list \
   --env RUNTIME_ENV="${image}" \
-  --volume /run/host-services/ssh-auth.sock:/run/host-services/ssh-auth.sock \
-  --env SSH_AUTH_SOCK="/run/host-services/ssh-auth.sock" \
   --mount type=bind,source="$(pwd)",target=/app \
-  --mount type=bind,source="${cache_dir}",target=/app/tmp/cache \
+  "${mounts[@]}" \
   "$image" \
   "$command"

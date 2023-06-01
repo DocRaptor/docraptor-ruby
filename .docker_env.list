@@ -2,3 +2,4 @@ TRACE
 TEST_OUTPUT_DIR=/app/tmp/test_output
 BUNDLE_PATH=/app/tmp/cache/bundle
 INSIDE_DOCKER=true
+SSH_AUTH_SOCK=/run/host-services/ssh-auth.sock
