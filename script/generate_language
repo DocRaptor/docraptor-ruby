@@ -23,10 +23,18 @@ fi
 echo "Facilitating generated content review"
 tmp_dir=".review/tmp"
 review_root=".review/generated_files"
+# Clear the tmp_dir, where we'll temporarily store our files so they aren't
+# overwritten by the generated files.
 rm -rf "$tmp_dir"
 (cd "$review_root" && find . -type f) | while read file_path; do
-  mkdir -p "$(dirname "${tmp_dir}/$file_path")"
-  mv -v "$file_path" "${tmp_dir}/$file_path"
+  # Move our file out of the way so it doesn't get overwritten by the generated
+  # file, but only if the file exists. Some files, like the generated docs and
+  # tests, aren't useful to users to we generally remove them, but we still
+  # want to facilitate review of these generated files.
+  if [ -e "$file_path" ]; then
+    mkdir -p "$(dirname "${tmp_dir}/$file_path")"
+    mv -v "$file_path" "${tmp_dir}/$file_path"
+  fi
 done
 
 ./script/swagger generate \
@@ -42,6 +50,19 @@ fi
 # See .review/README.md
 echo "Facilitating generated content review"
 (cd "$review_root" && find . -type f) | while read file_path; do
-  mv -v "$file_path" "$review_root/$file_path"
-  mv -v "${tmp_dir}/$file_path" "$file_path"
+  # Update $review_root to match the generated files.
+  if [ -e "$file_path" ]; then
+    # Move the newly generated file into the review directory so we'll be able to
+    # see it in the diff.
+    mv -v "$file_path" "$review_root/$file_path"
+  else
+    # If the file doesn't exist, then it was removed by the generator, so we
+    # should remove it from the review directory as well.
+    rm -v "$review_root/$file_path"
+  fi
+  # If we temporarily stored a file (meaning it existed before the generation)
+  # then move it back into place.
+  if [ -e "${tmp_dir}/$file_path" ]; then
+    mv -v "${tmp_dir}/$file_path" "$file_path"
+  fi
 done
