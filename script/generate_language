@@ -1,5 +1,6 @@
 #!/bin/bash
 set -e
+[[ "$TRACE" == "true" ]] && set -x
 cd "$(dirname "$0")/.."
 
 LANGUAGE="$(cat .generator-language-identifier)"
