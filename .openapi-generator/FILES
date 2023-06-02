@@ -7,6 +7,11 @@ Gemfile
 README.md
 Rakefile
 docraptor.gemspec
+docs/AsyncDoc.md
+docs/Doc.md
+docs/DocApi.md
+docs/DocStatus.md
+docs/PrinceOptions.md
 lib/docraptor.rb
 lib/docraptor/api/doc_api.rb
 lib/docraptor/api_client.rb
