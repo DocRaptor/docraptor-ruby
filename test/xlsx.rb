@@ -21,7 +21,11 @@ output_payload = $docraptor.create_doc(
 File.write(output_file, output_payload)
 output_type = `file -b #{output_file}`
 
-# Older version of `file` only recognize it as a zip file
-if !output_type.start_with?("Microsoft OOXML") && !output_type.start_with?("Zip")
+acceptable_output_types = [
+  "Microsoft Excel 2007+",                      # Newest versions of `file`
+  "Microsoft OOXML",                            # Older versions of `file`
+  "Zip archive data, at least v2.0 to extract", # Even older versions of `file`
+]
+if !acceptable_output_types.include?(output_type.strip)
   raise "Output was not an XLSX: #{output_type.inspect}"
 end
