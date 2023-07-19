@@ -1,7 +1,7 @@
 {
     "gemName": "docraptor",
     "moduleName": "DocRaptor",
-    "gemVersion": "3.0.0",
+    "gemVersion": "3.1.0",
     "gemAuthor": "Expected Behavior",
     "gemAuthorEmail": "support@docraptor.com",
     "gemHomepage": "https://github.com/docraptor/docraptor-ruby",

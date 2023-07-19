@@ -1,3 +1,6 @@
+### 3.1.0 [July 19, 2023]
+* Add new Prince API options for pdf_forms, iframes, and page_margin
+
 ### 3.0.0 [November 15, 2022]
 * Switch API host to more secure api.docraptor.com (dropping old TLS)
 * Remove support for rubies <2.5
