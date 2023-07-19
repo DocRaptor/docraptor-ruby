@@ -6,7 +6,7 @@
 | ---- | ---- | ----------- | ----- |
 | **name** | **String** | A name for identifying your document. |  |
 | **document_type** | **String** | The type of document being created. |  |
-| **document_content** | **String** | The HTML data to be transformed into a document. You must supply content using document_content or document_url.  |  |
+| **document_content** | **String** | The HTML data to be transformed into a document. You must supply content using document_content or document_url.  | [optional] |
 | **document_url** | **String** | The URL to fetch the HTML data to be transformed into a document. You must supply content using document_content or document_url.  | [optional] |
 | **test** | **Boolean** | Enable test mode for this document. Test documents are not charged for but include a watermark. | [optional][default to true] |
 | **pipeline** | **String** | Specify a specific verison of the DocRaptor Pipeline to use. | [optional] |

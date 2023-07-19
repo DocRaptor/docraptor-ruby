@@ -124,6 +124,10 @@ describe DocRaptor::PrinceOptions do
   describe 'test attribute "key_bits"' do
     it 'should work' do
       # assertion here. ref: https://rspec.info/features/3-12/rspec-expectations/built-in-matchers/
+      # validator = Petstore::EnumTest::EnumAttributeValidator.new('Integer', [40, 128])
+      # validator.allowable_values.each do |value|
+      #   expect { instance.key_bits = value }.not_to raise_error
+      # end
     end
   end
 

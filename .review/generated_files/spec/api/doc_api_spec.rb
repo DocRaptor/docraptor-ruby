@@ -34,7 +34,7 @@ describe 'DocApi' do
 
   # unit tests for create_async_doc
   # Creates a document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document. 
-  # @param doc The document to be created.
+  # @param doc 
   # @param [Hash] opts the optional parameters
   # @return [AsyncDoc]
   describe 'create_async_doc test' do
@@ -45,7 +45,7 @@ describe 'DocApi' do
 
   # unit tests for create_doc
   # Creates a document synchronously. 
-  # @param doc The document to be created.
+  # @param doc 
   # @param [Hash] opts the optional parameters
   # @return [String]
   describe 'create_doc test' do
@@ -56,7 +56,7 @@ describe 'DocApi' do
 
   # unit tests for create_hosted_async_doc
   # Creates a hosted document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document. 
-  # @param doc The document to be created.
+  # @param doc 
   # @param [Hash] opts the optional parameters
   # @return [AsyncDoc]
   describe 'create_hosted_async_doc test' do

@@ -250,10 +250,6 @@ module DocRaptor
         invalid_properties.push('invalid value for "document_type", document_type cannot be nil.')
       end
 
-      if @document_content.nil?
-        invalid_properties.push('invalid value for "document_content", document_content cannot be nil.')
-      end
-
       invalid_properties
     end
 
@@ -264,7 +260,6 @@ module DocRaptor
       return false if @document_type.nil?
       document_type_validator = EnumAttributeValidator.new('String', ["pdf", "xls", "xlsx"])
       return false unless document_type_validator.valid?(@document_type)
-      return false if @document_content.nil?
       strict_validator = EnumAttributeValidator.new('String', ["none", "html"])
       return false unless strict_validator.valid?(@strict)
       true

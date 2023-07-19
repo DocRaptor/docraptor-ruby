@@ -64,7 +64,7 @@ DocRaptor.configure do |config|
 end
 
 api_instance = DocRaptor::DocApi.new
-doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf', document_content: 'document_content_example'}) # Doc | The document to be created.
+doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf'}) # Doc | 
 
 begin
   result = api_instance.create_async_doc(doc)

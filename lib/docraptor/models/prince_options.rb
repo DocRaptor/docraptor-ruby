@@ -87,7 +87,7 @@ module DocRaptor
     # Enable Prince debug mode.
     attr_accessor :debug
 
-    # Specify the input format.
+    # Specify the input format, defaults to html.
     attr_accessor :input
 
     # Deprecated, use the appropriate `pipeline` version. Specify a specific verison of PrinceXML to use.
@@ -222,6 +222,7 @@ module DocRaptor
     # List of attributes with nullable: true
     def self.openapi_nullable
       Set.new([
+        :'iframes',
       ])
     end
 
@@ -278,8 +279,6 @@ module DocRaptor
 
       if attributes.key?(:'media')
         self.media = attributes[:'media']
-      else
-        self.media = 'print'
       end
 
       if attributes.key?(:'no_author_style')
@@ -340,8 +339,6 @@ module DocRaptor
 
       if attributes.key?(:'input')
         self.input = attributes[:'input']
-      else
-        self.input = 'html'
       end
 
       if attributes.key?(:'version')
@@ -387,9 +384,21 @@ module DocRaptor
     # Check to see if the all the properties in the model are valid
     # @return true if the model is valid
     def valid?
+      key_bits_validator = EnumAttributeValidator.new('Integer', [40, 128])
+      return false unless key_bits_validator.valid?(@key_bits)
       input_validator = EnumAttributeValidator.new('String', ["html", "xml", "auto"])
       return false unless input_validator.valid?(@input)
       true
+    end
+
+    # Custom attribute writer method checking allowed values (enum).
+    # @param [Object] key_bits Object to be assigned
+    def key_bits=(key_bits)
+      validator = EnumAttributeValidator.new('Integer', [40, 128])
+      unless validator.valid?(key_bits)
+        fail ArgumentError, "invalid value for \"key_bits\", must be one of #{validator.allowable_values}."
+      end
+      @key_bits = key_bits
     end
 
     # Custom attribute writer method checking allowed values (enum).

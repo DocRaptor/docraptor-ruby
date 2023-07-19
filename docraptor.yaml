@@ -1,4 +1,4 @@
-swagger: '2.0'
+openapi: '3.0.0'
 
 info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md#info-object
   version: "2.0.0"
@@ -9,19 +9,9 @@ info: # https://github.com/OAI/OpenAPI-Specification/blob/master/versions/2.0.md
     name: "MIT"
     url: "https://mit-license.org/"
 
-host: api.docraptor.com
-basePath: /
-schemes: [https]
-securityDefinitions:
-  basicAuth:
-    type: basic
-    description: Use your API key as the username. Password does not need to be set.
-produces:
-  - application/json
-  - application/xml
-  - application/pdf
-  - application/vnd.ms-excel
-  - application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+servers:
+- url: https://api.docraptor.com
+  description: DocRaptor API endpoint
 
 paths:
   /docs:
@@ -32,19 +22,20 @@ paths:
         Creates a document synchronously.
       security:
         - basicAuth: []
-      parameters:
-        - name: doc
-          in: body
-          description: The document to be created.
-          required: true
-          schema:
-            $ref: '#/definitions/Doc'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doc'
+        required: true
       responses:
         200:
           description: Successful response
-          schema:
-            type: string
-            format: byte
+          content:
+            "*/*":
+              schema:
+                type: string
+                format: byte
         400:
           description: Bad Request
         401:
@@ -64,18 +55,20 @@ paths:
         Creates a hosted document synchronously.
       security:
         - basicAuth: []
-      parameters:
-        - name: doc
-          in: body
-          description: The document to be created.
-          required: true
-          schema:
-            $ref: '#/definitions/Doc'
+      requestBody:
+        description: The document to be created.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doc'
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: '#/definitions/DocStatus'
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/DocStatus'
         400:
           description: Bad Request
         401:
@@ -97,18 +90,19 @@ paths:
         Then use the download API to get the document.
       security:
         - basicAuth: []
-      parameters:
-        - name: doc
-          in: body
-          description: The document to be created.
-          required: true
-          schema:
-            $ref: '#/definitions/Doc'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doc'
+        required: true
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: '#/definitions/AsyncDoc'
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/AsyncDoc'
         400:
           description: Bad Request
         401:
@@ -130,18 +124,19 @@ paths:
         Then use the download API to get the document.
       security:
         - basicAuth: []
-      parameters:
-        - name: doc
-          in: body
-          description: The document to be created.
-          required: true
-          schema:
-            $ref: '#/definitions/Doc'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Doc'
+        required: true
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: '#/definitions/AsyncDoc'
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/AsyncDoc'
         400:
           description: Bad Request
         401:
@@ -166,12 +161,15 @@ paths:
           in: path
           description: The status_id returned when creating an asynchronous document.
           required: true
-          type: string
+          schema:
+            type: string
       responses:
         200:
           description: Successful response
-          schema:
-            $ref: '#/definitions/DocStatus'
+          content:
+            "*/*":
+              schema:
+                $ref: '#/components/schemas/DocStatus'
         401:
           description: Unauthorized
         403:
@@ -192,13 +190,16 @@ paths:
           in: path
           description: The download_id returned from an async status request or callback.
           required: true
-          type: string
+          schema:
+            type: string
       responses:
         200:
           description: Successful response
-          schema:
-            type: string
-            format: byte
+          content:
+            "*/*":
+              schema:
+                type: string
+                format: byte
         400:
           description: Bad Request
         403:
@@ -219,7 +220,8 @@ paths:
           in: path
           description: The download_id returned from status request or hosted document response.
           required: true
-          type: string
+          schema:
+            type: string
       responses:
         200:
           description: Successful response
@@ -230,240 +232,227 @@ paths:
         500:
           description: Server Error
 
-definitions:
-  Doc:
-    type: object
-    required:
-      - name
-      - document_type
-      - document_content
-    properties:
-      name:
-        type: string
-        description: A name for identifying your document.
-      document_type:
-        type: string
-        description: The type of document being created.
-        enum:
-          - pdf
-          - xls
-          - xlsx
-      document_content:
-        type: string
-        description: >
-          The HTML data to be transformed into a document.
-          You must supply content using document_content or document_url.
-      document_url:
-        type: string
-        description: >
-          The URL to fetch the HTML data to be transformed into a document.
-          You must supply content using document_content or document_url.
-      test:
-        type: boolean
-        description: Enable test mode for this document. Test documents are not charged for but include a watermark.
-        default: true
-      pipeline:
-        type: string
-        description: Specify a specific verison of the DocRaptor Pipeline to use.
-      strict:
-        type: string
-        description: Force strict HTML validation.
-        enum:
-          - none
-          - html
-      ignore_resource_errors:
-        type: boolean
-        description: Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
-        default: true
-      ignore_console_messages:
-        type: boolean
-        description: Prevent console.log from stopping document rendering during JavaScript execution.
-        default: false
-      tag:
-        type: string
-        description: A field for storing a small amount of metadata with this document.
-      help:
-        type: boolean
-        description: Request support help with this request if it succeeds.
-        default: false
-      javascript:
-        type: boolean
-        description: Enable DocRaptor JavaScript parsing. PrinceXML JavaScript parsing is also available elsewhere.
-        default: false
-      referrer:
-        type: string
-        description: Set HTTP referrer when generating this document.
-      callback_url:
-        type: string
-        description: >
-          A URL that will receive a POST request after successfully completing an asynchronous document.
-          The POST data will include download_url and download_id similar to status API responses.
-          WARNING: this only works on asynchronous documents.
-      hosted_download_limit:
-        type: integer
-        description: The number of times a hosted document can be downloaded.  If no limit is specified, the document will be available for an unlimited number of downloads.
-      hosted_expires_at:
-        type: string
-        description: The date and time at which a hosted document will be removed and no longer available. Must be a properly formatted ISO 8601 datetime, like 1981-01-23T08:02:30-05:00.
-      prince_options:
-        $ref: '#/definitions/PrinceOptions'
+components:
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: Use your API key as the username. Password does not need to be set.
+  schemas:
+    Doc:
+      type: object
+      required:
+        - name
+        - document_type
+      properties:
+        name:
+          type: string
+          description: A name for identifying your document.
+        document_type:
+          type: string
+          description: The type of document being created.
+          enum:
+            - pdf
+            - xls
+            - xlsx
+        document_content:
+          type: string
+          description: >
+            The HTML data to be transformed into a document.
+            You must supply content using document_content or document_url.
+        document_url:
+          type: string
+          description: >
+            The URL to fetch the HTML data to be transformed into a document.
+            You must supply content using document_content or document_url.
+        test:
+          type: boolean
+          description: Enable test mode for this document. Test documents are not charged for but include a watermark.
+          default: true
+        pipeline:
+          type: string
+          description: Specify a specific verison of the DocRaptor Pipeline to use.
+        strict:
+          type: string
+          description: Force strict HTML validation.
+          enum:
+            - none
+            - html
+        ignore_resource_errors:
+          type: boolean
+          description: Failed loading of images/javascripts/stylesheets/etc. will not cause the rendering to stop.
+          default: true
+        ignore_console_messages:
+          type: boolean
+          description: Prevent console.log from stopping document rendering during JavaScript execution.
+          default: false
+        tag:
+          type: string
+          description: A field for storing a small amount of metadata with this document.
+        help:
+          type: boolean
+          description: Request support help with this request if it succeeds.
+          default: false
+        javascript:
+          type: boolean
+          description: Enable DocRaptor JavaScript parsing. PrinceXML JavaScript parsing is also available elsewhere.
+          default: false
+        referrer:
+          type: string
+          description: Set HTTP referrer when generating this document.
+        callback_url:
+          type: string
+          description: >
+            A URL that will receive a POST request after successfully completing an asynchronous document.
+            The POST data will include download_url and download_id similar to status API responses.
+            WARNING: this only works on asynchronous documents.
+        hosted_download_limit:
+          type: integer
+          description: The number of times a hosted document can be downloaded.  If no limit is specified, the document will be available for an unlimited number of downloads.
+        hosted_expires_at:
+          type: string
+          description: The date and time at which a hosted document will be removed and no longer available. Must be a properly formatted ISO 8601 datetime, like 1981-01-23T08:02:30-05:00.
+        prince_options:
+          $ref: '#/components/schemas/PrinceOptions'
 
-  PrinceOptions:
-    type: object
-    properties:
-      baseurl:
-        type: string
-        description: Set the baseurl for assets.
-      no_xinclude:
-        type: boolean
-        description: Disable XML inclusion.
-      no_network:
-        type: boolean
-        description: Disable network access.
-      no_parallel_downloads:
-        type: boolean
-        description: Disables parallel fetching of assets during PDF creation. Useful if your asset host has strict rate limiting.
-      http_user:
-        type: string
-        description: Set the user for HTTP authentication.
-      http_password:
-        type: string
-        description: Set the password for HTTP authentication.
-      http_proxy:
-        type: string
-        description: Set the HTTP proxy server.
-      http_timeout:
-        type: integer
-        description: Set the HTTP request timeout.
-        # default: 10
-      insecure:
-        type: boolean
-        description: Disable SSL verification.
-        # default: false
-      media:
-        type: string
-        description: Specify the CSS media type. Defaults to "print" but you may want to use "screen" for web styles.
-        default: print
-      no_author_style:
-        type: boolean
-        description: Ignore author stylesheets.
-      no_default_style:
-        type: boolean
-        description: Ignore default stylesheets.
-      no_embed_fonts:
-        type: boolean
-        description: Disable font embedding in PDFs.
-      no_subset_fonts:
-        type: boolean
-        description: Disable font subsetting in PDFs.
-      no_compress:
-        type: boolean
-        description: Disable PDF compression.
-      encrypt:
-        type: boolean
-        description: Encrypt PDF output.
-      key_bits:
-        type: integer
-        description: Set encryption key size.
-        enum:
-          - 40
-          - 128
-      user_password:
-        type: string
-        description: Set the PDF user password.
-      owner_password:
-        type: string
-        description: Set the PDF owner password.
-      disallow_print:
-        type: boolean
-        description: Disallow printing of this PDF.
-      disallow_copy:
-        type: boolean
-        description: Disallow copying of this PDF.
-      disallow_annotate:
-        type: boolean
-        description: Disallow annotation of this PDF.
-      disallow_modify:
-        type: boolean
-        description: Disallow modification of this PDF.
-      debug:
-        type: boolean
-        description: Enable Prince debug mode.
-      input:
-        type: string
-        description: Specify the input format.
-        default: html
-        enum:
-          - html
-          - xml
-          - auto
-      version:
-        type: string
-        deprecated: true
-        description: Deprecated, use the appropriate `pipeline` version. Specify a specific verison of PrinceXML to use.
-        # default: 10
-        # disabled because Java will try to make an enum as 7_1 which fails
-        # enum:
-        #   - 7.1
-        #   - 8.1
-        #   - 9.0
-        #   - 10
-      javascript:
-        type: boolean
-        description: Enable PrinceXML JavaScript. DocRaptor JavaScript parsing is also available elsewhere.
-      css_dpi:
-        type: integer
-        description: Set the DPI when rendering CSS. Defaults to 96 but can be set with Prince 9.0 and up.
-        # default: 96
-      profile:
-        type: string
-        description: In Prince 9.0 and up you can set the PDF profile.
-        # disabled because Java will try to make an enum with PDF/A-1b which fails
-        # enum:
-        #   - PDF/A-1b
-        #   - PDF/A-3b # (Pipeline 6+)
-        #   - PDF/X-1a # (Pipeline 6+)
-        #   - PDF/X-3:2003
-        #   - PDF/X-4
-      pdf_title:
-        type: string
-        description: Specify the PDF title, part of the document's metadata.
-      iframes:
-        type: boolean
-        description: Enable loading of iframes.
-      page_margin:
-        type: string
-        description: Specify the page margin distance.
-      pdf_forms:
-        type: boolean
-        description: Make form fields editable by default.
+    PrinceOptions:
+      type: object
+      properties:
+        baseurl:
+          type: string
+          description: Set the baseurl for assets.
+        no_xinclude:
+          type: boolean
+          description: Disable XML inclusion.
+        no_network:
+          type: boolean
+          description: Disable network access.
+        no_parallel_downloads:
+          type: boolean
+          description: Disables parallel fetching of assets during PDF creation. Useful if your asset host has strict rate limiting.
+        http_user:
+          type: string
+          description: Set the user for HTTP authentication.
+        http_password:
+          type: string
+          description: Set the password for HTTP authentication.
+        http_proxy:
+          type: string
+          description: Set the HTTP proxy server.
+        http_timeout:
+          type: integer
+          description: Set the HTTP request timeout.
+        insecure:
+          type: boolean
+          description: Disable SSL verification.
+        media:
+          type: string
+          description: Specify the CSS media type. Defaults to "print" but you may want to use "screen" for web styles.
+        no_author_style:
+          type: boolean
+          description: Ignore author stylesheets.
+        no_default_style:
+          type: boolean
+          description: Ignore default stylesheets.
+        no_embed_fonts:
+          type: boolean
+          description: Disable font embedding in PDFs.
+        no_subset_fonts:
+          type: boolean
+          description: Disable font subsetting in PDFs.
+        no_compress:
+          type: boolean
+          description: Disable PDF compression.
+        encrypt:
+          type: boolean
+          description: Encrypt PDF output.
+        key_bits:
+          type: integer
+          description: Set encryption key size.
+          enum:
+            - 40
+            - 128
+        user_password:
+          type: string
+          description: Set the PDF user password.
+        owner_password:
+          type: string
+          description: Set the PDF owner password.
+        disallow_print:
+          type: boolean
+          description: Disallow printing of this PDF.
+        disallow_copy:
+          type: boolean
+          description: Disallow copying of this PDF.
+        disallow_annotate:
+          type: boolean
+          description: Disallow annotation of this PDF.
+        disallow_modify:
+          type: boolean
+          description: Disallow modification of this PDF.
+        debug:
+          type: boolean
+          description: Enable Prince debug mode.
+        input:
+          type: string
+          description: Specify the input format, defaults to html.
+          enum:
+            - html
+            - xml
+            - auto
+        version:
+          type: string
+          deprecated: true
+          description: Deprecated, use the appropriate `pipeline` version. Specify a specific verison of PrinceXML to use.
+        javascript:
+          type: boolean
+          description: Enable PrinceXML JavaScript. DocRaptor JavaScript parsing is also available elsewhere.
+        css_dpi:
+          type: integer
+          description: Set the DPI when rendering CSS. Defaults to 96 but can be set with Prince 9.0 and up.
+        profile:
+          type: string
+          description: In Prince 9.0 and up you can set the PDF profile.
+        pdf_title:
+          type: string
+          description: Specify the PDF title, part of the document's metadata.
+        iframes:
+          type: boolean
+          description: Enable loading of iframes.
+          nullable: true
+        page_margin:
+          type: string
+          description: Specify the page margin distance.
+        pdf_forms:
+          type: boolean
+          description: Make form fields editable by default.
 
-  AsyncDoc:
-    type: object
-    properties:
-      status_id:
-        type: string
-        description: The identifier used to get the status of the document using the status API.
+    AsyncDoc:
+      type: object
+      properties:
+        status_id:
+          type: string
+          description: The identifier used to get the status of the document using the status API.
 
-  DocStatus:
-    type: object
-    properties:
-      status:
-        type: string
-        description: The present status of the document. Can be queued, working, completed, and failed.
-      download_url:
-        type: string
-        description: The URL where the document can be retrieved. This URL may only be used a few times.
-      download_id:
-        type: string
-        description: The identifier for downloading the document with the download API.
-      message:
-        type: string
-        description: Additional information.
-      number_of_pages:
-        type: integer
-        description: Number of PDF pages in document.
-      validation_errors:
-        type: string
-        description: Error information.
+    DocStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          description: The present status of the document. Can be queued, working, completed, and failed.
+        download_url:
+          type: string
+          description: The URL where the document can be retrieved. This URL may only be used a few times.
+        download_id:
+          type: string
+          description: The identifier for downloading the document with the download API.
+        message:
+          type: string
+          description: Additional information.
+        number_of_pages:
+          type: integer
+          description: Number of PDF pages in document.
+        validation_errors:
+          type: string
+          description: Error information.
 

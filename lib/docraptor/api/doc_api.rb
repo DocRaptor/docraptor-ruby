@@ -20,7 +20,7 @@ module DocRaptor
       @api_client = api_client
     end
     # Creates a document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
     def create_async_doc(doc, opts = {})
@@ -29,7 +29,7 @@ module DocRaptor
     end
 
     # Creates a document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Integer, Hash)>] AsyncDoc data, response status code and response headers
     def create_async_doc_with_http_info(doc, opts = {})
@@ -49,7 +49,12 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -81,7 +86,7 @@ module DocRaptor
     end
 
     # Creates a document synchronously.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [String]
     def create_doc(doc, opts = {})
@@ -90,7 +95,7 @@ module DocRaptor
     end
 
     # Creates a document synchronously.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [Array<(String, Integer, Hash)>] String data, response status code and response headers
     def create_doc_with_http_info(doc, opts = {})
@@ -110,7 +115,12 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -142,7 +152,7 @@ module DocRaptor
     end
 
     # Creates a hosted document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [AsyncDoc]
     def create_hosted_async_doc(doc, opts = {})
@@ -151,7 +161,7 @@ module DocRaptor
     end
 
     # Creates a hosted document asynchronously. You must use a callback url or the returned status id and the status API to find out when it completes. Then use the download API to get the document.
-    # @param doc [Doc] The document to be created.
+    # @param doc [Doc]
     # @param [Hash] opts the optional parameters
     # @return [Array<(AsyncDoc, Integer, Hash)>] AsyncDoc data, response status code and response headers
     def create_hosted_async_doc_with_http_info(doc, opts = {})
@@ -171,7 +181,12 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -232,7 +247,12 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
+      # HTTP header 'Content-Type'
+      content_type = @api_client.select_header_content_type(['application/json'])
+      if !content_type.nil?
+          header_params['Content-Type'] = content_type
+      end
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -352,7 +372,7 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
 
       # form parameters
       form_params = opts[:form_params] || {}
@@ -413,7 +433,7 @@ module DocRaptor
       # header parameters
       header_params = opts[:header_params] || {}
       # HTTP header 'Accept' (if needed)
-      header_params['Accept'] = @api_client.select_header_accept(['application/json', 'application/xml', 'application/pdf', 'application/vnd.ms-excel', 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'])
+      header_params['Accept'] = @api_client.select_header_accept(['*/*'])
 
       # form parameters
       form_params = opts[:form_params] || {}

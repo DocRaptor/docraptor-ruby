@@ -13,7 +13,7 @@
 | **http_proxy** | **String** | Set the HTTP proxy server. | [optional] |
 | **http_timeout** | **Integer** | Set the HTTP request timeout. | [optional] |
 | **insecure** | **Boolean** | Disable SSL verification. | [optional] |
-| **media** | **String** | Specify the CSS media type. Defaults to \&quot;print\&quot; but you may want to use \&quot;screen\&quot; for web styles. | [optional][default to &#39;print&#39;] |
+| **media** | **String** | Specify the CSS media type. Defaults to \&quot;print\&quot; but you may want to use \&quot;screen\&quot; for web styles. | [optional] |
 | **no_author_style** | **Boolean** | Ignore author stylesheets. | [optional] |
 | **no_default_style** | **Boolean** | Ignore default stylesheets. | [optional] |
 | **no_embed_fonts** | **Boolean** | Disable font embedding in PDFs. | [optional] |
@@ -28,7 +28,7 @@
 | **disallow_annotate** | **Boolean** | Disallow annotation of this PDF. | [optional] |
 | **disallow_modify** | **Boolean** | Disallow modification of this PDF. | [optional] |
 | **debug** | **Boolean** | Enable Prince debug mode. | [optional] |
-| **input** | **String** | Specify the input format. | [optional][default to &#39;html&#39;] |
+| **input** | **String** | Specify the input format, defaults to html. | [optional] |
 | **version** | **String** | Deprecated, use the appropriate &#x60;pipeline&#x60; version. Specify a specific verison of PrinceXML to use. | [optional] |
 | **javascript** | **Boolean** | Enable PrinceXML JavaScript. DocRaptor JavaScript parsing is also available elsewhere. | [optional] |
 | **css_dpi** | **Integer** | Set the DPI when rendering CSS. Defaults to 96 but can be set with Prince 9.0 and up. | [optional] |

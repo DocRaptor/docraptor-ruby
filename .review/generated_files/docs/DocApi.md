@@ -34,7 +34,7 @@ DocRaptor.configure do |config|
 end
 
 api_instance = DocRaptor::DocApi.new
-doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf', document_content: 'document_content_example'}) # Doc | The document to be created.
+doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf'}) # Doc | 
 
 begin
   
@@ -67,7 +67,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **doc** | [**Doc**](Doc.md) | The document to be created. |  |
+| **doc** | [**Doc**](Doc.md) |  |  |
 
 ### Return type
 
@@ -79,8 +79,8 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Content-Type**: application/json
+- **Accept**: */*
 
 
 ## create_doc
@@ -104,7 +104,7 @@ DocRaptor.configure do |config|
 end
 
 api_instance = DocRaptor::DocApi.new
-doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf', document_content: 'document_content_example'}) # Doc | The document to be created.
+doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf'}) # Doc | 
 
 begin
   
@@ -137,7 +137,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **doc** | [**Doc**](Doc.md) | The document to be created. |  |
+| **doc** | [**Doc**](Doc.md) |  |  |
 
 ### Return type
 
@@ -149,8 +149,8 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Content-Type**: application/json
+- **Accept**: */*
 
 
 ## create_hosted_async_doc
@@ -174,7 +174,7 @@ DocRaptor.configure do |config|
 end
 
 api_instance = DocRaptor::DocApi.new
-doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf', document_content: 'document_content_example'}) # Doc | The document to be created.
+doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf'}) # Doc | 
 
 begin
   
@@ -207,7 +207,7 @@ end
 
 | Name | Type | Description | Notes |
 | ---- | ---- | ----------- | ----- |
-| **doc** | [**Doc**](Doc.md) | The document to be created. |  |
+| **doc** | [**Doc**](Doc.md) |  |  |
 
 ### Return type
 
@@ -219,8 +219,8 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Content-Type**: application/json
+- **Accept**: */*
 
 
 ## create_hosted_doc
@@ -244,7 +244,7 @@ DocRaptor.configure do |config|
 end
 
 api_instance = DocRaptor::DocApi.new
-doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf', document_content: 'document_content_example'}) # Doc | The document to be created.
+doc = DocRaptor::Doc.new({name: 'name_example', document_type: 'pdf'}) # Doc | The document to be created.
 
 begin
   
@@ -289,8 +289,8 @@ end
 
 ### HTTP request headers
 
-- **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Content-Type**: application/json
+- **Accept**: */*
 
 
 ## expire
@@ -429,7 +429,7 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Accept**: */*
 
 
 ## get_async_doc_status
@@ -499,5 +499,5 @@ end
 ### HTTP request headers
 
 - **Content-Type**: Not defined
-- **Accept**: application/json, application/xml, application/pdf, application/vnd.ms-excel, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet
+- **Accept**: */*
 
