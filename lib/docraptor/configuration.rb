@@ -143,6 +143,16 @@ module DocRaptor
     # https://github.com/typhoeus/ethon/blob/master/lib/ethon/easy/queryable.rb#L96
     attr_accessor :params_encoding
 
+    # Proxy URL to pass to Typhoeus.
+    # Default to nil.
+    attr_accessor :proxy
+
+    # Proxy username & password to pass to Typhoeus.
+    # Format as `username:password`.
+    #
+    # Default to nil.
+    attr_accessor :proxyuserpwd
+
 
     attr_accessor :inject_format
 
@@ -165,6 +175,8 @@ module DocRaptor
       @key_file = nil
       @timeout = 0
       @params_encoding = nil
+      @proxy = nil
+      @proxyuserpwd = nil
       @debugging = false
       @inject_format = false
       @force_ending_format = false
